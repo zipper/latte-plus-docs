@@ -17,9 +17,9 @@ Latte+ ships 40+ inspections that validate templates as you type. Each one can b
 toggled and given a severity (Error / Warning / Weak warning) under
 **Settings → Editor → Inspections → Latte**.
 
-A core design goal is a **near-zero false-positive rate**: the parser is validated
-against the real Latte engine, so valid templates stay clean and you can trust a
-warning when you see one.
+A core design goal is **few false positives**: Latte+ accepts the same templates the
+real Latte engine accepts, so valid templates stay clean and you can trust a warning
+when you see one.
 
 ## Template structure
 

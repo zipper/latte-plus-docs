@@ -36,14 +36,14 @@ won't find as complete — in other Latte plugins:
 
 | Killer feature | What it gives you |
 |---|---|
-| **Dual PSI engine** | A real HTML tree lives alongside the Latte tree, so native HTML completion, inspections and `n:attributes` work without false "tag not closed" errors. |
-| **Multi-stage PHP type inference** | `{varType}`, `{templateType}`, `foreach` item types and `$obj->method()` chains are resolved through a type waterfall — real autocomplete on your variables. |
-| **PHP injection into `{php}` / `{do}`** | Full PhpStorm language support (completion, inspections, refactoring) inside PHP tags, with automatic strict/permissive mode detection. |
+| **PHP type-aware autocomplete** | `{varType}`, `{templateType}`, `foreach` item types and `$obj->method()` chains are understood, so completion on your variables actually knows their types. |
+| **Native HTML support** | HTML completion, inspections and `n:attributes` work right inside your templates — without the false "tag not closed" errors you get elsewhere. |
+| **Full support inside `{php}` / `{do}`** | Completion, inspections and refactoring work inside PHP tags, with automatic strict/permissive mode detection. |
 | **Cross-file blocks & includes** | Ctrl-click an `{include}` to jump to its `{block}`/`{define}`, Find Usages across the whole project, and rename atomically across every caller. |
 | **Nette integration** | `{control}` factory completion, `{link}` target resolution, `{form}` field awareness and `{snippet}` support. |
 | **Sticky lines for Latte tags** | The enclosing `{if}` / `{foreach}` / `{block}` stays pinned to the top of the editor as you scroll. |
-| **Embedded JS & CSS parity** | JavaScript and CSS inside `<script>`, `<style>`, `style=""` and `on*=""` behave as in a plain HTML file — Latte `{...}` never breaks them. |
-| **Robust, validated parser** | Validated against the real Latte engine on hundreds of production templates with a near-zero false-positive rate. |
+| **Embedded JS & CSS** | JavaScript and CSS inside `<script>`, `<style>`, `style=""` and `on*=""` behave as in a plain HTML file — Latte `{...}` never breaks them. |
+| **Quiet, reliable inspections** | Valid templates stay clean — Latte+ accepts everything the Latte engine accepts, so you're not buried under false errors. |
 
 [Read the full feature reference](./features){: .btn .btn-outline }
 

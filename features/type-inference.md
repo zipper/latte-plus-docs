@@ -14,8 +14,9 @@ nav_order: 3
 ---
 
 Accurate type inference is what makes completion, navigation and inspections useful
-rather than noisy. Latte+ resolves the type of every variable through a multi-stage
-**waterfall**, then uses PhpStorm's own PHP engine to resolve members from there.
+rather than noisy. Latte+ works out the type of every variable from several sources,
+so member completion (`$obj->…`), navigation and type checks all know what they're
+looking at.
 
 ## Declared types
 
@@ -61,5 +62,5 @@ in the next:
 {/foreach}
 ```
 
-Type flow even crosses into [`{php}` / `{do}` injection](./embedded-languages.html):
+Type flow even reaches into [`{php}` / `{do}` tags](./embedded-languages.html):
 a variable assigned inside a `{php}` block is typed in later Latte expressions.

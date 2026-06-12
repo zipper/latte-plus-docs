@@ -15,7 +15,7 @@ features by area — start with the ones most relevant to how you work.
 |---|---|
 | [Syntax & editor visuals](./syntax-highlighting.html) | Highlighting, configurable `n:attribute` colors, folding, sticky lines, paired-tag matching, structure view, breadcrumbs. |
 | [Code completion](./completion.html) | Tags, `n:attributes`, variables, PHP members, filters, block names, paths, classes and functions — with automatic triggering. |
-| [PHP type inference](./type-inference.html) | The multi-stage type waterfall behind variable and member completion. |
+| [PHP type inference](./type-inference.html) | How Latte+ knows the types of your variables — the engine behind member completion and checks. |
 | [Navigation & refactoring](./navigation-refactoring.html) | Go to definition, Find Usages and cross-file rename for blocks, variables, includes and arg keys. |
 | [Inspections](./inspections.html) | Real-time validation — undefined variables/members, type mismatches, missing files, did-you-mean fixes. |
 | [Smart editing](./smart-editing.html) | Auto-pairing, smart Enter/Backspace/Tab, comment toggling and the formatter. |

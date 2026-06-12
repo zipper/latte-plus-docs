@@ -14,20 +14,19 @@ nav_order: 8
 ---
 
 A `.latte` file is rarely *just* Latte — it's HTML with PHP expressions, plus
-JavaScript and CSS. Latte+ gives each embedded language native IDE support while
-keeping the Latte parser intact.
+JavaScript and CSS. Latte+ gives each embedded language native IDE support without
+breaking the Latte syntax around them.
 
 ## HTML
 
-Latte+ maintains a **real HTML tree** alongside the Latte tree (the "dual PSI"
-model). HTML completion, inspections and `n:attributes` all work natively, and you
-won't get false *"tag start is not closed"* errors from Latte tags that span HTML
-boundaries.
+HTML completion, inspections and `n:attributes` all work natively inside your
+templates, and you won't get false *"tag start is not closed"* errors from Latte tags
+that wrap or span HTML elements.
 
 ## PHP inside `{php}` and `{do}`
 
-PHP tags get **full PhpStorm language injection** — completion, inspections,
-navigation and refactoring all work inside the PHP body:
+PHP tags get full IDE support — completion, inspections, navigation and refactoring
+all work inside the PHP body:
 
 ```latte
 {php $total = array_sum($prices)}
@@ -52,7 +51,7 @@ JavaScript inside `<script>`, CSS inside `<style>`, and values in inline `style=
 and event `on*=""` attributes behave just like they do in a plain HTML file —
 completion, inspections and formatting included.
 
-Crucially, JS object literals `{ }` and CSS rule blocks `{ }` **do not** confuse the
-Latte parser. The `n:syntax="double"` and `n:syntax="off"` switches are fully
+Crucially, JS object literals `{ }` and CSS rule blocks `{ }` are **not** mistaken
+for Latte tags. The `n:syntax="double"` and `n:syntax="off"` switches are fully
 respected, so you can opt parts of a template out of Latte interpolation when your
 JS/CSS needs literal braces.

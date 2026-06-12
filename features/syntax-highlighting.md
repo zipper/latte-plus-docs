@@ -16,13 +16,11 @@ nav_order: 1
 ## Syntax highlighting
 
 Every Latte 3.x construct is highlighted: tags, keywords, `n:attributes`, variables,
-filters, functions, strings and comments. The lexer recognizes 90+ token types
-across the full Latte syntax, and every token has its own
+filters, functions, strings and comments — and every one has its own
 [configurable color](../configuration/colors-code-style.html).
 
-Because Latte+ keeps a real HTML model of the document (see
-[Embedded languages](./embedded-languages.html)), the HTML around your Latte tags is
-highlighted natively too — including inside `n:attributes`.
+The HTML around your Latte tags is highlighted natively too — including inside
+`n:attributes` (see [Embedded languages](./embedded-languages.html)).
 
 ## Configurable n:attribute colors
 

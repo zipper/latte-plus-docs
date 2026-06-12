@@ -13,13 +13,12 @@ list is kept honest on purpose — if you hit something not listed here, please
 
 ## Editing edge cases
 
-- **Enter indentation inside injected JS/CSS** — pressing Enter inside a `<script>`
-  using `n:syntax="double"` may not re-indent the JavaScript ideally. This is a
-  platform injection constraint.
-- **Inline rename for `{php}` variables** uses a dialog rather than the in-place
-  editor, because the rename crosses the PHP↔Latte boundary.
+- **Enter indentation inside JS/CSS** — pressing Enter inside a `<script>` using
+  `n:syntax="double"` may not re-indent the JavaScript ideally.
+- **Renaming a `{php}` variable** opens a small dialog rather than letting you edit
+  the name in place.
 
-## Parser / syntax scope
+## Syntax edge cases
 
 - **Top-level `{syntax double}`** and **nested `{syntax}` switching** are accepted by
   the Latte runtime in theory but are not specially handled; they essentially never
@@ -33,16 +32,16 @@ list is kept honest on purpose — if you hit something not listed here, please
 
 ## Type inference & hints
 
-- Some **type inlay hints are currently disabled** because of a mid-typing parser
-  recovery edge case (e.g. while typing `name:<caret>`). The information is still
-  available via completion and hover.
+- Some **type inlay hints are currently turned off** because they could behave oddly
+  while you're still typing. The same type information is still available through
+  completion and hover.
 
 ## Other
 
-- **Shared partial templates with no UI owner** — a layout/partial that has no
-  sibling presenter or component can't resolve presenter-derived context (by design).
-- **JSON injection** with Latte holes embedded in JSON can put the parser into an
-  interim state on broken input.
+- **Shared partial templates with no owner** — a layout or partial that has no
+  matching presenter or component can't pick up the variables those would provide.
+- **Latte expressions embedded in JSON** can briefly confuse highlighting while the
+  surrounding JSON is incomplete.
 
 > None of these block everyday template work. They're documented so you know exactly
 > where the boundaries are.

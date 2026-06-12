@@ -25,16 +25,16 @@ general guide rather than a guarantee about any specific version of a competitor
 |---|:---:|:---:|
 | Latte 3.x syntax highlighting | ✅ | ✅ |
 | Tag / `n:attribute` completion | ✅ | ✅ (varies) |
-| **Dual HTML PSI** (native HTML completion & inspections, no false "unclosed tag") | ✅ | ⚠️ partial |
-| **Multi-stage PHP type inference** (`foreach` item types, member chains) | ✅ | ⚠️ partial |
+| **Native HTML support** (completion & inspections, no false "unclosed tag") | ✅ | ⚠️ partial |
+| **PHP type-aware autocomplete** (`foreach` item types, member chains) | ✅ | ⚠️ partial |
 | **`list<T>` generics** in `{varType}` / `{parameters}` | ✅ | ❌ often flagged as error |
-| **PHP language injection into `{php}` / `{do}`** | ✅ | ❌ |
+| **Full support inside `{php}` / `{do}`** | ✅ | ❌ |
 | **Cross-file block/define rename & Find Usages** | ✅ | ⚠️ varies |
 | **Sticky lines for Latte tags** | ✅ | ❌ |
 | **Configurable `n:attribute` color** | ✅ | ❌ |
 | **Automatic completion trigger** (after `{`, `'`, `#`) | ✅ | ⚠️ varies |
 | `{control}` factory & render-method completion | ✅ | ⚠️ varies |
-| Embedded JS / CSS parity inside templates | ✅ | ⚠️ varies |
+| Embedded JS / CSS support inside templates | ✅ | ⚠️ varies |
 | Custom extension discovery (tags/filters/functions) | ✅ | ✅ (varies) |
 
 ## Migrating from another plugin
@@ -47,9 +47,9 @@ Your color scheme is independent: Latte+ defines its own
 [configurable token colors](./configuration/colors-code-style.html), so you can tune
 the look to match what you had before.
 
-## A note on philosophy
+## A note on reliability
 
-Latte+ leans heavily on PhpStorm's own engines — the PHP type system, the HTML schema
-and the JavaScript/CSS support — rather than re-implementing them. That's why
-inference and embedded-language features feel native, and why the plugin's parser was
-validated against the real Latte engine to keep false positives near zero.
+Latte+ reuses PhpStorm's own PHP, HTML, JavaScript and CSS support wherever it can, so
+those features feel native rather than bolted on. And because Latte+ accepts the same
+templates the real Latte engine accepts, valid code stays clean — you get warnings
+when something is genuinely wrong, not a wall of false positives.
