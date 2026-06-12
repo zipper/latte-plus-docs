@@ -1,0 +1,50 @@
+title: Latte+
+description: >-
+  Latte+ — the most comprehensive Latte template language plugin for PhpStorm.
+  Full Latte 3.x support, PHP type inference, Nette integration, refactoring and more.
+
+# Published from a project page: https://zipper.github.io/latte-plus-docs
+url: "https://zipper.github.io"
+baseurl: "/latte-plus-docs"
+
+# just-the-docs is buildable natively by GitHub Pages via remote_theme — no CI build needed.
+remote_theme: just-the-docs/just-the-docs
+
+plugins:
+  - jekyll-remote-theme
+  - jekyll-seo-tag
+
+# Theme behaviour
+color_scheme: dark
+search_enabled: true
+search:
+  heading_level: 2
+  previews: 3
+  rel_url: true
+
+heading_anchors: true
+
+# Footer / repo links
+gh_edit_link: false
+back_to_top: true
+back_to_top_text: "Back to top"
+
+# Links rendered in the top-right corner of every page
+aux_links:
+  "GitHub":
+    - "https://github.com/zipper/latte-plus-docs"
+  "Report an issue":
+    - "https://github.com/zipper/latte-plus-docs/issues/new/choose"
+aux_links_new_tab: true
+
+footer_content: >-
+  Latte+ is a commercial PhpStorm plugin by Radek Šerý.
+  Latte is a trademark of Nette Foundation.
+
+# Exclude repo meta from the build
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - README.md
+  - vendor
+  - .github

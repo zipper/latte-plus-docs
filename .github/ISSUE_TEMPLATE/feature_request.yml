@@ -1,0 +1,38 @@
+name: 💡 Feature request
+description: Suggest an improvement or new capability for Latte+
+title: "[Feature]: "
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for the idea! The more concrete the use case, the easier it is to evaluate.
+  - type: textarea
+    id: problem
+    attributes:
+      label: What problem would this solve?
+      description: Describe the situation or pain point, not just the solution.
+      placeholder: When I rename a {block}, includes in other modules aren't updated…
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed solution
+      description: What would you like Latte+ to do?
+    validations:
+      required: true
+  - type: textarea
+    id: example
+    attributes:
+      label: Example
+      description: A Latte snippet or screenshot illustrating the feature, if applicable.
+      render: html
+    validations:
+      required: false
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+    validations:
+      required: false

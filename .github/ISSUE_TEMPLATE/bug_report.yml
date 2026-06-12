@@ -1,0 +1,74 @@
+name: 🐞 Bug report
+description: Report incorrect behavior in the Latte+ PhpStorm plugin
+title: "[Bug]: "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to report a bug! Please check the
+        [Known limitations](https://zipper.github.io/latte-plus-docs/limitations.html)
+        first — the behavior may already be a documented edge case.
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: What did you expect, and what happened instead?
+      placeholder: Completion for $product->… is empty even though {varType} is declared.
+    validations:
+      required: true
+  - type: textarea
+    id: repro
+    attributes:
+      label: Minimal .latte snippet to reproduce
+      description: The smallest template that shows the problem. This will be rendered as code.
+      render: html
+      placeholder: |
+        {varType App\Model\Product $product}
+        {$product-> }
+    validations:
+      required: true
+  - type: input
+    id: phpstorm-version
+    attributes:
+      label: PhpStorm version
+      placeholder: "2025.3.1"
+    validations:
+      required: true
+  - type: input
+    id: plugin-version
+    attributes:
+      label: Latte+ version
+      placeholder: "1.0.0"
+    validations:
+      required: true
+  - type: input
+    id: os
+    attributes:
+      label: Operating system
+      placeholder: "Windows 11 / macOS 15 / Ubuntu 24.04"
+    validations:
+      required: true
+  - type: input
+    id: latte-version
+    attributes:
+      label: Latte / Nette version (if relevant)
+      placeholder: "Latte 3.0.x"
+    validations:
+      required: false
+  - type: textarea
+    id: extra
+    attributes:
+      label: Screenshots or additional context
+      description: Drag images here, or add anything else that helps.
+    validations:
+      required: false
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Before submitting
+      options:
+        - label: No other Latte plugin is enabled at the same time.
+          required: true
+        - label: I checked the Known limitations page.
+          required: true

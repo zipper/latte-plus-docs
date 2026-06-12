@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 📖 Documentation
+    url: https://zipper.github.io/latte-plus-docs/
+    about: Read the Latte+ documentation before opening an issue.
+  - name: ✉️ Commercial / licensing questions
+    url: mailto:radek.sery@gmail.com
+    about: For purchasing or licensing questions, email directly.

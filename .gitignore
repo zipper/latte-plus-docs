@@ -1,0 +1,12 @@
+# Jekyll local build artifacts
+_site/
+.sass-cache/
+.jekyll-cache/
+.jekyll-metadata
+vendor/
+Gemfile.lock
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.idea/
