@@ -1,0 +1,82 @@
+<!-- Syntax highlighting for code samples via highlight.js.
+     Rouge (Jekyll's built-in highlighter) has no Latte lexer, so Latte code
+     blocks render as plain text. We re-highlight them client-side with a custom
+     Latte grammar registered on highlight.js. -->
+<link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+
+<style>
+  /* Let just-the-docs keep the code-block container look; hljs only colors tokens. */
+  .main-content .hljs { background: transparent; padding: 0; }
+</style>
+
+<script>
+  // A focused highlight.js grammar for the Latte template language.
+  function latteGrammar(hljs) {
+    var KEYWORDS = {
+      keyword:
+        'if ifset ifchanged else elseif elseifset endif endifset foreach for ' +
+        'while first last sep continueIf breakIf skipIf var varType varPrint ' +
+        'default capture include includeBlock sandbox import extends layout ' +
+        'block define embed snippet snippetArea control form formContainer ' +
+        'formContext label input switch case php do dump debugbreak spaceless ' +
+        'syntax contentType templateType templatePrint parameters cache link ' +
+        'plink translate try rollback iterateWhile nonce as in and or not xor ' +
+        'true false null'
+    };
+    var VARIABLE = { className: 'variable', begin: /\$[A-Za-z_]\w*/ };
+    var FILTER = { className: 'built_in', begin: /\|\s*[A-Za-z_]\w*/ };
+    var STRINGS = [hljs.QUOTE_STRING_MODE, hljs.APOS_STRING_MODE];
+
+    var LATTE_TAG = {
+      className: 'template-tag',
+      begin: /\{(?=[\/$=a-zA-Z_])/,
+      end: /\}/,
+      keywords: KEYWORDS,
+      contains: [VARIABLE, FILTER].concat(STRINGS).concat([hljs.C_NUMBER_MODE])
+    };
+
+    var N_ATTR = { className: 'attr', begin: /\bn:[A-Za-z][\w:-]*/ };
+
+    var HTML_TAG = {
+      className: 'tag',
+      begin: /<\/?(?=[a-zA-Z])/,
+      end: /\/?>/,
+      contains: [
+        { className: 'name', begin: /[A-Za-z][\w-]*/ },
+        N_ATTR,
+        { className: 'attr', begin: /[A-Za-z-]+(?==)/ },
+        LATTE_TAG
+      ].concat(STRINGS)
+    };
+
+    return {
+      name: 'Latte',
+      aliases: ['latte'],
+      case_insensitive: false,
+      contains: [
+        hljs.COMMENT(/\{\*/, /\*\}/),
+        LATTE_TAG,
+        HTML_TAG,
+        N_ATTR,
+        VARIABLE
+      ]
+    };
+  }
+
+  document.addEventListener('DOMContentLoaded', function () {
+    if (!window.hljs) return;
+    hljs.registerLanguage('latte', latteGrammar);
+
+    document.querySelectorAll('div.highlighter-rouge pre code').forEach(function (code) {
+      var wrapper = code.closest('div.highlighter-rouge');
+      var m = wrapper ? wrapper.className.match(/language-([\w-]+)/) : null;
+      var lang = m ? m[1] : null;
+      if (!lang || !hljs.getLanguage(lang)) return;     // skip languages hljs can't handle
+      code.textContent = code.textContent;              // drop any Rouge markup, keep raw text
+      code.className = 'language-' + lang;
+      hljs.highlightElement(code);
+    });
+  });
+</script>
