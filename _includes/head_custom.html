@@ -69,14 +69,11 @@
     if (!window.hljs) return;
     hljs.registerLanguage('latte', latteGrammar);
 
-    document.querySelectorAll('div.highlighter-rouge pre code').forEach(function (code) {
-      var wrapper = code.closest('div.highlighter-rouge');
-      var m = wrapper ? wrapper.className.match(/language-([\w-]+)/) : null;
+    document.querySelectorAll('pre code[class*="language-"]').forEach(function (code) {
+      var m = code.className.match(/language-([\w-]+)/);
       var lang = m ? m[1] : null;
       if (!lang || !hljs.getLanguage(lang)) return;     // skip languages hljs can't handle
-      code.textContent = code.textContent;              // drop any Rouge markup, keep raw text
-      code.className = 'language-' + lang;
-      hljs.highlightElement(code);
+      hljs.highlightElement(code);                       // adds the .hljs class and token spans
     });
   });
 </script>
