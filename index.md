@@ -14,7 +14,7 @@ refactoring and Nette integration that actually understands your templates.
 {: .fs-6 .fw-300 }
 
 [Get started](./installation.html){: .btn .btn-primary .fs-5 .mb-4 .mb-md-0 .mr-2 }
-[See the features](./features){: .btn .fs-5 .mb-4 .mb-md-0 }
+[See the features](./features/){: .btn .fs-5 .mb-4 .mb-md-0 }
 
 ---
 
@@ -45,7 +45,7 @@ won't find as complete — in other Latte plugins:
 | **Embedded JS & CSS** | JavaScript and CSS inside `<script>`, `<style>`, `style=""` and `on*=""` behave as in a plain HTML file — Latte `{...}` never breaks them. |
 | **Quiet, reliable inspections** | Valid templates stay clean — Latte+ accepts everything the Latte engine accepts, so you're not buried under false errors. |
 
-[Read the full feature reference](./features){: .btn .btn-outline }
+[Read the full feature reference](./features/){: .btn .btn-outline }
 
 ## A quick taste
 
@@ -70,8 +70,8 @@ won't find as complete — in other Latte plugins:
 ## Where to next?
 
 - **[Installation](./installation.html)** — requirements and how to install.
-- **[Features](./features)** — the complete, categorized reference.
-- **[Configuration](./configuration)** — path aliases, implicit variables, PHP mode, colors.
+- **[Features](./features/)** — the complete, categorized reference.
+- **[Configuration](./configuration/)** — path aliases, implicit variables, PHP mode, colors.
 - **[Comparison](./comparison.html)** — how Latte+ compares to other Latte plugins.
 - **[Known limitations](./limitations.html)** — honest list of current edge cases.
 - **[Support](./support.html)** — reporting bugs and requesting features.
