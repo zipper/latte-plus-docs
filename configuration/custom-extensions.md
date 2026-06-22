@@ -37,3 +37,10 @@ The settings UI is split into sub-tabs for the four kinds of extension:
 
 Manually registered entries behave identically to discovered ones in completion,
 documentation and inspections.
+
+## Tag signatures
+
+A custom tag's argument shape can't be derived automatically, so you describe it with a
+small DSL in the **Tags** sub-tab. The signature drives completion placeholders, inlay
+parameter-name hints and the missing-arg / too-many-arg inspection. See
+[Custom tag signatures](./custom-tag-signatures.html) for the full reference.

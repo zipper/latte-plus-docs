@@ -24,4 +24,5 @@ Settings live in two places:
 | [Implicit variables](./implicit-variables.html) | Variables (and their types) available to every template. |
 | [PHP mode](./php-mode.html) | Strict vs. permissive interpretation of `{php}` / `{do}`. |
 | [Custom extensions](./custom-extensions.html) | Register your own tags, filters, functions and `n:attributes`. |
+| [Custom tag signatures](./custom-tag-signatures.html) | Describe a custom tag's argument shape for completion, hints and inspections. |
 | [Colors & code style](./colors-code-style.html) | Token colors and formatter options. |
