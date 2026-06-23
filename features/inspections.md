@@ -29,30 +29,30 @@ when you see one.
 
 ## Variables & types
 
-- **Undefined variable** — `$missing` that was never declared or injected.
-- **Undefined member** — `$obj->nonexistent` / unknown property.
-- **Undefined class** — unresolved class in `{varType}`, `instanceof`, etc.
-- **Type mismatch** — argument or filter input whose type doesn't fit.
+- **Undefined variable** – `$missing` that was never declared or injected.
+- **Undefined member** – `$obj->nonexistent` / unknown property.
+- **Undefined class** – unresolved class in `{varType}`, `instanceof`, etc.
+- **Type mismatch** – argument or filter input whose type doesn't fit.
 
 ## Filters & functions
 
-- **Undefined filter** — `|nosuchfilter`.
-- **Filter type mismatch** — wrong input type for a filter.
-- **Undefined function** — unresolved PHP function in an expression.
+- **Undefined filter** – `|nosuchfilter`.
+- **Filter type mismatch** – wrong input type for a filter.
+- **Undefined function** – unresolved PHP function in an expression.
 
 ## Files & includes
 
-- **Missing file** — `{include 'does/not/exist.latte'}`.
-- **Missing asset** — unresolved asset reference.
+- **Missing file** – `{include 'does/not/exist.latte'}`.
+- **Missing asset** – unresolved asset reference.
 
 ## Nette-specific
 
-- **Undefined component** — `{control x}` with no matching factory (plus a
+- **Undefined component** – `{control x}` with no matching factory (plus a
   did-you-mean fix).
-- **Link target** — `{link}` / `n:href` destination that doesn't resolve.
-- **Form checks** — form field / container / owner consistency.
-- **No-escape filter** — flags a `|noescape`-only modifier on a `{control}`.
-- **Nonce attribute** — `n:nonce` used outside its valid scope.
+- **Link target** – `{link}` / `n:href` destination that doesn't resolve.
+- **Form checks** – form field / container / owner consistency.
+- **No-escape filter** – flags a `|noescape`-only modifier on a `{control}`.
+- **Nonce attribute** – `n:nonce` used outside its valid scope.
 
 ## PHP tag mode
 
@@ -61,4 +61,4 @@ when you see one.
 
 ## Unused code
 
-- **Unused `{define}`** — a define with no `{include}` referencing it.
+- **Unused `{define}`** – a define with no `{include}` referencing it.

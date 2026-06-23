@@ -18,7 +18,7 @@ nav_order: 2
 |---|---|
 | **IDE** | PhpStorm **2025.3** or newer (build `253+`). Latte+ depends on the bundled PHP support, so it requires PhpStorm specifically (not a plain IntelliJ IDEA without the PHP plugin). |
 | **Latte** | Designed for **Latte 3.x**. Older 2.x syntax is parsed, but the feature set targets Latte 3. |
-| **PHP** | Type inference understands **PHP 8.1+** features — enums, readonly properties, intersection/union types, `list<T>` generics. |
+| **PHP** | Type inference understands **PHP 8.1+** features – enums, readonly properties, intersection/union types, `list<T>` generics. |
 
 ## Install from JetBrains Marketplace
 

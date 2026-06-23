@@ -36,17 +36,17 @@ and inspection.
 
 When no explicit type is given, Latte+ infers from context:
 
-- **`foreach` item types** — iterating `iterable<App\Image>` or `App\Image[]` types
+- **`foreach` item types** – iterating `iterable<App\Image>` or `App\Image[]` types
   the loop variable as `App\Image`.
-- **Assignments** — `{var $u = $order->getCustomer()}` carries the return type onto `$u`.
+- **Assignments** – `{var $u = $order->getCustomer()}` carries the return type onto `$u`.
 - **`{capture}`**, **`{for}`**, ternaries and array literals all contribute types.
-- **`list<T>` generics** — `{varType list<App\Tag> $tags}` is understood and the item
+- **`list<T>` generics** – `{varType list<App\Tag> $tags}` is understood and the item
   type flows into the loop. (Some other plugins flag `list<…>` as an error.)
 
 ## Implicit / framework variables
 
-Variables that Nette injects into every template — and any you declare as
-[implicit variables](../configuration/implicit-variables.html) in settings — are
+Variables that Nette injects into every template – and any you declare as
+[implicit variables](../configuration/implicit-variables.html) in settings – are
 typed and available without an explicit `{varType}`.
 
 ## Cross-tag type flow

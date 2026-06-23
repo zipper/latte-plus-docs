@@ -14,7 +14,7 @@ nav_order: 2
 ---
 
 Latte+ offers context-aware completion everywhere you type, and many completions
-**trigger automatically** — you don't have to press `Ctrl+Space`. Auto-popup fires
+**trigger automatically** – you don't have to press `Ctrl+Space`. Auto-popup fires
 after `{`, after `'` in include paths, after `#` for block names, and more.
 
 ## Tags
@@ -49,7 +49,7 @@ each with documentation and parameter hints.
 ## Block & include names
 
 All five `{include}` syntaxes are supported, with auto-triggering completion of block
-names — including blocks defined in other files. Path completion resolves template
+names – including blocks defined in other files. Path completion resolves template
 files and honors your [path aliases](../configuration/path-aliases.html) with fuzzy
 camel-hump matching (e.g. `PaAvail` matches `PartialAvailability`).
 

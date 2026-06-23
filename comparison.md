@@ -12,7 +12,7 @@ nav_order: 5
 
 ---
 
-There are a few Latte plugins for JetBrains IDEs — the free *Latte* plugin and the
+There are a few Latte plugins for JetBrains IDEs – the free *Latte* plugin and the
 commercial *Latte Pro* being the best known. Latte+ was built to push the depth of
 language support further, especially around **type inference**, **embedded
 languages** and **cross-file refactoring**.
@@ -40,7 +40,7 @@ general guide rather than a guarantee about any specific version of a competitor
 ## Migrating from another plugin
 
 Latte+ registers the `.latte` file type, so **disable or uninstall any other Latte
-plugin before installing** — running two at once causes conflicting highlighting and
+plugin before installing** – running two at once causes conflicting highlighting and
 duplicated inspections. See [Installation](./installation.html).
 
 Your color scheme is independent: Latte+ defines its own
@@ -51,5 +51,5 @@ the look to match what you had before.
 
 Latte+ reuses PhpStorm's own PHP, HTML, JavaScript and CSS support wherever it can, so
 those features feel native rather than bolted on. And because Latte+ accepts the same
-templates the real Latte engine accepts, valid code stays clean — you get warnings
+templates the real Latte engine accepts, valid code stays clean – you get warnings
 when something is genuinely wrong, not a wall of false positives.

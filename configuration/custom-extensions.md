@@ -24,16 +24,16 @@ tags, filters, functions and `n:attributes` they register. Once discovered they 
 
 ## Manual registration
 
-When something can't be discovered automatically — a dynamically registered macro, an
-extension defined outside the indexed sources — register it by hand under
+When something can't be discovered automatically – a dynamically registered macro, an
+extension defined outside the indexed sources – register it by hand under
 **Settings → Languages & Frameworks → Latte+ → Custom Extensions**.
 
 The settings UI is split into sub-tabs for the four kinds of extension:
 
-- **Tags** — custom `{macro}` names (and whether they're paired, argument modes).
-- **Filters** — name and parameter signature.
-- **Functions** — name and signature.
-- **n:attributes** — name and where it applies.
+- **Tags** – custom `{macro}` names (and whether they're paired, argument modes).
+- **Filters** – name and parameter signature.
+- **Functions** – name and signature.
+- **n:attributes** – name and where it applies.
 
 Manually registered entries behave identically to discovered ones in completion,
 documentation and inspections.

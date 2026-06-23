@@ -13,9 +13,9 @@ conventions and tune the editor to your taste.
 
 Settings live in two places:
 
-- **Project settings** — **Settings → Languages & Frameworks → Latte+**
+- **Project settings** – **Settings → Languages & Frameworks → Latte+**
   (path aliases, implicit variables, PHP mode, custom extensions).
-- **Editor settings** — **Settings → Editor → Color Scheme → Latte** and
+- **Editor settings** – **Settings → Editor → Color Scheme → Latte** and
   **Settings → Code Style → Latte**.
 
 | Page | What you configure |

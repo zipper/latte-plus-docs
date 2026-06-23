@@ -19,7 +19,7 @@ A small DSL that teaches the IDE the argument shape of your project's custom tag
 Latte+ can learn about project-specific tags registered through a `Latte\Extension`.
 Auto-detection covers the **name** and the **paired / unpaired** flag (derived from
 `yield` inside the parser callback), but the **argument signature cannot be derived
-statically** — Latte's parser callbacks are imperative generators, not method calls
+statically** – Latte's parser callbacks are imperative generators, not method calls
 with a declared parameter list.
 
 You supply the signature manually in **Settings → Languages & Frameworks → Latte+ →
@@ -48,9 +48,9 @@ Result:
 
 | Spec param | Matches | Notes |
 |------------|---------|-------|
-| `image: expr` | `$product` | Positional #1 — the name `image` is a placeholder label, **not** a call-site key. |
+| `image: expr` | `$product` | Positional #1 – the name `image` is a placeholder label, **not** a call-site key. |
 | `size: string` | `'300x200'` | Positional #2. |
-| `...attrs: attrs` | `alt: 'cover', data-test: $name` | Variadic rest-bucket — extra `key: value` pairs are folded here. |
+| `...attrs: attrs` | `alt: 'cover', data-test: $name` | Variadic rest-bucket – extra `key: value` pairs are folded here. |
 
 ## Grammar
 
@@ -61,7 +61,7 @@ params       := param ( ',' param )*
 param        := [ '...' ] [ '?' ] NAME ':' TYPE [ '=' default ]
 ```
 
-Surrounding parentheses are optional — `(image: expr, size: string)` and
+Surrounding parentheses are optional – `(image: expr, size: string)` and
 `image: expr, size: string` parse the same way.
 
 ## Parameter forms
@@ -73,7 +73,7 @@ Surrounding parentheses are optional — `(image: expr, size: string)` and
 | `name: type = default` | Optional with a default value | `decimals: int = 2` |
 | `...name: type` | Variadic rest-bucket (any number of trailing args) | `...attrs: attrs` |
 
-A variadic param implies tolerant mode automatically — missing-arg inspections
+A variadic param implies tolerant mode automatically – missing-arg inspections
 skip the signature.
 
 ## Signature-level flag
@@ -92,7 +92,7 @@ tolerant! image: expr, size: string
 |------|---------|
 | `string` | Plain (possibly quoted) string literal. |
 | `expr` | Arbitrary PHP expression. |
-| `path` | File path — receives a path reference for Ctrl+B navigation. |
+| `path` | File path – receives a path reference for Ctrl+B navigation. |
 | `identifier` | Bare identifier (block name, variable name, …). |
 | `identifier_or_expr` | Either a bare identifier (`{block foo}`) or a PHP expression (`{block $name}`). Completion / inspection picks the path based on the first non-space char. |
 | `form-control-name` | Validated Nette form control name. |
@@ -100,7 +100,7 @@ tolerant! image: expr, size: string
 | `bool` | Boolean literal expected (`true` / `false`). |
 | `int` | Integer literal expected. |
 | `float` | Float / double literal expected. |
-| `mixed` | Anything — no validation, no completion driver. Default when auto-detect can't derive a more specific type. |
+| `mixed` | Anything – no validation, no completion driver. Default when auto-detect can't derive a more specific type. |
 
 Each type accepts a few aliases so older saved signatures keep working:
 
@@ -123,7 +123,7 @@ type falls back to `mixed`.
 
 ## Why positional, not named
 
-Latte's tag macros are called like PHP functions — arguments are positional. PHP 8 /
+Latte's tag macros are called like PHP functions – arguments are positional. PHP 8 /
 Latte 3 named-argument syntax (`{include 'foo.latte', showHeader: true}`) is supported
 by a handful of built-in tags (`include`, `embed`, `extends`), but **custom user tags
 use positional calls**. The spec's `name:` therefore plays the same role as a parameter
@@ -131,15 +131,15 @@ name in a PHP function declaration: it's the placeholder label / inlay-hint text
 call-site key.
 
 If your tag accepts a free `key: value` tail (an HTML attribute splat), declare it with
-`...name: attrs` — only there does the call site become `key: value`-shaped.
+`...name: attrs` – only there does the call site become `key: value`-shaped.
 
 ## What is not supported
 
-- **Multiple variadic slots** — at most one `...` param per signature; later ones are
+- **Multiple variadic slots** – at most one `...` param per signature; later ones are
   silently ignored.
-- **Multi-level grouping** (`(...) | (...)`) — pick one shape and use `tolerant!` if
+- **Multi-level grouping** (`(...) | (...)`) – pick one shape and use `tolerant!` if
   dispatch varies.
-- **Named-argument calls on custom tags** — not how Latte parses them.
+- **Named-argument calls on custom tags** – not how Latte parses them.
 
 ## Tip: live-template completion
 
@@ -155,7 +155,7 @@ template** with one Tab-stop per signature param. The default placeholder text p
 | `bool` | `false` |
 | `int` | `0` |
 | `float` | `0.0` |
-| `attrs` | _(empty — fill in your own `key: value` pairs)_ |
+| `attrs` | _(empty – fill in your own `key: value` pairs)_ |
 
 Tab moves the caret to the next placeholder. The final Tab-stop lands inside the paired
 block (or after the closing `}` for unpaired tags).

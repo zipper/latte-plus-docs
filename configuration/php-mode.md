@@ -33,9 +33,9 @@ By default Latte+ figures out the mode automatically, in this order:
 Under **Settings → Languages & Frameworks → Latte+ → PHP Mode** you can force the
 behavior instead of relying on detection:
 
-- **Auto** (default) — use the detection above.
-- **Force strict** — always treat `{php}` / `{do}` as a single expression.
-- **Force permissive** — always allow full raw PHP.
+- **Auto** (default) – use the detection above.
+- **Force strict** – always treat `{php}` / `{do}` as a single expression.
+- **Force permissive** – always allow full raw PHP.
 
 Set this if your project's configuration can't be auto-detected, or to silence
 spurious PHP-tag inspections in an unusual setup.

@@ -8,7 +8,7 @@ body:
       value: |
         Thanks for taking the time to report a bug! Please check the
         [Known limitations](https://zipper.github.io/latte-plus-docs/limitations.html)
-        first — the behavior may already be a documented edge case.
+        first – the behavior may already be a documented edge case.
   - type: textarea
     id: what-happened
     attributes:

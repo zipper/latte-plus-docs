@@ -14,7 +14,7 @@ nav_order: 4
 ---
 
 Latte+ treats blocks, variables, includes and even include argument keys as real
-symbols, so the standard PhpStorm navigation and refactoring actions work on them —
+symbols, so the standard PhpStorm navigation and refactoring actions work on them –
 including **across files**.
 
 ## Go to definition (`Ctrl+B` / `Ctrl+Click`)
@@ -29,20 +29,20 @@ including **across files**.
 ## Find Usages (`Alt+F7`)
 
 Run Find Usages on a `{block}`, `{define}`, variable, component or filter to get every
-reference across the project — for blocks and defines that means every `{include}`
+reference across the project – for blocks and defines that means every `{include}`
 caller, in every file.
 
 ## Rename (`Shift+F6`)
 
 - **Variables** rename in-place (no dialog) and are **scope-aware**: renaming an
   outer `{var $item}` does not touch a `{foreach … as $item}` body that shadows it.
-- **Blocks & defines** rename **atomically across the whole project** — every
+- **Blocks & defines** rename **atomically across the whole project** – every
   `{include}` caller is updated in one operation.
 - **Include argument keys** rename together with all callers.
 
 ## Quick fixes
 
-- **Create `{define}`** — when an `{include #foo}` points at a missing block, a
+- **Create `{define}`** – when an `{include #foo}` points at a missing block, a
   one-click quick fix creates the `{define foo}` in the target file.
-- **Did you mean…?** — misspelled tags, components and filters offer a
+- **Did you mean…?** – misspelled tags, components and filters offer a
   Levenshtein-based suggestion to the closest valid name.

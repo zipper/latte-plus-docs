@@ -13,7 +13,7 @@ nav_order: 8
 
 ---
 
-A `.latte` file is rarely *just* Latte — it's HTML with PHP expressions, plus
+A `.latte` file is rarely *just* Latte – it's HTML with PHP expressions, plus
 JavaScript and CSS. Latte+ gives each embedded language native IDE support without
 breaking the Latte syntax around them.
 
@@ -25,7 +25,7 @@ that wrap or span HTML elements.
 
 ## PHP inside `{php}` and `{do}`
 
-PHP tags get full IDE support — completion, inspections, navigation and refactoring
+PHP tags get full IDE support – completion, inspections, navigation and refactoring
 all work inside the PHP body:
 
 ```latte
@@ -35,9 +35,9 @@ all work inside the PHP body:
 
 Latte+ detects the appropriate mode automatically:
 
-- **Strict mode** (the default for `{do}` and basic `{php}`) — a single expression,
+- **Strict mode** (the default for `{do}` and basic `{php}`) – a single expression,
   no statement separators.
-- **Permissive mode** (when `RawPhpExtension` is enabled) — full multi-statement raw
+- **Permissive mode** (when `RawPhpExtension` is enabled) – full multi-statement raw
   PHP.
 
 The mode is auto-detected from a file marker → your
@@ -48,7 +48,7 @@ into later Latte expressions (see [type inference](./type-inference.html)).
 ## JavaScript & CSS
 
 JavaScript inside `<script>`, CSS inside `<style>`, and values in inline `style=""`
-and event `on*=""` attributes behave just like they do in a plain HTML file —
+and event `on*=""` attributes behave just like they do in a plain HTML file –
 completion, inspections and formatting included.
 
 Crucially, JS object literals `{ }` and CSS rule blocks `{ }` are **not** mistaken

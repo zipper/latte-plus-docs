@@ -14,13 +14,13 @@ nav_order: 2
 ---
 
 Some variables are available in every template even though they're never declared in
-the template itself — Nette injects them at runtime. Latte+ already knows the common
+the template itself – Nette injects them at runtime. Latte+ already knows the common
 Nette ones out of the box, and you can add your own application globals.
 
 ## Built-in variables
 
 Latte+ ships with these implicit variables, so they get type-aware completion and are
-**not** reported by the *undefined variable* inspection — no configuration needed:
+**not** reported by the *undefined variable* inspection – no configuration needed:
 
 | Variable | Type | Available |
 |---|---|---|
@@ -38,7 +38,7 @@ Latte+ ships with these implicit variables, so they get type-aware completion an
 A few notes:
 
 - **Scope-bound variables** (`$form`, `$formContainer`, `$iterator`) only appear in
-  completion and only resolve **inside their tag** — `$iterator->isFirst()` is
+  completion and only resolve **inside their tag** – `$iterator->isFirst()` is
   offered within a `{foreach}` but not outside it.
 - **`$this`** is narrowed to your own template subclass when a template declares
   `{templateType App\…}`, so its members complete against your class.
@@ -72,7 +72,7 @@ Once added, these behave exactly like the built-ins:
 In the same settings page you can:
 
 - **Disable** a built-in you don't use, or
-- **Override** one with a different type — handy for legacy projects (for example, a
+- **Override** one with a different type – handy for legacy projects (for example, a
   Latte 2.x project where `$iterator` resolves to `Latte\Runtime\CachingIterator`
   instead of `Latte\Essential\CachingIterator`).
 

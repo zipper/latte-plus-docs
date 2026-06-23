@@ -49,6 +49,6 @@ alignment, instead of deleting a single space.
 ## Formatter
 
 A dedicated formatter (`Ctrl+Alt+L`) reflows Latte templates. Its behavior is
-configurable under **Settings → Code Style → Latte** — see
+configurable under **Settings → Code Style → Latte** – see
 [Colors & code style](../configuration/colors-code-style.html) for the options
 (spaces in parentheses/brackets, single-line paired tags, block indentation).

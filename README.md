@@ -19,7 +19,7 @@ templates when opening an issue:
 ## Building the docs locally (optional)
 
 The site uses [just-the-docs](https://just-the-docs.com/) and is built natively by
-GitHub Pages — no CI step is required. To preview locally:
+GitHub Pages – no CI step is required. To preview locally:
 
 ```bash
 bundle install

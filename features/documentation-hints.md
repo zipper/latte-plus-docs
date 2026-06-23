@@ -17,25 +17,25 @@ nav_order: 9
 
 Hover or press `Ctrl+Q` on almost anything for inline documentation:
 
-- **Latte tags** — description, syntax and a usage example, with a link to the
+- **Latte tags** – description, syntax and a usage example, with a link to the
   relevant page on [latte.nette.org](https://latte.nette.org/).
-- **`n:attributes`** — what the attribute does and where it applies.
-- **Filters** — signature, parameters and description.
-- **PHP functions, components and variables** — the underlying PHPDoc and signature.
+- **`n:attributes`** – what the attribute does and where it applies.
+- **Filters** – signature, parameters and description.
+- **PHP functions, components and variables** – the underlying PHPDoc and signature.
 
 ## Parameter info (`Ctrl+P`)
 
 Parameter hints appear as you fill in arguments for `{include}`, `{control}`,
-`{cache}`, `{link}`, filters and custom tags — showing parameter names, types and
+`{cache}`, `{link}`, filters and custom tags – showing parameter names, types and
 defaults.
 
 ## Inlay hints
 
 Inline hints render directly in the editor to reduce guesswork:
 
-- **Filter parameter names** before filter arguments — `{$n|number: 2, ',', ' '}`
+- **Filter parameter names** before filter arguments – `{$n|number: 2, ',', ' '}`
   shows `decimals:`, `decPoint:`, `thousandsSep:`.
 - **Function parameter names** before PHP function arguments.
 
 > Some type-related inlay hints are currently disabled while a mid-typing edge case
-> is resolved — see [Known limitations](../limitations.html).
+> is resolved – see [Known limitations](../limitations.html).

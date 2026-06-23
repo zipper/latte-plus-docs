@@ -1,13 +1,13 @@
 title: Latte+
 description: >-
-  Latte+ — the most comprehensive Latte template language plugin for PhpStorm.
+  Latte+ – the most comprehensive Latte template language plugin for PhpStorm.
   Full Latte 3.x support, PHP type inference, Nette integration, refactoring and more.
 
 # Published from a project page: https://zipper.github.io/latte-plus-docs
 url: "https://zipper.github.io"
 baseurl: "/latte-plus-docs"
 
-# just-the-docs is buildable natively by GitHub Pages via remote_theme — no CI build needed.
+# just-the-docs is buildable natively by GitHub Pages via remote_theme – no CI build needed.
 remote_theme: just-the-docs/just-the-docs
 
 plugins:

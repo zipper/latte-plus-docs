@@ -32,11 +32,11 @@ The bug-report template walks you through these fields.
 
 ## Before reporting
 
-- Check the [Known limitations](./limitations.html) page — the behavior may be a
+- Check the [Known limitations](./limitations.html) page – the behavior may be a
   documented edge case.
 - Make sure no **other Latte plugin** is enabled at the same time
   (see [Installation](./installation.html)).
-- Try the latest version — the issue may already be fixed.
+- Try the latest version – the issue may already be fixed.
 
 ## Contact
 
