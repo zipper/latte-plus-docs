@@ -1,5 +1,0 @@
-docs: replace em-dashes with en-dashes site-wide
-
-Per the project style rule, the long em-dash is never used; swap every
-occurrence for an en-dash across all pages, includes and config (107 in 23
-files).
