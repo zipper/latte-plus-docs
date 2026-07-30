@@ -35,6 +35,14 @@ list is kept honest on purpose – if you hit something not listed here, please
 - Some **type inlay hints are currently turned off** because they could behave oddly
   while you're still typing. The same type information is still available through
   completion and hover.
+- **Custom tag / `n:*` argument types aren't deeply validated.** The argument *count*
+  and *literal* shapes are checked against the signature, but a variable or expression
+  argument (`$x`, `$x->y`, `foo()`) is treated as compatible with any declared type –
+  its runtime type is not inferred. A custom tag / `n:*` body is a flat positional token
+  stream (so it tolerates hyphenated barewords like `image-xs`), so there's no
+  structured expression to infer from; filters and `{include}` / `{embed}` parameters,
+  which do have one, get full type validation. See
+  [custom tag signatures]({{ '/configuration/custom-tag-signatures.html#validation' | relative_url }}).
 
 ## Other
 
