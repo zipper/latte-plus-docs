@@ -52,3 +52,7 @@ A dedicated formatter (`Ctrl+Alt+L`) reflows Latte templates. Its behavior is
 configurable under **Settings → Code Style → Latte** – see
 [Colors & code style](../configuration/colors-code-style.html) for the options
 (spaces in parentheses/brackets, single-line paired tags, block indentation).
+
+Reformatting, `Ctrl+Alt+I`, Enter and Tab all derive the indent from the same model, so
+they never disagree – see [Indentation](../configuration/indentation.html) for which
+settings drive what.

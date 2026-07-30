@@ -39,5 +39,7 @@ Under **Settings → Code Style → Latte** you control how the formatter
 | **Single-line paired tags** | Comma-separated list of paired tags kept on one line (e.g. `first,last,sep,translate,label`) | `first,last,sep,translate,label` |
 | **Indent inside top-level block** | Indent the body of a top-level `{block}` that has no `{/block}` | off |
 
-Indentation size follows your general indentation settings, and per-file overrides
-(detected indents) are respected.
+Tabs and indent size are configured in the same panel (`Use tab character`, `Indent`),
+and per-file overrides (detected indents) are respected. Which of them applies to what
+– and why wrapped HTML attributes follow your **HTML** code style instead – is
+explained in [Indentation](./indentation.html).

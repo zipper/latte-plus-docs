@@ -16,7 +16,8 @@ Settings live in two places:
 - **Project settings** – **Settings → Languages & Frameworks → Latte+**
   (path aliases, implicit variables, PHP mode, custom extensions).
 - **Editor settings** – **Settings → Editor → Color Scheme → Latte** and
-  **Settings → Code Style → Latte**.
+  **Settings → Code Style → Latte** (plus **Code Style → HTML**, which owns the
+  alignment of wrapped HTML attributes).
 
 | Page | What you configure |
 |---|---|
@@ -26,3 +27,4 @@ Settings live in two places:
 | [Custom extensions](./custom-extensions.html) | Register your own tags, filters, functions and `n:attributes`. |
 | [Custom tag signatures](./custom-tag-signatures.html) | Describe a custom tag's argument shape for completion, hints and inspections. |
 | [Colors & code style](./colors-code-style.html) | Token colors and formatter options. |
+| [Indentation](./indentation.html) | Which settings drive structural indent vs. attribute alignment, and why `.editorconfig` wins. |
