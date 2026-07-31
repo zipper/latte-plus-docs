@@ -17,6 +17,10 @@ list is kept honest on purpose – if you hit something not listed here, please
   `n:syntax="double"` may not re-indent the JavaScript ideally.
 - **Renaming a `{php}` variable** opens a small dialog rather than letting you edit
   the name in place.
+- **Live paired-tag rename does not update clauses** – renaming `{if}` to `{foreach}`
+  updates `{/if}`, but `{elseif}` and `{else}` stay as they are. The synchronizer links
+  exactly two points (opener and closer); IntelliJ behaves the same way for HTML.
+- **The shorthand closing tag `{/}` is not synchronised**, because it carries no name.
 
 ## Syntax edge cases
 

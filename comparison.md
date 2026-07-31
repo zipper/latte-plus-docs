@@ -30,6 +30,7 @@ general guide rather than a guarantee about any specific version of a competitor
 | **`list<T>` generics** in `{varType}` / `{parameters}` | ✅ | ❌ often flagged as error |
 | **Full support inside `{php}` / `{do}`** | ✅ | ❌ |
 | **Cross-file block/define rename & Find Usages** | ✅ | ⚠️ varies |
+| **Live paired-tag rename** (closing tag follows as you type, like HTML) | ✅ | ❌ |
 | **Sticky lines for Latte tags** | ✅ | ❌ |
 | **Configurable `n:attribute` color** | ✅ | ❌ |
 | **Automatic completion trigger** (after `{`, `'`, `#`) | ✅ | ⚠️ varies |

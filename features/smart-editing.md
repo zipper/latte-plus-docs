@@ -23,6 +23,47 @@ Latte's mix of tags, HTML and indentation.
   awareness so they don't get in your way inside strings.
 - Bracket pairs auto-expand when you press Enter between them.
 
+## Live paired-tag rename
+
+Rename a paired tag the way you rename `<div>` in HTML: start typing over the name in
+the opening tag and **the closing tag follows along, character by character**. No
+selection, no refactoring dialog, no completion popup needed.
+
+```latte
+{block foo}…{/block}     →  type "embed" over "block"  →  {embed foo}…{/embed}
+```
+
+- Works **in both directions** – editing the name in `{/block}` updates the opener too.
+- A **single Ctrl+Z** reverts both halves, because the mirrored edit is part of the same
+  typing command.
+- Survives half-typed names (`{bl`, `{blo`) that are not valid tags yet.
+- Picks the right counterpart with nested same-name tags
+  (`{block a}{block b}{/block}{/block}`).
+- Only the tag name changes, so an argument on the closing tag (`{/cache 'key'}`) and
+  `{{double}}` syntax stay intact.
+- Honours the IDE-wide **Simultaneous `<tag></tag>` editing** setting
+  (Settings → Editor → Smart Keys) – no separate option to learn.
+
+Known limitation: clauses are not renamed with their tag. Turning `{if}` into
+`{foreach}` updates `{/if}`, but leaves `{elseif}` in place – see
+[Limitations](../limitations.html).
+
+## Closing-tag completion
+
+Typing `{/` closes the nearest unclosed paired tag automatically, including multi-line
+openers such as:
+
+```latte
+{embed 'Parts/Item.latte',
+	link: $link,
+	class: ''}
+{/   ← becomes {/embed}
+```
+
+Inside an existing `{/…}` you can also invoke completion (Ctrl+Space) to pick a name –
+the popup offers the tags actually open at that position, innermost first, and inserts
+just the closing tag.
+
 ## Smart Enter
 
 Pressing Enter is context-aware across 10+ situations, including:
