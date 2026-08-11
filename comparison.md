@@ -59,25 +59,23 @@ those features feel native rather than bolted on. And because Latte+ accepts the
 templates the real Latte engine accepts, valid code stays clean – you get warnings
 when something is genuinely wrong, not a wall of false positives.
 
-### How that is verified
+### Aiming for the same answers as Latte
 
-The reference for "what is valid Latte" is not the documentation – it is the engine.
-Syntax rules in Latte+ are checked by **compiling templates against real `latte/latte`
-releases and reading the generated PHP**, and those cases are kept as regression tests.
+When a syntax rule is unclear, one of the things we look at is how current `latte/latte`
+releases actually behave, alongside the documentation and the engine's own test suite.
+Cases resolved that way are kept as regression tests, so they stay fixed.
 
-This cuts both ways, and both directions matter:
+The goal is for both directions to hold:
 
-- **Valid templates must stay clean.** `{= $x & 1}` is a bitwise AND, `{ifset block foo}`
-  asks about a block, and `hasBlock(annot--x)` is a single identifier – so none of them
-  may be underlined.
-- **Templates Latte rejects must be reported.** Silently accepting a broken template is
-  not "being lenient", it just moves the error from the IDE to production.
+- **Valid templates should stay clean.** `{= $x & 1}` is a bitwise AND,
+  `{ifset block foo}` asks about a block, and `hasBlock(annot--x)` is a single
+  identifier – none of them deserves a red underline.
+- **What Latte rejects should be reported.** Quietly accepting a broken template only
+  moves the error from the IDE to production.
 
-Some rules are subtler than they look. A pipe is a filter only when a lowercase letter
-follows it, so `{$x|upper}` is a filter while `{$x|` + newline + `upper}` is a bitwise OR
-with the string `'upper'` – which is why Latte+ treats them differently, exactly as the
-engine does. Whitespace *before* the pipe is irrelevant, so multi-line filter chains keep
-working:
+Some rules are subtler than they look. A pipe starts a filter only when a lowercase
+letter follows it, so `{$x|upper}` is a filter while `{$x|` + newline + `upper}` is not.
+Whitespace *before* the pipe does not matter, so multi-line filter chains keep working:
 
 ```latte
 {$items|filter:fn($i) => $i->active
