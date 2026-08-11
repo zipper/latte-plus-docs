@@ -37,6 +37,10 @@ general guide rather than a guarantee about any specific version of a competitor
 | `{control}` factory & render-method completion | ✅ | ⚠️ varies |
 | Embedded JS / CSS support inside templates | ✅ | ⚠️ varies |
 | Custom extension discovery (tags/filters/functions) | ✅ | ✅ (varies) |
+| **Bitwise operators with real precedence** (`&`, `^`, `~`, and shifts `<<` / `>>`) | ✅ | ⚠️ partial – operators may lex, but without a precedence tree; shifts are often unsupported |
+| **Union types with a bare class name** (`{varType int\|Foo $x}`) | ✅ | ⚠️ varies – a lowercase-only pipe rule can misread the second name as a filter |
+| **Glued identifiers** (`{ifset foo-bar}`, `hasBlock(a.b)`, `foo--bar`) | ✅ | ✅ |
+| **`{ifset block X}` and `{ifset #X}` block markers** | ✅ | ⚠️ varies |
 
 ## Migrating from another plugin
 
@@ -54,3 +58,29 @@ Latte+ reuses PhpStorm's own PHP, HTML, JavaScript and CSS support wherever it c
 those features feel native rather than bolted on. And because Latte+ accepts the same
 templates the real Latte engine accepts, valid code stays clean – you get warnings
 when something is genuinely wrong, not a wall of false positives.
+
+### How that is verified
+
+The reference for "what is valid Latte" is not the documentation – it is the engine.
+Syntax rules in Latte+ are checked by **compiling templates against real `latte/latte`
+releases and reading the generated PHP**, and those cases are kept as regression tests.
+
+This cuts both ways, and both directions matter:
+
+- **Valid templates must stay clean.** `{= $x & 1}` is a bitwise AND, `{ifset block foo}`
+  asks about a block, and `hasBlock(annot--x)` is a single identifier – so none of them
+  may be underlined.
+- **Templates Latte rejects must be reported.** Silently accepting a broken template is
+  not "being lenient", it just moves the error from the IDE to production.
+
+Some rules are subtler than they look. A pipe is a filter only when a lowercase letter
+follows it, so `{$x|upper}` is a filter while `{$x|` + newline + `upper}` is a bitwise OR
+with the string `'upper'` – which is why Latte+ treats them differently, exactly as the
+engine does. Whitespace *before* the pipe is irrelevant, so multi-line filter chains keep
+working:
+
+```latte
+{$items|filter:fn($i) => $i->active
+       |sort
+       |first}
+```
