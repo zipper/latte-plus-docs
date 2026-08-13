@@ -27,7 +27,7 @@ the HTML, PHP, JavaScript and CSS embedded inside your `.latte` files at the sam
 time – so completion, navigation, inspections and refactoring work the way you'd
 expect from a native language.
 
-It targets **Latte 3.x**, **PHP 8.1+** and **PhpStorm 2025.3+**.
+It targets **Latte 3.x**, **PHP 8.1+** and **PhpStorm 2023.3+**.
 
 ## Why Latte+ stands out
 
