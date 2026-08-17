@@ -250,6 +250,19 @@ in the project – so you know what you are about to break before you change it.
 
 ---
 
+## Editing
+
+### Tabs for structure, spaces for alignment
+
+Whitespace rendering shows what the editor actually writes into a multi-line tag: tabs
+carry the indent, spaces only pad the alignment of the wrapped attributes. Enter, Tab
+and Reformat all produce the same result, so a template keeps one consistent shape no
+matter how you got there.
+
+![Tab indentation and space alignment shown with whitespace rendering]({{ '/assets/img/screens/S32-smart-tabs.png' | relative_url }})
+
+---
+
 ## Configuration
 
 ### Path aliases

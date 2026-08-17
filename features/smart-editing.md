@@ -79,7 +79,8 @@ alignment, instead of deleting a single space.
 
 ## Smart Tab, End & Space
 
-- **Tab** on an under-indented line jumps to the expected indent level.
+- **Tab** on an under-indented line jumps to the expected indent level
+  ([screenshot]({{ site.baseurl }}/screenshots.html#editing)).
 - **End** on a whitespace-only line moves to the expected indent.
 - **Space** merges lines and trims context-appropriately.
 

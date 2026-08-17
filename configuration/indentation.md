@@ -82,6 +82,13 @@ wrong no matter which of the two settings you change.
 > attribute alignment usable: the structural indent stays tabs, and only the alignment
 > padding on top of it uses spaces.
 
+With whitespace rendering turned on you can see the two apart – dashes are the
+structural tabs, dots the alignment padding:
+
+![Tab indentation and space alignment shown with whitespace rendering]({{ '/assets/img/screens/S32-smart-tabs.png' | relative_url }})
+
+[More screenshots]({{ site.baseurl }}/screenshots.html#editing)
+
 ## The same model for every action
 
 All indentation-producing actions resolve the indent through the model above, so they

@@ -1,0 +1,6 @@
+docs: add the smart tabs screenshot to the gallery
+
+The one shot of the set that was still missing: whitespace rendering on a
+multi-line tag, showing tabs carrying the indent and spaces only padding the
+alignment of wrapped attributes. It opens a short Editing section in the gallery
+and illustrates the Indentation page, which had no picture so far.
