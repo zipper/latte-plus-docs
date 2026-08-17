@@ -190,8 +190,9 @@ defaults, while you are still typing the arguments.
 
 ### Inlay hints
 
-Positional arguments are labelled with the name they fill – in filters and in `{control}`
-alike – so `120` and `5` read as `length` and `limit` without counting commas.
+Positional arguments are labelled with the name they fill – in filters, in `{control}`
+and in links alike – so `120`, `5` and the value behind `Article:detail` read as
+`length`, `limit` and `id` without counting commas.
 
 ![Inlay hints in front of positional arguments]({{ '/assets/img/screens/S17-inlay-hints.png' | relative_url }})
 

@@ -35,9 +35,11 @@ Inline hints render directly in the editor to reduce guesswork:
 
 - **Filter parameter names** before filter arguments – `{$n|number: 2, ',', ' '}`
   shows `decimals:`, `decPoint:`, `thousandsSep:`.
+- **Component and link arguments** – the values you pass to `{control}`, `{link}`
+  and `n:href` are labelled with the parameter they fill.
 - **Function parameter names** before PHP function arguments.
 
-![Inlay hints naming the positional arguments of filters and of a control tag]({{ '/assets/img/screens/S17-inlay-hints.png' | relative_url }})
+![Inlay hints naming the positional arguments of filters, a control tag and a link]({{ '/assets/img/screens/S17-inlay-hints.png' | relative_url }})
 
 > Some type-related inlay hints are currently disabled while a mid-typing edge case
 > is resolved – see [Known limitations](../limitations.html).
