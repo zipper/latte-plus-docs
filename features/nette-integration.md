@@ -31,6 +31,10 @@ components, routing and forms.
 - `Ctrl+B` jumps to the `renderX` method; Find Usages lists every `{control x}`.
 - A did-you-mean quick fix suggests the closest component when the name is misspelled.
 
+![Component completion listing the createComponent factories of the presenter]({{ '/assets/img/screens/S25-control-completion.png' | relative_url }})
+
+[More screenshots]({{ site.baseurl }}/screenshots.html#completion)
+
 ## `{link}` and `n:href`
 
 ```latte

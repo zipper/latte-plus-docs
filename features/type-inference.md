@@ -30,7 +30,12 @@ The strongest signal comes from explicit declarations:
 ```
 
 After any of these, `$product->`, `$order->` and `$count` get fully typed completion
-and inspection.
+and inspection – and the declaration is read across files, so an `{include}` argument
+knows the type its target template declared for it.
+
+![Quick documentation of an include argument showing its type, declaring file and default value]({{ '/assets/img/screens/S15-quick-doc-argkey.png' | relative_url }})
+
+[More screenshots]({{ site.baseurl }}/screenshots.html#completion)
 
 ## Inferred types
 

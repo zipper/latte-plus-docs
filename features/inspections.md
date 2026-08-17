@@ -21,6 +21,14 @@ A core design goal is **few false positives**: Latte+ accepts the same templates
 real Latte engine accepts, so valid templates stay clean and you can trust a warning
 when you see one.
 
+Most reports come with a quick fix – a misspelled `n:attribute`, filter, tag or component
+offers the closest valid name, and you can apply the correction without leaving the
+keyboard.
+
+![A quick fix offering to replace a misspelled n:attribute with the correct one]({{ '/assets/img/screens/S19-quickfix-nattr.png' | relative_url }})
+
+[More screenshots]({{ site.baseurl }}/screenshots.html#inspections-and-quick-fixes)
+
 ## Template structure
 
 - Unclosed or mismatched tags.

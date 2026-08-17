@@ -38,6 +38,10 @@ The settings UI is split into sub-tabs for the four kinds of extension:
 Manually registered entries behave identically to discovered ones in completion,
 documentation and inspections.
 
+![The Custom Extensions settings page listing tags found in the project, with the signature of one of them]({{ '/assets/img/screens/S27-settings-custom-extensions.png' | relative_url }})
+
+[More screenshots]({{ site.baseurl }}/screenshots.html#configuration)
+
 ## Tag signatures
 
 A custom tag's argument shape can't be derived automatically, so you describe it with a

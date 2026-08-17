@@ -22,6 +22,10 @@ filters, functions, strings and comments – and every one has its own
 The HTML around your Latte tags is highlighted natively too – including inside
 `n:attributes` (see [Embedded languages](./embedded-languages.html)).
 
+![Latte tags, PHP expressions, filters and HTML coloured side by side in one template]({{ '/assets/img/screens/S01-syntax-highlighting.png' | relative_url }})
+
+[More screenshots]({{ site.baseurl }}/screenshots.html#syntax-and-the-editor)
+
 ## Configurable n:attribute colors
 
 `n:if`, `n:class`, `n:foreach` and friends are rendered with their own color so they

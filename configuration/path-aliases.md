@@ -28,6 +28,10 @@ With the aliases above, both of these resolve correctly:
 {include '~Home/default.latte'}
 ```
 
+![The Path Aliases settings page with one alias and its search paths]({{ '/assets/img/screens/S26-settings-path-aliases.png' | relative_url }})
+
+[More screenshots]({{ site.baseurl }}/screenshots.html#configuration)
+
 ## Completion
 
 Alias-prefixed paths complete with **fuzzy camel-hump matching**: typing

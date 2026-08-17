@@ -32,6 +32,10 @@ Run Find Usages on a `{block}`, `{define}`, variable, component or filter to get
 reference across the project – for blocks and defines that means every `{include}`
 caller, in every file.
 
+![Find Usages on a define listing every include of it across the project]({{ '/assets/img/screens/S22-find-usages-block.png' | relative_url }})
+
+[More screenshots]({{ site.baseurl }}/screenshots.html#navigation)
+
 ## Rename (`Shift+F6`)
 
 - **Variables** rename in-place (no dialog) and are **scope-aware**: renaming an

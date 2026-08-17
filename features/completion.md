@@ -40,6 +40,10 @@ After `$object->` or `$array[`, Latte+ completes methods, properties and array k
 using its [PHP type inference](./type-inference.html). Chains like
 `$product->category->name` resolve step by step.
 
+![Member completion on a foreach variable, each item showing its declaring class and type]({{ '/assets/img/screens/S07-member-completion.png' | relative_url }})
+
+[More screenshots]({{ site.baseurl }}/screenshots.html#completion)
+
 ## Filters
 
 After `|`, completion offers 50+ built-in Latte/Nette filters plus any

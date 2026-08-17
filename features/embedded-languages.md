@@ -55,3 +55,7 @@ Crucially, JS object literals `{ }` and CSS rule blocks `{ }` are **not** mistak
 for Latte tags. The `n:syntax="double"` and `n:syntax="off"` switches are fully
 respected, so you can opt parts of a template out of Latte interpolation when your
 JS/CSS needs literal braces.
+
+![A template with a style block and a script block, both highlighted, with Latte expressions inside them]({{ '/assets/img/screens/S23-embedded-js-css.png' | relative_url }})
+
+[More screenshots]({{ site.baseurl }}/screenshots.html#embedded-languages)

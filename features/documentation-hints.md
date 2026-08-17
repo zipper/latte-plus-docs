@@ -37,5 +37,9 @@ Inline hints render directly in the editor to reduce guesswork:
   shows `decimals:`, `decPoint:`, `thousandsSep:`.
 - **Function parameter names** before PHP function arguments.
 
+![Inlay hints naming the positional arguments of filters and of a control tag]({{ '/assets/img/screens/S17-inlay-hints.png' | relative_url }})
+
 > Some type-related inlay hints are currently disabled while a mid-typing edge case
 > is resolved – see [Known limitations](../limitations.html).
+
+[More screenshots]({{ site.baseurl }}/screenshots.html#documentation-and-parameters)
