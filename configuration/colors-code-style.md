@@ -27,6 +27,10 @@ configurable color and font style, including:
 A live preview shows your changes against sample Latte code, and the colors are saved
 per color scheme so your light and dark themes can differ.
 
+![Latte token colour settings with a live preview]({{ '/assets/img/screens/S28-settings-colors.png' | relative_url }})
+
+[More screenshots]({{ site.baseurl }}/screenshots.html#token-colors)
+
 ## Code style & formatter
 
 Under **Settings → Code Style → Latte** you control how the formatter

@@ -227,6 +227,14 @@ back to the class that registers it.
 
 ![Custom extension settings]({{ '/assets/img/screens/S27-settings-custom-extensions.png' | relative_url }})
 
+### Token colors
+
+Every Latte token type has its own colour setting, with a live preview underneath. The
+`n:attribute` colour is separate, so `n:href` can either blend in with plain HTML
+attributes or stand out.
+
+![Latte token colour settings]({{ '/assets/img/screens/S28-settings-colors.png' | relative_url }})
+
 ---
 
 Short clips of the interactive features – live paired-tag rename, cross-file parameter
