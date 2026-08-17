@@ -30,6 +30,14 @@ Custom Extensions → Tags**, and the plugin uses it for:
 - inlay parameter-name hints,
 - missing-arg / too-many-arg inspections.
 
+Below, `{icon}` is a project tag declared as `name: string, ?size: string`. Every
+argument is labelled with the parameter it fills, the optional one is marked with `?`,
+and the call that omits the required argument is listed among the file's problems.
+
+![A custom tag with its arguments labelled and a missing argument reported]({{ '/assets/img/screens/S34-custom-tag-signature.png' | relative_url }})
+
+[More screenshots]({{ site.baseurl }}/screenshots.html#signatures-for-your-own-tags)
+
 ## Quick example
 
 For a tag invoked as

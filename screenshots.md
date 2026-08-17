@@ -274,6 +274,14 @@ navigates. Path-based and name-based references can search different folders.
 
 ![Path alias settings]({{ '/assets/img/screens/S26-settings-path-aliases.png' | relative_url }})
 
+### Implicit variables
+
+Variables your framework hands to every template are known without declaring them.
+The Nette ones are built in, `$iterator` only counts inside a `foreach`, and you can add
+your own project-wide variables or switch a built-in one off.
+
+![Implicit variable settings]({{ '/assets/img/screens/S33-settings-implicit-variables.png' | relative_url }})
+
 ### Custom extensions
 
 Tags, filters, functions and `n:attributes` from your project's own Latte extensions are
@@ -281,6 +289,15 @@ found automatically and treated like the built-in ones. Give a tag a signature a
 description and both show up in completion and documentation.
 
 ![Custom extension settings]({{ '/assets/img/screens/S27-settings-custom-extensions.png' | relative_url }})
+
+### Signatures for your own tags
+
+Describe a tag once – here `{icon}` takes a required name and an optional size – and the
+editor treats it like a built-in tag. Each argument is labelled with the parameter it
+fills, optional ones are marked with `?`, and the call that leaves the required argument
+out is reported like any other problem.
+
+![A custom tag with its arguments labelled and a missing argument reported]({{ '/assets/img/screens/S34-custom-tag-signature.png' | relative_url }})
 
 ### Token colors
 

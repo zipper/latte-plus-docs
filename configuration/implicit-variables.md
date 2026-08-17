@@ -55,6 +55,10 @@ factory), declare them under
 you provide a **name**, an optional **type** (fully-qualified class name), and whether
 it's limited to a `{foreach}` scope.
 
+![Implicit variable settings]({{ '/assets/img/screens/S33-settings-implicit-variables.png' | relative_url }})
+
+[More screenshots]({{ site.baseurl }}/screenshots.html#implicit-variables)
+
 | Variable | Type |
 |---|---|
 | `$currentLocale` | `App\Localization\Locale` |
