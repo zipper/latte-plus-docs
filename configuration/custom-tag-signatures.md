@@ -124,15 +124,24 @@ type falls back to `mixed`.
 ## Validation
 
 Latte+ checks two things against the signature as you type, for both the braced
-(`{pdSrcset …}`) and the attribute (`n:srcset="…"`) form:
+(`{pdSrcset …}`) and the attribute (`n:srcset="…"`) form. Each check is its own
+inspection, so you can silence one and keep the other (Settings → Editor → Inspections,
+under Latte):
 
-- **Argument count (arity).** Fewer arguments than the required positional params is
-  reported as a missing-argument error; more positional arguments than the signature
-  declares (when there is no `...` variadic / `attrs` tail) is reported too. A trailing
-  `...` param or the `tolerant!` flag relaxes the count check.
-- **Literal shape.** When an argument is written as a *literal* – a quoted string, a
-  number, `true`/`false`/`null` – its shape is checked against the declared type (e.g.
-  a number literal in a `string` slot, or a string literal in an `int` slot).
+- **Missing required argument** – fewer arguments than the required positional params.
+  Reported as an **error** by default: a signature you declared yourself is a contract
+  Latte enforces at runtime, so the template would fail. A trailing `...` param or the
+  `tolerant!` flag relaxes the count check.
+- **Argument shape** – reported as a **warning**, because these are heuristics over a
+  flat token stream:
+    - a *surplus* positional argument, i.e. more than the signature declares (when there
+      is no `...` variadic / `attrs` tail);
+    - a *literal* whose shape does not match the declared type – a quoted string, a
+      number, `true`/`false`/`null` in the wrong slot (e.g. a number literal in a
+      `string` slot, or a string literal in an `int` slot).
+
+Both follow the severity you set: lower them to a warning or a hint, or turn them off,
+and Latte+ respects it.
 
 **What is intentionally not checked: the runtime type of a variable or expression.**
 A `$variable`, a member access (`$x->y`), a call (`foo()`) or any other non-literal
