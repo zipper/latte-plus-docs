@@ -57,6 +57,14 @@ names – including blocks defined in other files. Path completion resolves temp
 files and honors your [path aliases](../configuration/path-aliases.html) with fuzzy
 camel-hump matching (e.g. `PaAvail` matches `PartialAvailability`).
 
+## Include arguments
+
+After the template path, completion offers the parameters the target template declares
+in its `{parameters}` line – with the type of each one and whether it is required or
+optional – so you can pass arguments correctly without opening the other file.
+
+![Completion of the arguments an included template declares, each with its type and whether it is required]({{ '/assets/img/screens/S29-include-args-completion.png' | relative_url }})
+
 ## Classes & functions
 
 PHP class names complete inside `{varType}`, `{templateType}` and `instanceof`

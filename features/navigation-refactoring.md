@@ -26,6 +26,8 @@ including **across files**.
 - An `{include}` argument key jumps to the matching `{parameters}` / `{default}`
   declaration in the target template.
 
+![Ctrl+B on a control tag landing on the factory method that builds the component]({{ '/assets/img/screens/S31-goto-control.png' | relative_url }})
+
 ## Find Usages (`Alt+F7`)
 
 Run Find Usages on a `{block}`, `{define}`, variable, component or filter to get every

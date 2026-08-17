@@ -24,31 +24,32 @@ behave exactly as they do in a project of your own, not in a stripped-down demo.
 
 ### Latte and HTML in one file
 
-Latte tags, PHP expressions, filters and `n:attributes` coloured next to the HTML they
-are embedded in. Nothing is underlined and the inspection widget in the top-right corner
-is green – valid templates stay clean.
+Tags, PHP expressions and filters get their own colours, and the HTML around them keeps
+the colouring you already know. The check mark in the top-right corner says the whole
+template is clean – there is no set of phantom errors to learn to ignore.
 
 ![Latte and HTML highlighted together]({{ '/assets/img/screens/S01-syntax-highlighting.png' | relative_url }})
 
 ### Sticky lines
 
-Scrolled into a nested loop: the enclosing scopes stay pinned at the top of the editor.
-Latte tags and HTML elements mix freely, so `{block}`, `<article>`, `<ul>`, `{foreach}`
-and `<li>` are all visible at once.
+Deep inside a nested loop you still see where you are: the five enclosing lines stay
+pinned at the top, Latte tags and HTML elements alike. No scrolling up to find out which
+`{block}` and which `<ul>` you are in.
 
 ![Sticky lines pinned above the viewport]({{ '/assets/img/screens/S02-sticky-lines.png' | relative_url }})
 
 ### Paired-tag highlighting and breadcrumbs
 
-The caret sits on `{/foreach}` and the matching `{foreach}` 14 lines above lights up with
-it. The breadcrumb bar under the editor shows the full tag path at the caret.
+Put the caret on a `{/foreach}` and the `{foreach}` it closes lights up 14 lines above,
+while the bar under the editor spells out the whole path of tags around the caret.
+Working out what a closing tag belongs to stops being guesswork.
 
 ![A closing tag highlighted together with its opening tag]({{ '/assets/img/screens/S03-paired-tag-breadcrumbs.png' | relative_url }})
 
 ### Code folding
 
-The whole `{foreach}` collapsed into a single line. Folding regions follow the Latte tag
-structure, not brace counting.
+Collapse a `{foreach}` you are not working on and the rest of the template fits on one
+screen. Folding follows the tag structure, so blocks collapse at their real boundaries.
 
 ![A collapsed foreach block]({{ '/assets/img/screens/S04-code-folding.png' | relative_url }})
 
@@ -58,15 +59,17 @@ structure, not brace counting.
 
 ### JavaScript and CSS inside a template
 
-Both languages fully highlighted, Latte expressions inside them still coloured as Latte,
-and the JavaScript object literal on line 12 is not mistaken for a Latte tag.
+Script and style blocks keep the support you would get in a `.js` or `.css` file, and
+Latte expressions inside them are still recognised. A JavaScript object literal is not
+mistaken for a Latte tag, so nothing turns red just because you typed `{`.
 
 ![JavaScript and CSS embedded in a template]({{ '/assets/img/screens/S23-embedded-js-css.png' | relative_url }})
 
 ### PHP inside `{php}` and `{do}`
 
-The bodies of `{php}` and `{do}` are a real injected PHP fragment – the status bar says
-so – which is why `ceil()` gets a parameter-name hint like any other PHP call.
+The body of `{php}` and `{do}` is handled as real PHP – the status bar says so – so
+completion, inspections and navigation work there as they do in a `.php` file. PHP calls
+elsewhere in the template are annotated with parameter names, here `num:`.
 
 ![PHP highlighted inside php and do tags]({{ '/assets/img/screens/S24-php-completion.png' | relative_url }})
 
@@ -76,63 +79,89 @@ so – which is why `ceil()` gets a parameter-name hint like any other PHP call.
 
 ### Latte tags
 
-Typing `{fo` offers the matching tags, each with the closing tag it will insert.
+Start a tag and Latte+ offers every valid one, each showing the closing tag it will
+insert for you.
 
 ![Tag completion after an opening brace]({{ '/assets/img/screens/S06-tag-completion.png' | relative_url }})
 
 ### PHP members, with types
 
-The item type comes from `{varType list<App\Model\Image> $gallery}` at the top of the
-file – the loop variable inherits the collection's item type, so `$image->` completes
-with the declaring class and the type of every member.
+`$image->` completes against the item type of the collection you are looping over, read
+from the `{varType}` at the top of the file. Every suggestion carries the class it comes
+from and its type, so you don't switch to the PHP class to check a name.
 
 ![Member completion with inferred types]({{ '/assets/img/screens/S07-member-completion.png' | relative_url }})
 
 ### Variables
 
-File-local variables, implicit Nette ones and variables declared as custom implicit
-variables in the settings, side by side – each with its origin and its type.
+Everything in scope in one list: variables from the template itself, the ones Nette
+injects, and any you added in the settings – each labelled with where it comes from and
+what type it has.
 
 ![Variable completion]({{ '/assets/img/screens/S08-variable-completion.png' | relative_url }})
 
 ### Filters
 
-Filters complete after `|`, with their full parameter signature.
+Filters complete after `|` with the arguments they take, so you can pick one and fill it
+in without opening the documentation. The letters you type are matched anywhere in the
+name, so `tr` also finds `stripTags`.
 
 ![Filter completion]({{ '/assets/img/screens/S09-filter-completion.png' | relative_url }})
 
 ### Block names from another file
 
-`{include #` offers the blocks defined in the referenced file, and both suggestions carry
-the file they come from.
+`{include #` lists the blocks the referenced file really defines, each with the file it
+came from – no jumping to the other template to recall a name.
 
 ![Block name completion across files]({{ '/assets/img/screens/S10-block-completion.png' | relative_url }})
 
 ### Paths through an alias, fuzzy
 
-`PaGal` matches `~Parts/Gallery.latte` – the prefix is split across the directory
-separator, and the alias resolves to a real directory shown on the right.
+Type a few letters of the file you want – `PaGal` finds `~Parts/Gallery.latte`, even
+across the directory separator – and each suggestion shows the real folder the alias
+resolves to.
 
 ![Fuzzy path completion through an alias]({{ '/assets/img/screens/S11-alias-completion.png' | relative_url }})
 
 ### n:attributes
 
-Inside an HTML tag, typing `n:` lists every valid `n:attribute`.
+Typing `n:if` narrows the list to the attributes that match, `inner-` variants included,
+so you pick the one you meant instead of recalling the full set.
 
 ![n:attribute completion]({{ '/assets/img/screens/S12-nattr-completion.png' | relative_url }})
 
 ### Closing tags
 
-After `{/`, the innermost unclosed tag is offered first.
+After `{/` the tag you actually have open is offered first, so closing a nested structure
+takes one keystroke.
 
 ![Closing tag completion]({{ '/assets/img/screens/S13-close-tag-completion.png' | relative_url }})
 
 ### Components from their factory methods
 
-`commentForm` and `commentList` come from the `createComponent*` methods on the
-presenter.
+`{control comm` offers the components the presenter really has – they are read from its
+`createComponent*` methods, so a mistyped name doesn't survive until you load the page.
 
 ![Component completion]({{ '/assets/img/screens/S25-control-completion.png' | relative_url }})
+
+### Arguments of the included template
+
+Put a comma after the template path and you get the parameters that template declares:
+`images` is required and expects a `list<App\Model\Image>`, `columns` is optional and
+takes an `int`. Both the names and the types come from the `{parameters}` line of the
+file you are including, so you can fill an `{include}` in correctly – and see what you
+must not forget – without opening the other template at all.
+
+![Completion of the arguments an included template declares]({{ '/assets/img/screens/S29-include-args-completion.png' | relative_url }})
+
+### Form fields inside `{form}`
+
+`{input }` offers the fields the form factory actually builds, each with the method that
+created it – `email` from `addEmail`, `frequency` from `addSelect`. PHP classes are
+offered next to them on purpose: a field name may also be a constant, as in
+`{input Form::FIELD_EMAIL}`.
+
+![Completion of form field names inside a form tag]({{ '/assets/img/screens/S30-form-input-completion.png' | relative_url }})
 
 ---
 
@@ -140,29 +169,29 @@ presenter.
 
 ### Tag documentation
 
-`Ctrl+Q` on a tag shows its syntax, what it does and a link to the matching page on the
-official Latte documentation.
+`Ctrl+Q` on a tag explains what the tag does, shows its syntax on an example and links
+straight to the matching page of the official Latte documentation.
 
 ![Quick documentation for a tag]({{ '/assets/img/screens/S14-quick-doc-tag.png' | relative_url }})
 
 ### Argument documentation from the target template
 
-Type, declaring file and default value are read from the `{parameters}` of the included
-template, and the argument is marked optional because it has a default.
+`Ctrl+Q` on an argument answers what you would otherwise open the other file for: its
+type, where it is declared, its default value, and that it is optional.
 
 ![Quick documentation for an include argument]({{ '/assets/img/screens/S15-quick-doc-argkey.png' | relative_url }})
 
 ### Parameter info
 
-`Ctrl+P` on an `{include}` shows the full parameter list of the target template, with the
-current argument highlighted.
+`Ctrl+P` shows the full parameter list of the template you are including, with types and
+defaults, while you are still typing the arguments.
 
 ![Parameter info for an include]({{ '/assets/img/screens/S16-param-info.png' | relative_url }})
 
 ### Inlay hints
 
-Positional arguments read as named ones: filter parameters, and the arguments of a
-`{control}`.
+Positional arguments are labelled with the name they fill – in filters and in `{control}`
+alike – so `120` and `5` read as `length` and `limit` without counting commas.
 
 ![Inlay hints in front of positional arguments]({{ '/assets/img/screens/S17-inlay-hints.png' | relative_url }})
 
@@ -172,22 +201,25 @@ Positional arguments read as named ones: filter parameters, and the arguments of
 
 ### Several problems at once
 
-A misspelled `n:attribute`, an unknown property, an unknown filter, a block that is never
-defined, a template that does not exist and a component with no factory – each reported
-by its own inspection.
+Six mistakes in one template, each named and located: a misspelled `n:attribute`, a
+filter that isn't registered, a file that isn't there, an unknown property, a block
+nobody defines and a component with no factory. Every one of them is something you would
+otherwise meet as an error page in the browser.
 
 ![Inspections in a single template]({{ '/assets/img/screens/S18-inspections.png' | relative_url }})
 
 ### Did you mean?
 
-The misspelled `n:clas` offers the correction directly, with a preview of the result – or
-you can register the name as a custom extension instead.
+The correction is offered right where the typo is, with a preview of the result. If the
+name is not a typo but something your project defines, you can register it instead and
+the report goes away.
 
 ![Quick fix for a misspelled n:attribute]({{ '/assets/img/screens/S19-quickfix-nattr.png' | relative_url }})
 
 ### Missing template
 
-An `{include}` pointing at a file that does not exist offers to create it.
+An `{include}` pointing at a file that does not exist offers to create the file on the
+spot, so you can keep writing the template you are in.
 
 ![Quick fix creating a missing template]({{ '/assets/img/screens/S20-quickfix-create-file.png' | relative_url }})
 
@@ -197,14 +229,22 @@ An `{include}` pointing at a file that does not exist offers to create it.
 
 ### From a link to the code behind it
 
-`Ctrl+B` on an `n:href` destination lands in the presenter that serves it.
+`Ctrl+B` on a link destination offers both places it lives – the presenter method that
+handles it and the template it renders – so a link takes you to the code in one step.
 
 ![Go to declaration from a link]({{ '/assets/img/screens/S21-goto-link-target.png' | relative_url }})
 
+### From a component tag to the component
+
+`Ctrl+B` on `{control commentList}` lands on the factory method that builds that
+component, instead of you searching the presenter for the right `createComponent*`.
+
+![Go to declaration from a control tag]({{ '/assets/img/screens/S31-goto-control.png' | relative_url }})
+
 ### Find usages of a block across the project
 
-Find Usages on a `{define}` lists every `{include}` that pulls it in, anywhere in the
-project – here across three templates in two different directories.
+Find Usages on a `{define}` collects every `{include}` that pulls the block in, anywhere
+in the project – so you know what you are about to break before you change it.
 
 ![Find usages of a block]({{ '/assets/img/screens/S22-find-usages-block.png' | relative_url }})
 
@@ -214,24 +254,25 @@ project – here across three templates in two different directories.
 
 ### Path aliases
 
-An alias maps a prefix – here `~` – to the directories it may resolve to, separately for
-path-based and name-based references.
+Tell Latte+ which prefix your project uses – here `~` – and which folders it stands for,
+and every `{include}`, `{layout}` or `{embed}` written with it resolves, completes and
+navigates. Path-based and name-based references can search different folders.
 
 ![Path alias settings]({{ '/assets/img/screens/S26-settings-path-aliases.png' | relative_url }})
 
 ### Custom extensions
 
-Tags, filters, functions and `n:attributes` found in the project's own
-`Latte\Extension` classes, with the argument signature of the `{icon}` tag and a link
-back to the class that registers it.
+Tags, filters, functions and `n:attributes` from your project's own Latte extensions are
+found automatically and treated like the built-in ones. Give a tag a signature and a
+description and both show up in completion and documentation.
 
 ![Custom extension settings]({{ '/assets/img/screens/S27-settings-custom-extensions.png' | relative_url }})
 
 ### Token colors
 
-Every Latte token type has its own colour setting, with a live preview underneath. The
-`n:attribute` colour is separate, so `n:href` can either blend in with plain HTML
-attributes or stand out.
+Every kind of Latte token has its own colour setting, with a live preview underneath.
+`n:attributes` are configured separately from HTML attributes, so `n:href` can either
+stand out or blend in.
 
 ![Latte token colour settings]({{ '/assets/img/screens/S28-settings-colors.png' | relative_url }})
 

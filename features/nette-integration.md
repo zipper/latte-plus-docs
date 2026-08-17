@@ -28,7 +28,8 @@ components, routing and forms.
   presenter/component inheritance chain.
 - After `:` it lists the component's `render*` methods.
 - Hover (`Ctrl+Q`) shows the factory/render method signature and PHPDoc.
-- `Ctrl+B` jumps to the `renderX` method; Find Usages lists every `{control x}`.
+- `Ctrl+B` jumps to the `createComponentX()` factory – or, after `:`, to the `renderX`
+  method; Find Usages lists every `{control x}`.
 - A did-you-mean quick fix suggests the closest component when the name is misspelled.
 
 ![Component completion listing the createComponent factories of the presenter]({{ '/assets/img/screens/S25-control-completion.png' | relative_url }})
@@ -48,7 +49,11 @@ components, routing and forms.
 ## `{form}` and form fields
 
 Form tags, field names, containers and the owning form are recognized, so field
-references are validated and navigable.
+references are validated and navigable. Inside a `{form}`, `{input }` completes the
+fields the form factory builds, each with the method that created it – and PHP classes
+alongside them, because a field name may be a constant.
+
+![Completion of form field names inside a form tag]({{ '/assets/img/screens/S30-form-input-completion.png' | relative_url }})
 
 ## `{snippet}` and AJAX
 
