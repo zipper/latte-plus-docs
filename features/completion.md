@@ -29,7 +29,7 @@ inserted along with it.
 
 ## n:attributes
 
-Inside an HTML tag, completion offers the 27 valid `n:attributes`, correctly
+Inside an HTML tag, completion offers the 28 valid `n:attributes`, correctly
 distinguishing flag attributes (`n:ifcontent`) from value attributes (`n:href`), and
 offering the `inner-` / `tag-` prefixed variants where they apply.
 
