@@ -59,7 +59,10 @@ at the bottom of the editor spell out the full path of tags leading to the caret
 ## Code folding
 
 Paired tags and large blocks can be collapsed. Folding regions follow the Latte
-structure, not just brace counting.
+structure, not just brace counting, and a collapsed block keeps its opening tag visible
+so you still know what you folded away.
+
+![A collapsed foreach block showing its opening tag as the placeholder]({{ '/assets/img/screens/S04-code-folding.png' | relative_url }})
 
 ## Structure view & breadcrumbs
 
