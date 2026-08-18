@@ -45,6 +45,12 @@ components, routing and forms.
 - Link destinations (`Presenter:action`) are resolved and validated.
 - Route parameters and the target action's signature are surfaced as
   [parameter info](./documentation-hints.html).
+- The project layouts the Nette skeletons ship are recognised, so destinations resolve
+  without any configuration: `app/Presentation` with each presenter in a directory of
+  its own name (the current default) and modules as plain directories, the older
+  `app/UI`, and the classic `app/Presenters` with `*Module` directories. Custom
+  mappings fall back to matching by class name – see
+  [known limitations]({{ '/limitations.html' | relative_url }}).
 
 `Ctrl+B` on a destination offers both places it stands for: the template that renders
 the action and the presenter method behind it.

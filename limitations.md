@@ -54,6 +54,15 @@ list is kept honest on purpose – if you hit something not listed here, please
   matching presenter or component can't pick up the variables those would provide.
 - **Latte expressions embedded in JSON** can briefly confuse highlighting while the
   surrounding JSON is incomplete.
+- **Presenter layout is inferred, not read from your config** – link destinations are
+  matched against the layouts the shipped Nette skeletons use, including
+  `app/Presentation` and the older `app/UI` with one presenter per directory of its
+  own name. Latte+ does not read `application: mapping`, so a project with a custom
+  mapping falls back to matching by class name alone, and a presenter whose short
+  name exists several times may not be offered in completion. One shape is genuinely
+  ambiguous: `App\Presentation\Admin\AdminPresenter` is read as the presenter `Admin`,
+  which is what the default mapping means – but a project on a custom flat mapping
+  means `Admin:Admin` by it, and gets the wrong name offered.
 
 > None of these block everyday template work. They're documented so you know exactly
 > where the boundaries are.
