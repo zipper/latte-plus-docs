@@ -12,6 +12,11 @@ depending on whether your project enables Latte's `RawPhpExtension`. Latte+ need
 know which, so it can inject and validate the PHP correctly (see
 [Embedded languages](../features/embedded-languages.html)).
 
+With the right mode in place, both tags are treated as PHP – highlighted, completed and
+checked – and you get no spurious errors about what the tag is allowed to contain.
+
+![PHP tags whose bodies are highlighted and checked as PHP, with an argument hint on a function call]({{ '/assets/img/screens/S24-php-completion.png' | relative_url }})
+
 ## The two modes
 
 | Mode | Allowed in `{php}` / `{do}` |

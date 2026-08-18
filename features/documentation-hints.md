@@ -23,11 +23,21 @@ Hover or press `Ctrl+Q` on almost anything for inline documentation:
 - **Filters** – signature, parameters and description.
 - **PHP functions, components and variables** – the underlying PHPDoc and signature.
 
+On a tag you get its syntax, a short description of what it does and a link straight to
+the matching page of the Latte documentation.
+
+![Quick documentation of a foreach tag with its syntax, description and a link to the Latte docs]({{ '/assets/img/screens/S14-quick-doc-tag.png' | relative_url }})
+
 ## Parameter info (`Ctrl+P`)
 
 Parameter hints appear as you fill in arguments for `{include}`, `{control}`,
 `{cache}`, `{link}`, filters and custom tags – showing parameter names, types and
 defaults.
+
+Filling in an `{include}`, you see the parameters the target template expects without
+opening it.
+
+![Parameter info above an include tag listing the parameters the target template expects]({{ '/assets/img/screens/S16-param-info.png' | relative_url }})
 
 ## Inlay hints
 

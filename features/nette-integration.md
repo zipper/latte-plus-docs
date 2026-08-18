@@ -46,6 +46,11 @@ components, routing and forms.
 - Route parameters and the target action's signature are surfaced as
   [parameter info](./documentation-hints.html).
 
+`Ctrl+B` on a destination offers both places it stands for: the template that renders
+the action and the presenter method behind it.
+
+![Go to declaration on a link destination offering the target template and the presenter render method]({{ '/assets/img/screens/S21-goto-link-target.png' | relative_url }})
+
 ## `{form}` and form fields
 
 Form tags, field names, containers and the owning form are recognized, so field

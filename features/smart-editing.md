@@ -64,6 +64,8 @@ Inside an existing `{/…}` you can also invoke completion (Ctrl+Space) to pick 
 the popup offers the tags actually open at that position, innermost first, and inserts
 just the closing tag.
 
+![A completion popup after a closing brace listing the tags open at that position, the innermost one first]({{ '/assets/img/screens/S13-close-tag-completion.png' | relative_url }})
+
 ## Smart Enter
 
 Pressing Enter is context-aware across 10+ situations, including:
@@ -83,6 +85,12 @@ alignment, instead of deleting a single space.
   ([screenshot]({{ site.baseurl }}/screenshots.html#editing)).
 - **End** on a whitespace-only line moves to the expected indent.
 - **Space** merges lines and trims context-appropriately.
+
+Turn whitespace rendering on and the two roles are easy to tell apart: tabs carry the
+indentation of the nested markup, spaces align the wrapped `n:attribute` values under
+the first one.
+
+![A template with whitespace rendered, showing tab indentation and space alignment of wrapped attribute values]({{ '/assets/img/screens/S32-smart-tabs.png' | relative_url }})
 
 ## Comment toggling
 

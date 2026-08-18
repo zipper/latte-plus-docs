@@ -48,6 +48,11 @@ When no explicit type is given, Latte+ infers from context:
 - **`list<T>` generics** – `{varType list<App\Tag> $tags}` is understood and the item
   type flows into the loop. (Some other plugins flag `list<…>` as an error.)
 
+The loop variable of a `list<App\Model\Image>` completes as an `Image`, each member
+listed with its own type – even inside an HTML attribute value.
+
+![Member completion on a foreach variable whose type was inferred from the collection]({{ '/assets/img/screens/S07-member-completion.png' | relative_url }})
+
 ## Implicit / framework variables
 
 Variables that Nette injects into every template – and any you declare as

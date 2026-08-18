@@ -22,6 +22,11 @@ after `{`, after `'` in include paths, after `#` for block names, and more.
 Type `{` and Latte+ suggests all valid Latte tags (60+), with documentation and a
 sensible insertion (closing tag inserted for paired tags, caret placed inside).
 
+A few letters narrow the list, and each paired tag shows the closing tag that will be
+inserted along with it.
+
+![Tag completion after an opening brace, paired tags showing the closing tag that comes with them]({{ '/assets/img/screens/S06-tag-completion.png' | relative_url }})
+
 ## n:attributes
 
 Inside an HTML tag, completion offers the 28 valid `n:attributes`, correctly
@@ -33,6 +38,11 @@ offering the `inner-` / `tag-` prefixed variants where they apply.
 `$variable` completion is **scope-aware** and **type-aware**. Variables declared with
 `{var}`, `{varType}`, `{parameters}`, `{capture}`, `{foreach … as}`, `{for}` and
 implicit Nette variables are all offered, respecting lexical scope and shadowing.
+
+Every suggestion carries its type and where it comes from – a declaration in this file,
+an implicit Nette variable, or one you configured yourself.
+
+![Variable completion listing each variable with its type and origin, including implicit and custom ones]({{ '/assets/img/screens/S08-variable-completion.png' | relative_url }})
 
 ## PHP members
 
@@ -50,12 +60,22 @@ After `|`, completion offers 50+ built-in Latte/Nette filters plus any
 [custom filters](../configuration/custom-extensions.html) discovered in your project,
 each with documentation and parameter hints.
 
+The list is matched anywhere in the name, and every filter shows the arguments it
+accepts right in the popup.
+
+![Filter completion after a pipe, each filter listed with the arguments it accepts]({{ '/assets/img/screens/S09-filter-completion.png' | relative_url }})
+
 ## Block & include names
 
 All five `{include}` syntaxes are supported, with auto-triggering completion of block
 names – including blocks defined in other files. Path completion resolves template
 files and honors your [path aliases](../configuration/path-aliases.html) with fuzzy
 camel-hump matching (e.g. `PaAvail` matches `PartialAvailability`).
+
+Once the file is named, the block names it defines are offered too, so you don't have
+to open the other template to remember them.
+
+![Block name completion in an include, listing the blocks defined by the referenced template]({{ '/assets/img/screens/S10-block-completion.png' | relative_url }})
 
 ## Include arguments
 

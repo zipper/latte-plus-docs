@@ -33,6 +33,11 @@ all work inside the PHP body:
 {do $logger->info('rendered')}
 ```
 
+The body is edited as real PHP – highlighted, completed and inspected, with argument
+hints on function calls, exactly as in a `.php` file.
+
+![PHP tags whose bodies are highlighted as PHP, with an argument hint on a function call]({{ '/assets/img/screens/S24-php-completion.png' | relative_url }})
+
 Latte+ detects the appropriate mode automatically:
 
 - **Strict mode** (the default for `{do}` and basic `{php}`) – a single expression,

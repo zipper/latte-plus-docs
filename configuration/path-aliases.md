@@ -38,6 +38,11 @@ Alias-prefixed paths complete with **fuzzy camel-hump matching**: typing
 `{include '~PaAvail'}` matches `PartialAvailability` across path segments, so you can
 reach deeply nested templates with a few characters.
 
+A handful of camel-hump letters is enough, and each suggestion shows which search path
+it was found in.
+
+![Fuzzy completion of an include path, the suggestions showing the search path each one came from]({{ '/assets/img/screens/S11-alias-completion.png' | relative_url }})
+
 ## Tips
 
 - Point an alias at multiple search paths to let one prefix span several roots.

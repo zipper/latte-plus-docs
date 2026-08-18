@@ -21,6 +21,12 @@ A core design goal is **few false positives**: Latte+ accepts the same templates
 real Latte engine accepts, so valid templates stay clean and you can trust a warning
 when you see one.
 
+A typo in an `n:attribute`, a filter, a property, a block name or a component is caught
+in the same pass – here six of them in one short template, each naming the closest
+valid alternative.
+
+![Six different reports on one template, listed together in the Problems panel]({{ '/assets/img/screens/S18-inspections.png' | relative_url }})
+
 Most reports come with a quick fix – a misspelled `n:attribute`, filter, tag or component
 offers the closest valid name, and you can apply the correction without leaving the
 keyboard.
@@ -52,6 +58,11 @@ keyboard.
 
 - **Missing file** – `{include 'does/not/exist.latte'}`.
 - **Missing asset** – unresolved asset reference.
+
+If the template you are including doesn't exist yet, a quick fix creates it at the
+resolved path – aliases included.
+
+![A quick fix offering to create the missing Latte file referenced by an include]({{ '/assets/img/screens/S20-quickfix-create-file.png' | relative_url }})
 
 ## Nette-specific
 

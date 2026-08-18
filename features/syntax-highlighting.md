@@ -40,11 +40,21 @@ As you scroll through a long template, the enclosing Latte tags – `{if}`,
 pinned to the top of the editor, just like sticky lines work for PHP or JavaScript.
 You always know which block you're inside.
 
+Scrolled deep into a gallery loop, the block, the `{foreach}` and the HTML that
+opened the current context stay readable at the top of the editor.
+
+![A block, a foreach and the surrounding HTML pinned to the top of the editor while the body is scrolled]({{ '/assets/img/screens/S02-sticky-lines.png' | relative_url }})
+
 ## Paired-tag highlighting & brace matching
 
 Place the caret on an opening tag and its matching closing tag is highlighted, and
 vice-versa. Clause tags such as `{else}`, `{elseif}`, `{case}` highlight as part of
 their enclosing group. Braces `{ }`, `( )` and `[ ]` are matched as you'd expect.
+
+With the caret on `{/foreach}`, its opening tag lights up too – and the breadcrumbs
+at the bottom of the editor spell out the full path of tags leading to the caret.
+
+![The caret on a closing foreach tag, its opening tag highlighted and breadcrumbs showing the nesting path]({{ '/assets/img/screens/S03-paired-tag-breadcrumbs.png' | relative_url }})
 
 ## Code folding
 
