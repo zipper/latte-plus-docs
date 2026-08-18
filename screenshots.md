@@ -132,8 +132,9 @@ so you pick the one you meant instead of recalling the full set.
 
 ### Closing tags
 
-After `{/` the tag you actually have open is offered first, so closing a nested structure
-takes one keystroke.
+A paired tag inserted from completion already comes with its closing tag, so normally you
+write nothing. When the closing tag is missing – you deleted it, or the code came from
+somewhere else – typing `{/` offers the tags you actually have open, the nearest one first.
 
 ![Closing tag completion]({{ '/assets/img/screens/S13-close-tag-completion.png' | relative_url }})
 
