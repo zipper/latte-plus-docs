@@ -134,7 +134,8 @@ so you pick the one you meant instead of recalling the full set.
 
 A paired tag inserted from completion already comes with its closing tag, so normally you
 write nothing. When the closing tag is missing – you deleted it, or the code came from
-somewhere else – typing `{/` offers the tags you actually have open, the nearest one first.
+somewhere else – `{/` fills in the nearest open tag on its own, and completion inside it
+lets you pick a different one: the tags open at that position, innermost first.
 
 ![Closing tag completion]({{ '/assets/img/screens/S13-close-tag-completion.png' | relative_url }})
 
