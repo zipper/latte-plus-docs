@@ -50,6 +50,11 @@ list is kept honest on purpose – if you hit something not listed here, please
 
 ## Other
 
+- **Structure view lists Latte tags only** – HTML elements and `n:attributes` are not
+  part of the tree. An `n:attribute` is not an attribute in the Latte tree at all; it
+  belongs to the HTML side of the file, which is parsed separately. The tree is a map
+  of the template's Latte structure, and that is also the scope other Latte plugins
+  have.
 - **Shared partial templates with no owner** – a layout or partial that has no
   matching presenter or component can't pick up the variables those would provide.
 - **Latte expressions embedded in JSON** can briefly confuse highlighting while the

@@ -66,6 +66,10 @@ so you still know what you folded away.
 
 ## Structure view & breadcrumbs
 
-- **Structure view** (`Alt+7`) shows the hierarchy of Latte tags in the file.
+- **Structure view** (`Alt+7`, or `Ctrl+F12` for the same tree as a popup) shows the
+  file's Latte tags nested the way they are nested in the template – blocks,
+  `{define}`, `{snippet}`, `{embed}`, `{include}`, `{layout}` and the control-flow
+  tags – and the toolbar can sort them by name. HTML elements and `n:attributes` are
+  not part of the tree; it is a map of the template's Latte structure.
 - **Breadcrumbs** above the editor show the path of nested tags at the caret, so you
   can navigate up the structure with a click.
