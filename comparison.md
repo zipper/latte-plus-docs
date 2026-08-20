@@ -21,6 +21,9 @@ The table below highlights where Latte+ goes beyond what other plugins typically
 offer. It reflects Latte+'s capabilities; treat the "other plugins" column as a
 general guide rather than a guarantee about any specific version of a competitor.
 
+It is not the whole picture, though. There is one area where a competitor is
+currently ahead of us, and it has [its own section below](#where-latte-pro-is-ahead-assets).
+
 | Capability | Latte+ | Other Latte plugins |
 |---|:---:|:---:|
 | Latte 3.x syntax highlighting | ✅ | ✅ |
@@ -41,6 +44,37 @@ general guide rather than a guarantee about any specific version of a competitor
 | **Union types with a bare class name** (`{varType int\|Foo $x}`) | ✅ | ⚠️ varies – a lowercase-only pipe rule can misread the second name as a filter |
 | **Glued identifiers** (`{ifset foo-bar}`, `hasBlock(a.b)`, `foo--bar`) | ✅ | ✅ |
 | **`{ifset block X}` and `{ifset #X}` block markers** | ✅ | ⚠️ varies |
+
+## Where Latte Pro is ahead: assets
+
+A comparison page that only lists wins is not much use, so here is the honest other
+side. **Asset support is the weakest part of Latte+ today**, and Latte Pro handles it
+better in almost every respect.
+
+| Working with assets | Latte+ | Latte Pro |
+|---|:---:|:---:|
+| `{asset}` / `{preload}` recognised, path checked | ✅ | ✅ |
+| **`n:asset` path checked** | ❌ | ✅ |
+| **Ctrl+B from an asset to the file** | ❌ | ✅ |
+| Path points at a directory instead of a file | ❌ | ✅ |
+| Unknown mapper or protocol (`vite:`, `front:`) | ❌ | ✅ |
+| Completion offers mapper prefixes | ❌ | ✅ |
+| **Configurable asset root and mappings** | ❌ fixed `www/assets/` convention | ✅ |
+| `{asset?}` optional form handled as its own shape | ⚠️ partial | ✅ |
+
+In practice this means two things. Writing `{asset 'logo.svg'}` gets you a warning when
+the file is missing, but writing the same thing as `<img n:asset="logo.svg">` gets you
+nothing. And if your project keeps assets somewhere other than `www/assets/`, Latte+
+currently stays quiet rather than risk false warnings, so you lose the check entirely.
+
+**This is the next major area we are working on.** The plan is to close the gap in this
+order: `n:asset` first, then navigation, then a configurable root, then mappers.
+
+One difference is worth calling out, because it shapes how we intend to get there.
+Neither plugin derives its asset configuration automatically today: Latte Pro asks you
+to restate the setup in its own XML. Latte+ already understands NEON, so the intent is
+to read `assets:` from the configuration you have already written, rather than ask you
+to maintain a second copy of it.
 
 ## Migrating from another plugin
 
