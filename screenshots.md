@@ -53,6 +53,16 @@ screen. Folding follows the tag structure, so blocks collapse at their real boun
 
 ![A collapsed foreach block]({{ '/assets/img/screens/S04-code-folding.png' | relative_url }})
 
+### Structure view
+
+`Alt+7` turns the template into a map of its Latte tags: blocks, `{define}`,
+`{snippet}`, `{embed}`, `{include}` and the control-flow tags, nested the way they are
+nested in the file. The node at the caret is selected, so the panel and the breadcrumbs
+under the editor tell you the same thing from two directions. Clicking a node jumps
+there, the toolbar sorts by name, and `Ctrl+F12` shows the same tree as a popup.
+
+![The structure panel listing a template's Latte tags, the if inside a foreach inside a block selected]({{ '/assets/img/screens/S05-structure-view.png' | relative_url }})
+
 ---
 
 ## Embedded languages

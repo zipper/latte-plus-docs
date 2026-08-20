@@ -73,3 +73,5 @@ so you still know what you folded away.
   not part of the tree; it is a map of the template's Latte structure.
 - **Breadcrumbs** above the editor show the path of nested tags at the caret, so you
   can navigate up the structure with a click.
+
+![The structure panel listing a template's Latte tags, the if inside a foreach inside a block selected]({{ '/assets/img/screens/S05-structure-view.png' | relative_url }})
