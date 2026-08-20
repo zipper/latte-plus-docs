@@ -64,6 +64,48 @@ resolved path – aliases included.
 
 ![A quick fix offering to create the missing Latte file referenced by an include]({{ '/assets/img/screens/S20-quickfix-create-file.png' | relative_url }})
 
+## Blocks: when a missing block is reported
+
+Block names are the one place where "does this exist?" has no simple answer. A block
+can be declared in the template itself, inherited through a layout, pulled in with
+`{import}`, or handed over from the outside by whoever embeds the template. Reporting
+every name that is not declared right here would bury you in warnings about code that
+works.
+
+So Latte+ reports a missing block only when it is reasonably sure. Here is the whole
+rule, in the order it is applied.
+
+**Where the block is looked for**
+
+1. The current template, including names declared with `n:block` / `n:define` (and the
+   `n:inner-` / `n:tag-` forms).
+2. Everything reachable upwards through `{import}` and `{layout}` / `{extends}` – the
+   whole chain, not just the direct parent. Latte merges those blocks at runtime, so we
+   follow the same path.
+3. With `{include #name from 'file.latte'}`, that one file and nothing else. The `from`
+   clause names a concrete target, so the chain is deliberately ignored.
+
+**When it stays quiet even though the block was not found**
+
+- **The name is dynamic.** `{include #$name}` or `{block foo-{$id}}` cannot be checked
+  before runtime.
+- **The include is guarded.** `{ifset #name}` and `{if hasBlock('name')}` are the
+  documented way to ask whether a block was passed in, so anything inside them is
+  treated as intentional.
+- **The name looks like an embed slot.** A bare `{include colorVariants}` with no
+  `from` clause and no similarly spelled block nearby is most likely a slot filled by
+  whoever embeds this template. A close local name (one edit away) is treated as a typo
+  and reported – that is the case where a warning genuinely helps.
+- **The template does not parse.** While a template has a syntax error, the block
+  structure is unreliable, so block warnings are suppressed until it parses again.
+
+**Known limitation.** A block that reaches the template from the *outside* – supplied by
+a child that extends this layout, or by the caller of `{embed}` – is reported when
+written as `{include #name}`. Latte+ resolves upwards along a deterministic path; the
+reverse direction (finding everyone who embeds or extends this file) is not tracked.
+The bare form `{include name}` is quiet in this situation, and wrapping the include in
+`{ifset #name}` silences the marked form as well.
+
 ## Nette-specific
 
 - **Undefined component** – `{control x}` with no matching factory (plus a
