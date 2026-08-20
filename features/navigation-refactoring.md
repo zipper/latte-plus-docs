@@ -36,6 +36,14 @@ caller, in every file.
 
 ![Find Usages on a define listing every include of it across the project]({{ '/assets/img/screens/S22-find-usages-block.png' | relative_url }})
 
+It works on a **template parameter** too, and on an optional one that is where it earns
+its keep. The result lists every use of the parameter – the reads inside the template and
+the `{include}` arguments that supply it – which is a *narrower* set than "everywhere this
+template is included": callers that rely on the default simply are not in it. So the
+question it answers is "who actually sets this?", not "where is this template used?".
+
+![Find Usages on an optional template parameter, listing the reads and the include arguments that pass it]({{ '/assets/img/screens/S35-find-usages-parameter.png' | relative_url }})
+
 [More screenshots]({{ site.baseurl }}/screenshots.html#navigation)
 
 ## Rename (`Shift+F6`)

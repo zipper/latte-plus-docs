@@ -40,6 +40,7 @@ won't find as complete – in other Latte plugins:
 | **Native HTML support** | HTML completion, inspections and `n:attributes` work right inside your templates – without the false "tag not closed" errors you get elsewhere. |
 | **Full support inside `{php}` / `{do}`** | Completion, inspections and refactoring work inside PHP tags, with automatic strict/permissive mode detection. |
 | **Cross-file blocks & includes** | Ctrl-click an `{include}` to jump to its `{block}`/`{define}`, Find Usages across the whole project, and rename atomically across every caller. |
+| **Parameter-aware Find Usages** | `Alt+F7` on a template parameter lists every use of it, including the `{include}` arguments that pass it. On an optional parameter that tells you who actually sets it – not merely where the template is used. |
 | **Nette integration** | `{control}` factory completion, `{link}` target resolution, `{form}` field awareness and `{snippet}` support. |
 | **Sticky lines for Latte tags** | The enclosing `{if}` / `{foreach}` / `{block}` stays pinned to the top of the editor as you scroll. |
 | **Embedded JS & CSS** | JavaScript and CSS inside `<script>`, `<style>`, `style=""` and `on*=""` behave as in a plain HTML file – Latte `{...}` never breaks them. |

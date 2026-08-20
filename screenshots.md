@@ -261,6 +261,15 @@ in the project – so you know what you are about to break before you change it.
 
 ![Find usages of a block]({{ '/assets/img/screens/S22-find-usages-block.png' | relative_url }})
 
+### Find usages of a template parameter
+
+On an optional parameter, Find Usages lists every use of it – the reads inside the
+template and the `{include}` arguments that pass it. Callers that leave the default
+alone are not in the list, so you get the answer to "who actually sets this?" instead
+of "where is this template used?".
+
+![Find usages of an optional template parameter]({{ '/assets/img/screens/S35-find-usages-parameter.png' | relative_url }})
+
 ---
 
 ## Editing

@@ -33,6 +33,7 @@ currently ahead of us, and it has [its own section below](#where-latte-pro-is-ah
 | **`list<T>` generics** in `{varType}` / `{parameters}` | ✅ | ❌ often flagged as error |
 | **Full support inside `{php}` / `{do}`** | ✅ | ❌ |
 | **Cross-file block/define rename & Find Usages** | ✅ | ⚠️ varies |
+| **Find Usages on a template parameter** (lists the `{include}` arguments that pass it) | ✅ | ❌ |
 | **Live paired-tag rename** (closing tag follows as you type, like HTML) | ✅ | ❌ |
 | **Sticky lines for Latte tags** | ✅ | ❌ |
 | **Configurable `n:attribute` color** | ✅ | ❌ |
