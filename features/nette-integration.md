@@ -45,11 +45,15 @@ components, routing and forms.
 - Link destinations (`Presenter:action`) are resolved and validated.
 - Route parameters and the target action's signature are surfaced as
   [parameter info](./documentation-hints.html).
-- The project layouts the Nette skeletons ship are recognised, so destinations resolve
-  without any configuration: `app/Presentation` with each presenter in a directory of
-  its own name (the current default) and modules as plain directories, the older
-  `app/UI`, and the classic `app/Presenters` with `*Module` directories. Custom
-  mappings fall back to matching by class name – see
+- Your project's own `application: mapping` is read from its NEON configuration, so
+  custom prefixes, modules without a `Module` suffix, presenters kept outside the main
+  namespace and several mapping roots in one project all resolve – see
+  [presenter mapping]({{ '/configuration/presenter-mapping.html' | relative_url }}).
+  Once a mapping is read, completion offers exactly the destinations it can route.
+- Without such a configuration the layouts the Nette skeletons ship are recognised
+  anyway: `app/Presentation` with each presenter in a directory of its own name (the
+  current default) and modules as plain directories, the older `app/UI`, and the
+  classic `app/Presenters` with `*Module` directories. What that costs is in
   [known limitations]({{ '/limitations.html' | relative_url }}).
 
 `Ctrl+B` on a destination offers both places it stands for: the template that renders

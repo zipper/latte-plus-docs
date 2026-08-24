@@ -59,15 +59,34 @@ list is kept honest on purpose – if you hit something not listed here, please
   matching presenter or component can't pick up the variables those would provide.
 - **Latte expressions embedded in JSON** can briefly confuse highlighting while the
   surrounding JSON is incomplete.
-- **Presenter layout is inferred, not read from your config** – link destinations are
-  matched against the layouts the shipped Nette skeletons use, including
-  `app/Presentation` and the older `app/UI` with one presenter per directory of its
-  own name. Latte+ does not read `application: mapping`, so a project with a custom
-  mapping falls back to matching by class name alone, and a presenter whose short
-  name exists several times may not be offered in completion. One shape is genuinely
-  ambiguous: `App\Presentation\Admin\AdminPresenter` is read as the presenter `Admin`,
-  which is what the default mapping means – but a project on a custom flat mapping
-  means `Admin:Admin` by it, and gets the wrong name offered.
+- **Presenter layout is inferred when no configuration can be read** – Latte+ reads
+  `application: mapping` from the NEON configuration nearest to the template (see
+  [presenter mapping]({{ '/configuration/presenter-mapping.html' | relative_url }})),
+  and only falls back to matching against the layouts the shipped Nette skeletons use
+  when there is nothing to read: no configuration, a mapping assembled in PHP, or masks
+  built out of DI parameters. In that fallback a presenter whose short name exists
+  several times may not be offered in completion, and one shape is genuinely ambiguous:
+  `App\Presentation\Admin\AdminPresenter` is read as the presenter `Admin`, which is
+  what the default mapping means – a project on a flat mapping means `Admin:Admin` by
+  it and gets the wrong name offered. Adding the mapping to your configuration settles
+  both.
+- **Only the presenters your mapping can route are offered** – once a mapping is read,
+  a presenter no mask matches is left out of destination completion, because a link to
+  it would fail at runtime. Navigation stays permissive, so `Ctrl+B` and the
+  undefined-link inspection still reach such a class; the consequence is that a
+  destination completion does not offer can still resolve without a warning.
+- **One mapping is used for the whole project** – the mapping found for the template
+  you are editing is applied to every presenter in the project. A configuration split
+  sideways across `includes:` – per-feature modules of one application, each with its
+  own `application:` section – is therefore only partly seen, and presenters the
+  unread part maps may be missing from completion. Navigating to them keeps working.
+  Packages of a monorepo that are separate applications are not affected: a link
+  between them is one Nette refuses anyway.
+- **A destination without a leading colon is treated as absolute** – Nette reads
+  `{link Admin:Product:edit}` relative to the current presenter's module, so inside a
+  module it means `<Module>:Admin:Product:edit`. Latte+ reads it as absolute, so such a
+  link resolves and is not reported even where Nette would refuse it. Writing the
+  leading colon (`{link :Admin:Product:edit}`) makes both readings agree.
 
 > None of these block everyday template work. They're documented so you know exactly
 > where the boundaries are.
