@@ -68,8 +68,14 @@ keyboard.
 
 - **Missing file** – `{include 'does/not/exist.latte'}`.
 - **Missing asset** – a file that `{asset}`, `{preload}` or `n:asset` names but that is
-  not there under the assets root. The optional `{asset?}` / `n:asset?` forms, and
-  references that name a mapper (`images:logo.gif`), are left alone.
+  not there under the assets root. The optional `{asset?}` / `n:asset?` forms are left
+  alone, since a missing file is the point of them.
+- **Named asset mappers** – a reference like `images:logo.gif` names a *mapper*, not a
+  directory. Latte+ reads the mappers from your `assets:` configuration, so it can tell
+  the two failures apart: the file is missing under that mapper's own root, or no mapper
+  of that name is configured at all. Where the configuration cannot be read – a path
+  assembled from DI parameters, or a mapper registered in PHP – nothing is claimed, and
+  you can name the roots yourself in the settings.
 
 If the template you are including doesn't exist yet, a quick fix creates it at the
 resolved path – aliases included.
@@ -104,19 +110,19 @@ rule, in the order it is applied.
 - **The include is guarded.** `{ifset #name}` and `{if hasBlock('name')}` are the
   documented way to ask whether a block was passed in, so anything inside them is
   treated as intentional.
-- **The name looks like an embed slot.** A bare `{include colorVariants}` with no
-  `from` clause and no similarly spelled block nearby is most likely a slot filled by
-  whoever embeds this template. A close local name (one edit away) is treated as a typo
-  and reported – that is the case where a warning genuinely helps.
 - **The template does not parse.** While a template has a syntax error, the block
   structure is unreliable, so block warnings are suppressed until it parses again.
 
 **Known limitation.** A block that reaches the template from the *outside* – supplied by
-a child that extends this layout, or by the caller of `{embed}` – is reported when
-written as `{include #name}`. Latte+ resolves upwards along a deterministic path; the
-reverse direction (finding everyone who embeds or extends this file) is not tracked.
-The bare form `{include name}` is quiet in this situation, and wrapping the include in
-`{ifset #name}` silences the marked form as well.
+a child that extends this layout, or by the caller of `{embed}` – is reported. Latte+
+resolves upwards along a deterministic path; the reverse direction, finding everyone who
+embeds or extends this file, is not tracked.
+
+Both spellings behave the same here. `{include #name}` and `{include name}` are one
+instruction written two ways, so which one you use never changes the verdict – earlier
+versions were quieter on the bare form, which made the more explicit spelling the riskier
+one. To say that a block arrives from elsewhere, wrap the include in `{ifset #name}` or
+`{if hasBlock('name')}`, or suppress the inspection for that line or file.
 
 ## Nette-specific
 
