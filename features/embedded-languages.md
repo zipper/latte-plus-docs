@@ -23,6 +23,12 @@ HTML completion, inspections and `n:attributes` all work natively inside your
 templates, and you won't get false *"tag start is not closed"* errors from Latte tags
 that wrap or span HTML elements.
 
+PhpStorm's own HTML inspections keep running in a `.latte` file: a misspelled tag or
+attribute name, a missing `alt` or `lang`, an unbound namespace prefix or a stray closing
+tag are reported exactly as they would be in a plain `.html` file. They are quieted only
+at the spot where a Latte tag or an `n:attribute` is the thing the HTML parser cannot
+read – never across the whole file.
+
 ## PHP inside `{php}` and `{do}`
 
 PHP tags get full IDE support – completion, inspections, navigation and refactoring

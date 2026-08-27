@@ -42,7 +42,9 @@ components, routing and forms.
 <a n:href="Product:detail $product->id">{$product->name}</a>
 ```
 
-- Link destinations (`Presenter:action`) are resolved and validated.
+- Link destinations (`Presenter:action`) are resolved and validated – in `{link}` and
+  `{plink}`, in `n:href`, and in `{ifCurrent}`. An action the target presenter does not
+  have is reported too, not just an unknown presenter.
 - Route parameters and the target action's signature are surfaced as
   [parameter info](./documentation-hints.html).
 - Your project's own `application: mapping` is read from its NEON configuration, so

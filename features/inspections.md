@@ -47,17 +47,29 @@ keyboard.
 - **Undefined member** – `$obj->nonexistent` / unknown property.
 - **Undefined class** – unresolved class in `{varType}`, `instanceof`, etc.
 - **Type mismatch** – argument or filter input whose type doesn't fit.
+- **Printing a value that cannot become a string** – `{$order}` where the class has no
+  `__toString()`, or an enum; printing an array is a weak warning. The escaping context
+  is taken into account, so a print inside `<script>` or an `on*` handler – where the
+  value is encoded rather than stringified – stays quiet.
+- **Static member via `->`** – a static method reached with `->` instead of `::`.
 
 ## Filters & functions
 
 - **Undefined filter** – `|nosuchfilter`.
 - **Filter type mismatch** – wrong input type for a filter.
 - **Undefined function** – unresolved PHP function in an expression.
+- **Filter Latte refuses to run** – calling `|escape` by hand. Latte reserves it for its
+  own escaping and rejects the template, so the report is an error rather than a warning.
+  It appears only where Latte actually refuses it: from Latte 3.1 on. On earlier versions
+  the spelling is valid and stays quiet, and where the installed version cannot be read
+  from `composer.lock` Latte+ says nothing rather than risk a false error.
 
 ## Files & includes
 
 - **Missing file** – `{include 'does/not/exist.latte'}`.
-- **Missing asset** – unresolved asset reference.
+- **Missing asset** – a file that `{asset}`, `{preload}` or `n:asset` names but that is
+  not there under the assets root. The optional `{asset?}` / `n:asset?` forms, and
+  references that name a mapper (`images:logo.gif`), are left alone.
 
 If the template you are including doesn't exist yet, a quick fix creates it at the
 resolved path – aliases included.
@@ -110,7 +122,9 @@ The bare form `{include name}` is quiet in this situation, and wrapping the incl
 
 - **Undefined component** – `{control x}` with no matching factory (plus a
   did-you-mean fix).
-- **Link target** – `{link}` / `n:href` destination that doesn't resolve.
+- **Link target** – a destination that doesn't resolve, in `{link}` / `{plink}`, in
+  `n:href` and in `{ifCurrent}` alike. Both halves are checked: an unknown presenter,
+  and an action the presenter doesn't have.
 - **Form checks** – form field / container / owner consistency.
 - **No-escape filter** – flags a `|noescape`-only modifier on a `{control}`.
 - **Nonce attribute** – `n:nonce` used outside its valid scope.
