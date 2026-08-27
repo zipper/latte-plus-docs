@@ -25,6 +25,10 @@ including **across files**.
 - Filters and PHP functions jump to their declaration.
 - An `{include}` argument key jumps to the matching `{parameters}` / `{default}`
   declaration in the target template.
+- An asset reference opens the file it names – in `{asset}`, `{preload}` and `n:asset`
+  alike, and through a named mapper (`images:logo.gif`) as readily as a plain path.
+  Intermediate directories are navigable too, and renaming the file rewrites the
+  reference.
 
 ![Ctrl+B on a control tag landing on the factory method that builds the component]({{ '/assets/img/screens/S31-goto-control.png' | relative_url }})
 

@@ -87,6 +87,14 @@ optional – so you can pass arguments correctly without opening the other file.
 
 ![Completion of the arguments an included template declares, each with its type and whether it is required]({{ '/assets/img/screens/S29-include-args-completion.png' | relative_url }})
 
+## Assets
+
+Inside `{asset '…'}` and `{preload '…'}` the popup opens on its own and offers the files
+under your assets root, together with the **named mappers** your `assets:` configuration
+declares. Type a mapper's colon and it opens again, now listing what lives under *that*
+mapper rather than everything under the default root – so what you pick is what will
+resolve.
+
 ## Classes & functions
 
 PHP class names complete inside `{varType}`, `{templateType}` and `instanceof`

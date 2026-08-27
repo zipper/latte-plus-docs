@@ -21,8 +21,8 @@ The table below highlights where Latte+ goes beyond what other plugins typically
 offer. It reflects Latte+'s capabilities; treat the "other plugins" column as a
 general guide rather than a guarantee about any specific version of a competitor.
 
-It is not the whole picture, though. There is one area where a competitor is
-currently ahead of us, and it has [its own section below](#where-latte-pro-is-ahead-assets).
+It is not the whole picture, though. Asset support is compared separately
+[in its own section below](#assets), including what is still missing there.
 
 | Capability | Latte+ | Other Latte plugins |
 |---|:---:|:---:|
@@ -46,44 +46,54 @@ currently ahead of us, and it has [its own section below](#where-latte-pro-is-ah
 | **Glued identifiers** (`{ifset foo-bar}`, `hasBlock(a.b)`, `foo--bar`) | ✅ | ✅ |
 | **`{ifset block X}` and `{ifset #X}` block markers** | ✅ | ⚠️ varies |
 
-## Where Latte Pro is ahead: assets
+## Assets
 
-A comparison page that only lists wins is not much use, so here is the honest other
-side. **Asset support is the weakest part of Latte+ today**, and Latte Pro still handles
-it better in most respects.
+Assets were the weakest part of Latte+ for a long time, and the honest comparison used
+to run the other way. Most of that gap is now closed, and one row turned into an
+advantage: Latte+ reads the mappers from the `assets:` section of your NEON
+configuration, so it knows what `images:logo.gif` means without being told twice.
 
 | Working with assets | Latte+ | Latte Pro |
 |---|:---:|:---:|
 | `{asset}` / `{preload}` recognised, path checked | ✅ | ✅ |
-| **`n:asset` path checked** | ✅ | ✅ |
-| **Ctrl+B from an asset to the file** | ❌ | ✅ |
-| Path points at a directory instead of a file | ❌ | ✅ |
-| Unknown mapper or protocol (`vite:`, `front:`) | ❌ | ✅ |
-| Completion offers mapper prefixes | ❌ | ✅ |
-| **Configurable asset root and mappings** | ❌ convention only, no setting | ✅ |
+| `n:asset` path checked | ✅ | ✅ |
+| **Named mappers read from your NEON configuration** | ✅ | ❌ restate them in its own XML |
+| **Unknown mapper reported as a mapper, not as a missing file** | ✅ | ✅ reported as an unknown protocol |
+| **`Ctrl+B` from an asset to the file** | ✅ | ✅ |
+| **Completion offers mapper prefixes** | ✅ | ✅ |
+| **Completion lists the files under the named mapper** | ✅ | – not measured |
 | `{asset?}` optional form handled as its own shape | ✅ | ✅ |
+| Path points at a directory instead of a file | ❌ | ✅ |
+| Configurable asset root | ⚠️ convention for the root, settings override for the mappers | ✅ |
 
-In practice, `{asset 'logo.svg'}`, `{preload}` and `<img n:asset="logo.svg">` now all
-warn when the file is not there, the optional `{asset?}` / `n:asset?` forms are
-recognised as their own shape and stay quiet by design, and typing inside `{asset '…'}`
-completes the files under the assets root. A reference that names a mapper
-(`{asset 'images:logo.gif'}`) is left alone instead of being reported – but it is not
-resolved either, so it gets you neither a check nor completion.
+In practice: `{asset 'logo.svg'}`, `{preload}` and `<img n:asset="logo.svg">` all warn
+when the file is not there. A reference that names a mapper is resolved against the root
+that mapper actually points at, so `{asset 'images:logo.gif'}` is checked rather than
+skipped, and a name no mapper declares is reported as **the mapper being wrong** instead
+of sending you looking for a file. `Ctrl+B` opens the file, intermediate directories
+included, and renaming the file rewrites the reference.
 
-What is still missing is the rest of the table. There is no `Ctrl+B` from an asset to
-the file it names, a path that lands on a directory passes as valid, and the assets root
-is a convention rather than a setting: Latte+ walks up from the template looking for a
-`www/assets/` or `assets/` directory and stays quiet if it finds neither. Nothing is read
-from the `assets:` section of your NEON configuration yet.
+The optional form (`{asset '?…'}`, `n:asset?`) stays quiet about a missing file, because
+the runtime hands back null instead of throwing — but it still reports an unknown mapper,
+which throws either way.
 
-**This is still the area we are working on.** `n:asset` is done; navigation comes next,
-then a configurable root, then mappers.
+Completion opens by itself inside `{asset '…'}` and again once you type a mapper's colon,
+and from that point it lists what lives under **that** mapper rather than everything
+under the default root.
 
-One difference is worth calling out, because it shapes how we intend to get there.
-Neither plugin derives its asset configuration automatically today: Latte Pro asks you
-to restate the setup in its own XML. Latte+ already understands NEON, so the intent is
-to read `assets:` from the configuration you have already written, rather than ask you
-to maintain a second copy of it.
+### What is still open
+
+The assets root itself is a convention rather than a setting: Latte+ walks up from the
+template looking for `www/assets/` or `assets/`, and where your NEON says something else,
+the mappers answer for it. For a mapping the configuration cannot express — a path built
+from DI parameters that point nowhere on disk, or a mapper registered in PHP — there is
+an [override in settings](./configuration/asset-mapping.html). A path that lands on a
+directory instead of a file still passes as valid.
+
+The difference in approach is worth calling out, because it is why the mapper rows moved.
+Latte Pro asks you to restate the asset setup in its own XML configuration; Latte+ reads
+the `assets:` section you have already written, so there is no second copy to keep in
+sync.
 
 ## Migrating from another plugin
 

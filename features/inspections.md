@@ -68,14 +68,18 @@ keyboard.
 
 - **Missing file** – `{include 'does/not/exist.latte'}`.
 - **Missing asset** – a file that `{asset}`, `{preload}` or `n:asset` names but that is
-  not there under the assets root. The optional `{asset?}` / `n:asset?` forms are left
-  alone, since a missing file is the point of them.
+  not there. The message names the directory actually searched, which behind a mapper is
+  not the default assets root.
 - **Named asset mappers** – a reference like `images:logo.gif` names a *mapper*, not a
   directory. Latte+ reads the mappers from your `assets:` configuration, so it can tell
   the two failures apart: the file is missing under that mapper's own root, or no mapper
   of that name is configured at all. Where the configuration cannot be read – a path
-  assembled from DI parameters, or a mapper registered in PHP – nothing is claimed, and
-  you can name the roots yourself in the settings.
+  assembled from DI parameters that point nowhere on disk, or a mapper registered in PHP –
+  nothing is claimed, and you can name the roots yourself in
+  [settings](../configuration/asset-mapping.html).
+- The optional forms (`{asset '?…'}`, `n:asset?`) stay quiet about a missing file – the
+  runtime hands back null instead of throwing, so that is the point of them. They still
+  report an unknown mapper, which throws either way.
 
 If the template you are including doesn't exist yet, a quick fix creates it at the
 resolved path – aliases included.
