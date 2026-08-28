@@ -68,7 +68,8 @@ being told twice.
 | **Popup opens by itself, and again after a mapper's colon** | ✅ | – not measured |
 | **Spellings Latte refuses are reported, with a quick fix** | ✅ | – not measured |
 | **Renaming the file keeps the reference working** | ✅ | – not measured |
-| `{asset?}` optional form handled as its own shape | ✅ | ✅ |
+| `{asset? …}` optional form, and the comma tail after the path | ✅ | – not measured |
+| **A `?` inside the string read as a path, not as the marker** | ✅ | – not measured |
 | Path points at a directory instead of a file | ❌ | ✅ |
 | Configurable asset root | ⚠️ convention for the root, settings override for the mappers | ✅ |
 
@@ -97,6 +98,12 @@ The two spellings Latte refuses are reported rather than completed into: the opt
 marker belongs on the attribute name (`n:asset?="…"`, not `n:asset="?…"`), and a variable
 after a mapper has to be braced (`images:{$name}`). Each comes with a quick fix, because
 each is one mechanical edit.
+
+The same rule holds for the tag: `{asset? 'logo.png'}` is the optional form, while
+`{asset '?logo.png'}` asks for a file whose name starts with a question mark — and is
+reported as missing, because that is what it means. The distinction is invisible to a
+"does it compile" check (both compile); it shows up in the generated code, where only the
+first passes the optional flag.
 
 The optional form stays quiet about a missing file, since the runtime hands back null
 instead of throwing — but it still reports an unknown mapper, which throws either way.

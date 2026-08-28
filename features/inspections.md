@@ -77,9 +77,12 @@ keyboard.
   assembled from DI parameters that point nowhere on disk, or a mapper registered in PHP –
   nothing is claimed, and you can name the roots yourself in
   [settings](../configuration/asset-mapping.html).
-- The optional forms (`{asset '?…'}`, `n:asset?`) stay quiet about a missing file – the
+- The optional forms (`{asset? '…'}`, `n:asset?`) stay quiet about a missing file – the
   runtime hands back null instead of throwing, so that is the point of them. They still
   report an unknown mapper, which throws either way.
+- A question mark **inside** the string is not that marker: `{asset '?logo.png'}` asks
+  for a file whose name begins with one, so a missing file there is reported like any
+  other. The marker belongs on the tag name.
 - **`n:asset` spellings Latte refuses** – the optional marker belongs on the attribute
   name (`n:asset?="…"`), not inside the value, and a variable after a mapper has to be
   braced (`images:{$name}`); a bare one ends the attribute early. Both are reported with a

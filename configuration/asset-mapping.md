@@ -86,6 +86,10 @@ used.
 - Completion offers the mapper names, and once you type a mapper's colon, the files under
   **that** mapper.
 
-The optional forms (`{asset '?…'}`, `n:asset?`) stay quiet about a missing file, since the
-runtime hands back null instead of throwing. They still report an unknown mapper, which
-throws either way.
+The optional forms stay quiet about a missing file, since the runtime hands back null
+instead of throwing. They still report an unknown mapper, which throws either way.
+
+The marker goes on the **name**, not into the reference — `{asset? 'logo.png'}` and
+`n:asset?="logo.png"`. Written inside the string it is simply the first character of a
+path: `{asset '?logo.png'}` looks for a file called `?logo.png`, which is almost never
+what was meant, so it is reported as missing.
