@@ -27,8 +27,10 @@ including **across files**.
   declaration in the target template.
 - An asset reference opens the file it names – in `{asset}`, `{preload}` and `n:asset`
   alike, and through a named mapper (`images:logo.gif`) as readily as a plain path.
-  Intermediate directories are navigable too, and renaming the file rewrites the
-  reference.
+  Intermediate directories are navigable too, and the mapper prefix opens the directory it
+  stands for – even when the filename next to it is a variable.
+- Renaming an asset rewrites the reference as a path under the **assets root**, so the
+  template keeps working; a mapper prefix in front of it is left alone.
 
 ![Ctrl+B on a control tag landing on the factory method that builds the component]({{ '/assets/img/screens/S31-goto-control.png' | relative_url }})
 

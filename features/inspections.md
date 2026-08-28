@@ -80,6 +80,10 @@ keyboard.
 - The optional forms (`{asset '?…'}`, `n:asset?`) stay quiet about a missing file – the
   runtime hands back null instead of throwing, so that is the point of them. They still
   report an unknown mapper, which throws either way.
+- **`n:asset` spellings Latte refuses** – the optional marker belongs on the attribute
+  name (`n:asset?="…"`), not inside the value, and a variable after a mapper has to be
+  braced (`images:{$name}`); a bare one ends the attribute early. Both are reported with a
+  quick fix, since each is a single mechanical edit.
 
 If the template you are including doesn't exist yet, a quick fix creates it at the
 resolved path – aliases included.

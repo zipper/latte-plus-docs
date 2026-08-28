@@ -89,11 +89,19 @@ optional – so you can pass arguments correctly without opening the other file.
 
 ## Assets
 
-Inside `{asset '…'}` and `{preload '…'}` the popup opens on its own and offers the files
-under your assets root, together with the **named mappers** your `assets:` configuration
-declares. Type a mapper's colon and it opens again, now listing what lives under *that*
-mapper rather than everything under the default root – so what you pick is what will
-resolve.
+Inside `{asset '…'}`, `{preload '…'}` and `n:asset` the popup opens on its own and offers
+the files under your assets root, together with the **named mappers** your `assets:`
+configuration declares. Type a mapper's colon and it opens again, now listing what lives
+under *that* mapper rather than everything under the default root – so what you pick is
+what will resolve.
+
+Accepting a mapper leaves the popup open, because a mapper is never the whole reference:
+the file under it still has to be named.
+
+In `n:asset` the offer stops where Latte stops accepting. A variable is offered at the
+start of the value, where it is legal on its own, but not after a mapper – there it has
+to be braced (`images:{$name}`), and completing the bare spelling would build a template
+that does not compile.
 
 ## Classes & functions
 

@@ -1,0 +1,20 @@
+docs: assets caught up, and say plainly what has not been checked
+
+The asset section was rewritten yesterday when the mappers first became
+readable. Since then the feature grew a good deal — completion inside
+`n:asset`, a popup that opens on its own and again after a mapper's colon,
+navigation from the mapper prefix to its directory, renaming that leaves a
+working template, and reports for the two spellings Latte refuses, each
+with a quick fix.
+
+Half the right-hand column now reads "not measured", and that is the
+honest state rather than an omission. Those rows cover behaviour added in
+the last day; nobody has sat down with the competitor to check them. They
+are listed because they are part of what Latte+ does, not as a claim about
+what anything else does not.
+
+One row still runs the other way — a path that lands on a directory
+instead of a file passes as valid — and the assets root is a convention
+with a settings override rather than a setting of its own. Both stay in
+"what is still open", where they can be found without reading the table
+twice.

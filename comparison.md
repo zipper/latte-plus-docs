@@ -22,7 +22,7 @@ offer. It reflects Latte+'s capabilities; treat the "other plugins" column as a
 general guide rather than a guarantee about any specific version of a competitor.
 
 It is not the whole picture, though. Asset support is compared separately
-[in its own section below](#assets), including what is still missing there.
+[in its own section below](#assets), including the rows that are still missing there.
 
 | Capability | Latte+ | Other Latte plugins |
 |---|:---:|:---:|
@@ -48,10 +48,11 @@ It is not the whole picture, though. Asset support is compared separately
 
 ## Assets
 
-Assets were the weakest part of Latte+ for a long time, and the honest comparison used
-to run the other way. Most of that gap is now closed, and one row turned into an
-advantage: Latte+ reads the mappers from the `assets:` section of your NEON
-configuration, so it knows what `images:logo.gif` means without being told twice.
+Assets were the weakest part of Latte+ for a long time, and this section used to run the
+other way round. What is left of that gap is one row, and several rows now run in the
+other direction — chief among them that Latte+ reads the mappers from the `assets:`
+section of your NEON configuration, so it knows what `images:logo.gif` means without
+being told twice.
 
 | Working with assets | Latte+ | Latte Pro |
 |---|:---:|:---:|
@@ -60,26 +61,45 @@ configuration, so it knows what `images:logo.gif` means without being told twice
 | **Named mappers read from your NEON configuration** | ✅ | ❌ restate them in its own XML |
 | **Unknown mapper reported as a mapper, not as a missing file** | ✅ | ✅ reported as an unknown protocol |
 | **`Ctrl+B` from an asset to the file** | ✅ | ✅ |
+| **`Ctrl+B` from a mapper prefix to its directory** | ✅ | – not measured |
 | **Completion offers mapper prefixes** | ✅ | ✅ |
 | **Completion lists the files under the named mapper** | ✅ | – not measured |
+| **Completion inside `n:asset`, not only in the tag** | ✅ | – not measured |
+| **Popup opens by itself, and again after a mapper's colon** | ✅ | – not measured |
+| **Spellings Latte refuses are reported, with a quick fix** | ✅ | – not measured |
+| **Renaming the file keeps the reference working** | ✅ | – not measured |
 | `{asset?}` optional form handled as its own shape | ✅ | ✅ |
 | Path points at a directory instead of a file | ❌ | ✅ |
 | Configurable asset root | ⚠️ convention for the root, settings override for the mappers | ✅ |
 
-In practice: `{asset 'logo.svg'}`, `{preload}` and `<img n:asset="logo.svg">` all warn
-when the file is not there. A reference that names a mapper is resolved against the root
-that mapper actually points at, so `{asset 'images:logo.gif'}` is checked rather than
-skipped, and a name no mapper declares is reported as **the mapper being wrong** instead
-of sending you looking for a file. `Ctrl+B` opens the file, intermediate directories
-included, and renaming the file rewrites the reference.
+Half the table says "not measured" on the right, and that is deliberate: those rows cover
+behaviour added recently, and nobody has sat down with Latte Pro to check them. They are
+listed because they are part of what Latte+ does, not as a claim about what it does not.
 
-The optional form (`{asset '?…'}`, `n:asset?`) stays quiet about a missing file, because
-the runtime hands back null instead of throwing — but it still reports an unknown mapper,
-which throws either way.
+### What this looks like in practice
 
-Completion opens by itself inside `{asset '…'}` and again once you type a mapper's colon,
-and from that point it lists what lives under **that** mapper rather than everything
-under the default root.
+`{asset 'logo.svg'}`, `{preload}` and `<img n:asset="logo.svg">` all warn when the file is
+not there. A reference that names a mapper is resolved against the root that mapper
+actually points at, so `{asset 'images:logo.gif'}` is checked rather than skipped, and a
+name no mapper declares is reported as **the mapper being wrong** instead of sending you
+looking for a file.
+
+`Ctrl+B` opens the file — through a mapper, through intermediate directories, from the tag
+and from `n:asset` alike — and the mapper prefix itself opens the directory it stands for,
+even when the filename beside it is a variable. Renaming the file rewrites the reference
+as a path under the assets root, so the template still works afterwards.
+
+Completion opens by itself inside `{asset '…'}` and inside `n:asset`, and again once you
+type a mapper's colon; from that point it lists what lives under **that** mapper rather
+than everything under the default root.
+
+The two spellings Latte refuses are reported rather than completed into: the optional
+marker belongs on the attribute name (`n:asset?="…"`, not `n:asset="?…"`), and a variable
+after a mapper has to be braced (`images:{$name}`). Each comes with a quick fix, because
+each is one mechanical edit.
+
+The optional form stays quiet about a missing file, since the runtime hands back null
+instead of throwing — but it still reports an unknown mapper, which throws either way.
 
 ### What is still open
 
