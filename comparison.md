@@ -162,3 +162,33 @@ Whitespace *before* the pipe does not matter, so multi-line filter chains keep w
        |sort
        |first}
 ```
+
+### When the same-looking mistake gets two different answers
+
+`{asset '?images:logo.gif'}` and `<img n:asset="?images:logo.gif">` look like one typo,
+and usually they are one: someone wanted the optional form and put the question mark a
+character too far to the right. Latte does not read the two the same way, though, so
+Latte+ does not either.
+
+In the **tag**, the question mark is just the first character of a mapper name. The
+template compiles, and a mapper called `?images` is something you can genuinely
+configure:
+
+```neon
+assets:
+    mapping:
+        ?images:
+            path: %wwwDir%/images
+```
+
+That container builds, the asset resolves and the page renders – so calling the template
+broken would be wrong. Latte+ reports a warning that offers the reading you most likely
+meant, `{asset? 'images:logo.gif'}`, and leaves the choice to you.
+
+In the **attribute** there is nothing to weigh: Latte refuses `n:asset="?…"` while
+parsing it, and no configuration can change that. Optional is spelled on the attribute
+name, `n:asset?="…"`, and the report says so outright.
+
+Both come with a quick fix that moves the marker where it belongs. The difference in
+wording is not a cosmetic slip – it is the difference between "this is unusual" and
+"this cannot work".
