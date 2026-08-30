@@ -60,29 +60,18 @@ components, routing and forms.
 
 ### One destination, two places to land
 
-`Ctrl+B` (or `Ctrl+Click`) on a link destination does not make you choose between the
-template and the PHP behind it. It offers **both** – and it offers the **template
-first**:
+`Ctrl+B` on a link destination offers **two** targets, and the action's template is the
+**first** of them:
 
 ```latte
-{link Product:detail $product->id}
-
 <a n:href="Product:detail $product->id">{$product->name}</a>
 ```
 
-With the caret on `Product:detail`, either of those opens a two-entry list:
-
-1. **`templates/Product/detail.latte`** – the template that renders the action.
+1. **`Product/detail.latte`** – the template that renders the action.
 2. **`ProductPresenter::renderDetail()`** (or `actionDetail()`) – the method behind it.
 
-While you are working on the markup, the first entry is almost always the one you meant,
-and it is already at the top: `Ctrl+B`, `Enter`, and you are in the template the link
-leads to. No detour through the presenter, no reconstructing the path in the project
-tree. The method is one line down whenever the question is about the PHP instead.
-
-The template is a navigation target only. A link stands for an *action*, not for a file
-name, so renaming the template file leaves the destination alone and `Presenter:action`
-keeps meaning what it says.
+The same holds in `{link}` and `{plink}`, so the template you are about to edit is a
+keystroke away from the link that leads to it.
 
 ![Go to declaration on a link destination offering the target template and the presenter render method]({{ '/assets/img/screens/S21-goto-link-target.png' | relative_url }})
 
