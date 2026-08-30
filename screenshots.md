@@ -242,8 +242,9 @@ spot, so you can keep writing the template you are in.
 
 ### From a link to the code behind it
 
-`Ctrl+B` on a link destination offers both places it lives – the presenter method that
-handles it and the template it renders – so a link takes you to the code in one step.
+`Ctrl+B` on a link destination offers both places it lives – the template that renders
+the action, listed first, and the presenter method behind it – so a link takes you to
+either one in a single step, without opening the presenter to find the template.
 
 ![Go to declaration from a link]({{ '/assets/img/screens/S21-goto-link-target.png' | relative_url }})
 

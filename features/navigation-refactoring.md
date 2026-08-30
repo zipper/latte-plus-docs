@@ -22,6 +22,9 @@ including **across files**.
 - `{include #header from 'layout.latte'}` jumps to the `{block header}` /
   `{define header}` in `layout.latte`.
 - `{control reviews}` jumps to the `createComponentReviews()` factory.
+- A `{link}` / `n:href` destination offers **two** targets at once: the action's template
+  first, the presenter's `render`/`action` method second – see
+  [one destination, two places to land](./nette-integration.html#one-destination-two-places-to-land).
 - Filters and PHP functions jump to their declaration.
 - An `{include}` argument key jumps to the matching `{parameters}` / `{default}`
   declaration in the target template.

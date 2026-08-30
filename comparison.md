@@ -38,6 +38,7 @@ It is not the whole picture, though. Asset support is compared separately
 | **Sticky lines for Latte tags** | ✅ | ❌ |
 | **Configurable `n:attribute` color** | ✅ | ❌ |
 | **Automatic completion trigger** (after `{`, `'`, `#`) | ✅ | ⚠️ varies |
+| **`Ctrl+B` on a link offers the action's template, not only the presenter method** | ✅ template first, method second | – not measured |
 | `{control}` factory & render-method completion | ✅ | ⚠️ varies |
 | Embedded JS / CSS support inside templates | ✅ | ⚠️ varies |
 | Custom extension discovery (tags/filters/functions) | ✅ | ✅ (varies) |
