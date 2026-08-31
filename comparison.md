@@ -173,6 +173,19 @@ those features feel native rather than bolted on. And because Latte+ accepts the
 templates the real Latte engine accepts, valid code stays clean – you get warnings
 when something is genuinely wrong, not a wall of false positives.
 
+That is measurable, so here is the measurement. Four ordinary templates from the demo
+project – a layout, a presenter view, an included part and a component – contain **no
+mistakes**, and every report on them is therefore a false one:
+
+| | reports on four correct templates |
+|---|:---:|
+| Latte+ | **0** |
+| Latte Pro 1.6.0 | 33 |
+
+The 33 have one root: a `list<App\Model\Image>` in `{parameters}` is rejected, the variable
+loses its type, and every `{$image->width}` under it turns into "undefined property".
+A single unsupported type annotation is enough to paint a whole template red.
+
 ### Aiming for the same answers as Latte
 
 When a syntax rule is unclear, one of the things we look at is how current `latte/latte`
