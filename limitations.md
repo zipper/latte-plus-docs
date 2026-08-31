@@ -21,6 +21,9 @@ list is kept honest on purpose – if you hit something not listed here, please
   updates `{/if}`, but `{elseif}` and `{else}` stay as they are. The synchronizer links
   exactly two points (opener and closer); IntelliJ behaves the same way for HTML.
 - **The shorthand closing tag `{/}` is not synchronised**, because it carries no name.
+- **A block name mid-deletion** – while a `{block}` header stands with its name
+  erased, a reference to that name can report as missing for a moment. It clears as
+  soon as you type a character.
 
 ## Syntax edge cases
 
@@ -33,6 +36,15 @@ list is kept honest on purpose – if you hit something not listed here, please
 - **`n:try` with `{rollback}`** is out of scope.
 - **Member access inside a bare string** – `"$user->name"` resolves `$user` but not
   the `->name` part (this matches the behavior of other Latte plugins).
+- **A closing tag with no opening tag** (`{/if}` with no `{if}`) ends Latte parsing
+  for the rest of the file: tags written below it are not recognized, so nothing
+  there completes, navigates or gets reported. Adding the opener – or removing the
+  stray closer – brings the file back.
+- **A `#` before a block name** is accepted in `{block #foo}`, `{define #foo}` and
+  `{ifset #foo}`, but `{ifset block #foo}` and `n:ifset="#foo"` still report it.
+- **An unclosed tag next to a stray closing tag** (`{if true}{/foreach}`) reports
+  twice, the second time in raw parser wording. They are two separate mistakes, and
+  that raw message is the only report the unmatched closing tag gets.
 
 ## Type inference & hints
 
@@ -57,6 +69,21 @@ list is kept honest on purpose – if you hit something not listed here, please
   have.
 - **Shared partial templates with no owner** – a layout or partial that has no
   matching presenter or component can't pick up the variables those would provide.
+- **A layout chosen at runtime is not followed** – a view with no `{layout}` tag
+  inherits the `@layout.latte` Nette attaches to it by itself, but `setLayout('other')`
+  in the presenter is PHP the template does not spell out. Blocks and variables from
+  `@otherLayout.latte` are therefore not seen, and an `{include #block}` aimed at one
+  is reported as missing.
+- **Only `@layout.latte` is searched for** – other layout names, including
+  `@layout.<locale>.latte`, are not. Writing `{extends auto}` counts as naming the
+  parent yourself, so no automatic layout is attached there either. Without an
+  `application: mapping` the search can read, it does not climb above the presenter's
+  own level, so a layout shared by a whole module is not found. Only a presenter's
+  view inherits a layout this way – a partial or a component template does not.
+- **A `{block}` written where Latte does not read one** – inside a JavaScript string,
+  say, or in a `{syntax double}` region – still counts as a declaration, so a
+  reference to that name is not reported. Missing-block reporting errs on the quiet
+  side here.
 - **Latte expressions embedded in JSON** can briefly confuse highlighting while the
   surrounding JSON is incomplete.
 - **Presenter layout is inferred when no configuration can be read** – Latte+ reads

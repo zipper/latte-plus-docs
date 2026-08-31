@@ -110,7 +110,8 @@ rule, in the order it is applied.
    `n:inner-` / `n:tag-` forms).
 2. Everything reachable upwards through `{import}` and `{layout}` / `{extends}` – the
    whole chain, not just the direct parent. Latte merges those blocks at runtime, so we
-   follow the same path.
+   follow the same path. A presenter's view needs no `{layout}` tag for this: the
+   `@layout.latte` Nette attaches to it on its own is part of the chain too.
 3. With `{include #name from 'file.latte'}`, that one file and nothing else. The `from`
    clause names a concrete target, so the chain is deliberately ignored.
 
@@ -121,8 +122,11 @@ rule, in the order it is applied.
 - **The include is guarded.** `{ifset #name}` and `{if hasBlock('name')}` are the
   documented way to ask whether a block was passed in, so anything inside them is
   treated as intentional.
-- **The template does not parse.** While a template has a syntax error, the block
-  structure is unreliable, so block warnings are suppressed until it parses again.
+- **The declaration is still being typed.** A syntax error only silences the block
+  names it could plausibly have broken: an unfinished `{include}` / `{embed}` header,
+  or a broken `{block}` / `{define}` header whose name is close to the one being
+  checked. An error elsewhere in the template – even on the line above – no longer
+  turns the check off for the whole file.
 
 **Known limitation.** A block that reaches the template from the *outside* – supplied by
 a child that extends this layout, or by the caller of `{embed}` – is reported. Latte+
