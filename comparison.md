@@ -44,10 +44,10 @@ It is not the whole picture, though. Asset support is compared separately
 | `{control}` factory & render-method completion | ✅ | ⚠️ varies |
 | Embedded JS / CSS support inside templates | ✅ | ⚠️ varies |
 | Custom extension discovery (tags/filters/functions) | ✅ | ✅ (varies) |
-| **Bitwise operators with real precedence** (`&`, `^`, `~`, and shifts `<<` / `>>`) | ✅ | ⚠️ partial – operators may lex, but without a precedence tree; shifts are often unsupported |
-| **Union types with a bare class name** (`{varType int\|Foo $x}`) | ✅ | ⚠️ varies – a lowercase-only pipe rule can misread the second name as a filter |
+| **Bitwise operators with real precedence** (`&`, `^`, `~`, and shifts `<<` / `>>`) | ✅ parsed into a precedence tree | ⚠️ varies – none of these forms is reported as an error by Latte Pro 1.6.0; whether the precedence is modelled was not measured |
+| **Union types with a bare class name** (`{varType int\|Foo $x}`) | ✅ | ⚠️ varies – a lowercase-only pipe rule can misread the second name as a filter, though Latte Pro 1.6.0 accepts this form |
 | **Glued identifiers** (`{ifset foo-bar}`, `hasBlock(a.b)`, `foo--bar`) | ✅ | ✅ |
-| **`{ifset block X}` and `{ifset #X}` block markers** | ✅ | ⚠️ varies |
+| **`{ifset block X}` and `{ifset #X}` block markers** | ✅ | ✅ accepted by Latte Pro 1.6.0 |
 | **`{* @noinspection … *}` suppresses one line** | ✅ | ⚠️ varies – a file-wide effect turns the whole file quiet |
 
 ## What the template keeps alive
