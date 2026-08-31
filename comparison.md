@@ -28,7 +28,7 @@ It is not the whole picture, though. Asset support is compared separately
 |---|:---:|:---:|
 | Latte 3.x syntax highlighting | ✅ | ✅ |
 | Tag / `n:attribute` completion | ✅ | ✅ (varies) |
-| **Native HTML support** (completion & inspections, no false "unclosed tag") | ✅ | ⚠️ partial |
+| **Native HTML support** (completion & inspections, no false "unclosed tag") | ✅ | ⚠️ varies – Latte Pro 1.6.0 matches the platform here, other plugins were not measured |
 | **PHP type-aware autocomplete** (`foreach` item types, member chains) | ✅ | ⚠️ partial |
 | **`list<T>` generics** in `{varType}` / `{parameters}` | ✅ | ❌ often flagged as error |
 | **Modern PHPDoc types** – array shapes, `int<0, 100>`, `(A&B)\|null`, `non-empty-string`, `class-string` | ✅ | ❌ commonly flagged as errors, one report per line |
@@ -42,8 +42,8 @@ It is not the whole picture, though. Asset support is compared separately
 | **Automatic completion trigger** (after `{`, `'`, `#`) | ✅ | ⚠️ varies |
 | **`Ctrl+B` on a link offers the action's template, not only the presenter method** | ✅ template first, method second | – not measured |
 | `{control}` factory & render-method completion | ✅ | ⚠️ varies |
-| Embedded JS / CSS support inside templates | ✅ | ⚠️ varies |
-| Custom extension discovery (tags/filters/functions) | ✅ | ✅ (varies) |
+| Embedded JS / CSS support inside templates | ✅ | ⚠️ varies – Latte Pro 1.6.0 injects them too |
+| **Custom extension discovery** (tags/filters/functions read from your PHP) | ✅ automatic | ❌ Latte Pro 1.6.0 reports `{icon}`, `\|excerpt` and `readingTime()` as unknown until they are restated in its own XML |
 | **Bitwise operators with real precedence** (`&`, `^`, `~`, and shifts `<<` / `>>`) | ✅ parsed into a precedence tree | ⚠️ varies – none of these forms is reported as an error by Latte Pro 1.6.0; whether the precedence is modelled was not measured |
 | **Union types with a bare class name** (`{varType int\|Foo $x}`) | ✅ | ⚠️ varies – a lowercase-only pipe rule can misread the second name as a filter, though Latte Pro 1.6.0 accepts this form |
 | **Glued identifiers** (`{ifset foo-bar}`, `hasBlock(a.b)`, `foo--bar`) | ✅ | ✅ |
