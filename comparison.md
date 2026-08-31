@@ -31,6 +31,8 @@ It is not the whole picture, though. Asset support is compared separately
 | **Native HTML support** (completion & inspections, no false "unclosed tag") | ✅ | ⚠️ partial |
 | **PHP type-aware autocomplete** (`foreach` item types, member chains) | ✅ | ⚠️ partial |
 | **`list<T>` generics** in `{varType}` / `{parameters}` | ✅ | ❌ often flagged as error |
+| **Modern PHPDoc types** – array shapes, `int<0, 100>`, `(A&B)\|null`, `non-empty-string`, `class-string` | ✅ | ❌ commonly flagged as errors, one report per line |
+| **`??` on a variable that may not be set** (`{$x ?? 'default'}`, `{$x->y ?? …}`, `{$x['k'] ?? …}`) | ✅ quiet, the way Latte itself treats it | ❌ often still reported as undefined |
 | **Full support inside `{php}` / `{do}`** | ✅ | ❌ |
 | **Cross-file block/define rename & Find Usages** | ✅ | ⚠️ varies |
 | **Find Usages on a template parameter** (lists the `{include}` arguments that pass it) | ✅ | ❌ |
@@ -46,6 +48,34 @@ It is not the whole picture, though. Asset support is compared separately
 | **Union types with a bare class name** (`{varType int\|Foo $x}`) | ✅ | ⚠️ varies – a lowercase-only pipe rule can misread the second name as a filter |
 | **Glued identifiers** (`{ifset foo-bar}`, `hasBlock(a.b)`, `foo--bar`) | ✅ | ✅ |
 | **`{ifset block X}` and `{ifset #X}` block markers** | ✅ | ⚠️ varies |
+| **`{* @noinspection … *}` suppresses one line** | ✅ | ⚠️ varies – a file-wide effect turns the whole file quiet |
+
+## What the template keeps alive
+
+A factory or a render method exists because a template asks for it, and the two share no
+text: the template writes `contact`, the method is spelled `createComponentContact`. A word
+search never opens the template, so the IDE concludes nobody calls the method.
+
+That has two consequences, and neither is cosmetic. **"Unused" greying invites you to delete
+code the application calls**, and **a rename that quietly skips the template leaves it pointing
+at a method that is gone** – with no error anywhere, until the page is requested.
+
+Latte+ teaches PhpStorm the derived names, so both directions hold:
+
+| A declaration named only by a template | Latte+ | Other Latte plugins |
+|---|:---:|:---:|
+| Class, property, method or constant written out in full (`{varType}`, `{$x->y}`, `{Foo::BAR}`) | stays live | ✅ stays live |
+| `createComponentBreadcrumb()` behind `{control breadcrumb}` | stays live | ❌ greyed as unused |
+| `createComponentContact()` behind `{form contact}` | stays live | ❌ greyed as unused |
+| `createComponentSearch()` behind `<form n:name="search">` | stays live | ❌ greyed as unused |
+| `renderDetail()` behind `{link Product:detail}` | stays live | ❌ greyed as unused |
+| `renderThumb()` behind `{control gallery:thumb}` | stays live | ❌ greyed as unused |
+| **Renaming the factory rewrites the template too** | ✅ | ❌ PHP is renamed, the template is left behind |
+| Declarations nothing really uses | ✅ still reported | ✅ still reported |
+
+The same knowledge feeds `Alt+F7`: Find Usages on a factory lists the template lines that call
+it, and on a template variable it separates the line that **writes** the value from the lines
+that only **read** it.
 
 ## Assets
 
@@ -71,6 +101,7 @@ being told twice.
 | **Renaming the file keeps the reference working** | ✅ | – not measured |
 | `{asset? …}` optional form, and the comma tail after the path | ✅ | – not measured |
 | **A `?` inside the string read as a path, not as the marker** | ✅ | – not measured |
+| **`<img n:asset="…">` counts as having `src`** (and `alt` passed through the attribute) | ✅ | ❌ every such image is reported as missing `src` and `alt` |
 | Path points at a directory instead of a file | ❌ | ✅ |
 | Configurable asset root | ⚠️ convention for the root, settings override for the mappers | ✅ |
 
@@ -104,7 +135,9 @@ The same rule holds for the tag: `{asset? 'logo.png'}` is the optional form, whi
 `{asset '?logo.png'}` asks for a file whose name starts with a question mark — and is
 reported as missing, because that is what it means. The distinction is invisible to a
 "does it compile" check (both compile); it shows up in the generated code, where only the
-first passes the optional flag.
+first passes the optional flag. Put the question mark in front of a **mapper** instead,
+as in `{asset '?images:logo.gif'}`, and the report changes tone rather than disappearing –
+[here is why](#when-the-same-looking-mistake-gets-two-different-answers).
 
 The optional form stays quiet about a missing file, since the runtime hands back null
 instead of throwing — but it still reports an unknown mapper, which throws either way.
