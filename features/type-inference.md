@@ -33,6 +33,14 @@ After any of these, `$product->`, `$order->` and `$count` get fully typed comple
 and inspection – and the declaration is read across files, so an `{include}` argument
 knows the type its target template declared for it.
 
+The annotation does not have to be a plain class name. Generics (`list<App\Tag>`),
+array shapes (`array{name: string, size: int}`) and unions written with a bare class
+name are read wherever a type can stand – `{varType}`, `{parameters}`, `{var}` and
+`{default}` alike – rather than reported as an unknown class.
+
+`{templateType}` is narrower, because Latte itself is: it takes a class name or a union
+of class names (`{templateType App\FrontTemplate|App\AdminTemplate}`) and nothing else.
+
 ![Quick documentation of an include argument showing its type, declaring file and default value]({{ '/assets/img/screens/S15-quick-doc-argkey.png' | relative_url }})
 
 [More screenshots]({{ site.baseurl }}/screenshots.html#completion)
@@ -45,8 +53,8 @@ When no explicit type is given, Latte+ infers from context:
   the loop variable as `App\Image`.
 - **Assignments** – `{var $u = $order->getCustomer()}` carries the return type onto `$u`.
 - **`{capture}`**, **`{for}`**, ternaries and array literals all contribute types.
-- **`list<T>` generics** – `{varType list<App\Tag> $tags}` is understood and the item
-  type flows into the loop. (Some other plugins flag `list<…>` as an error.)
+- **`list<T>` generics** – the item type flows into the loop. (Some other plugins flag
+  `list<…>` as an error.)
 
 The loop variable of a `list<App\Model\Image>` completes as an `Image`, each member
 listed with its own type – even inside an HTML attribute value.

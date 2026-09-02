@@ -44,7 +44,10 @@ components, routing and forms.
 
 - Link destinations (`Presenter:action`) are resolved and validated – in `{link}` and
   `{plink}`, in `n:href`, and in `{ifCurrent}`. An action the target presenter does not
-  have is reported too, not just an unknown presenter.
+  have is reported too, not just an unknown presenter. A destination that starts with a
+  slash is a URL, not a presenter path, so `{link //Product:detail}` is left alone
+  instead of being reported as an unknown presenter. An inner slash stays checked –
+  `Front:product/detail` is a legitimate path segment.
 - Route parameters and the target action's signature are surfaced as
   [parameter info](./documentation-hints.html).
 - Your project's own `application: mapping` is read from its NEON configuration, so
@@ -57,6 +60,15 @@ components, routing and forms.
   current default) and modules as plain directories, the older `app/UI`, and the
   classic `app/Presenters` with `*Module` directories. What that costs is in
   [known limitations]({{ '/limitations.html' | relative_url }}).
+
+A signal (`{link save!}`) counts only when the handler is one Nette can actually
+dispatch – public, non-static, non-abstract – so completion no longer offers the
+inherited `invalidLink!`, and a link to a `protected` handler is reported instead of
+failing at runtime. In a template that no presenter or component owns, a signal still
+gets the one question that survives the missing owner: does any class in the project
+declare that handler at all? That answer is deliberately coarser – with no owner there
+is no handler list to suggest a spelling from, so it names no candidate and offers no
+fix.
 
 ### One destination, two places to land
 
@@ -82,12 +94,18 @@ references are validated and navigable. Inside a `{form}`, `{input }` completes 
 fields the form factory builds, each with the method that created it – and PHP classes
 alongside them, because a field name may be a constant.
 
+An unknown form, an unknown field and a render method that does not exist are reported
+rather than passed over, and the same check runs on `<form n:name="…">` and
+`<input n:name="…">` as inside `{form}`. A misspelled name comes with a quick fix that
+renames it to the closest one the factory really builds.
+
 ![Completion of form field names inside a form tag]({{ '/assets/img/screens/S30-form-input-completion.png' | relative_url }})
 
 ## `{snippet}` and AJAX
 
-`{snippet}` / `{snippetArea}` names are recognized and validated, including snippets
-spread across files.
+`{snippet}` and `{snippetArea}` names are recognised and checked within the template
+that declares them. A snippet redrawn from PHP by name is not linked back to the
+template yet.
 
 ## Layouts, `{include}` and `{embed}`
 

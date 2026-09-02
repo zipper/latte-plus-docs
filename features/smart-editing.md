@@ -74,17 +74,15 @@ Pressing Enter is context-aware across 10+ situations, including:
 - Aligning a closing tag with its opener.
 - Expanding a multi-line Latte tag and aligning its arguments.
 
-## Smart Backspace
-
-A universal un-indent rule removes a full indent step at a time and preserves tag
-alignment, instead of deleting a single space.
-
-## Smart Tab, End & Space
+## Smart Tab, End & Backspace
 
 - **Tab** on an under-indented line jumps to the expected indent level
   ([screenshot]({{ site.baseurl }}/screenshots.html#editing)).
 - **End** on a whitespace-only line moves to the expected indent.
-- **Space** merges lines and trims context-appropriately.
+- **Backspace** in a line's indentation takes it to the indent the context calls for,
+  in one press rather than space by space; where the indent is already right, it joins
+  the line with the one above instead. It also deletes an auto-inserted pair
+  (`{}`, `()`, `[]`, `''`, `""`) as one character.
 
 Turn whitespace rendering on and the two roles are easy to tell apart: tabs carry the
 indentation of the nested markup, spaces align the wrapped `n:attribute` values under
@@ -98,11 +96,8 @@ the first one.
 
 ## Formatter
 
-A dedicated formatter (`Ctrl+Alt+L`) reflows Latte templates. Its behavior is
-configurable under **Settings → Code Style → Latte** – see
-[Colors & code style](../configuration/colors-code-style.html) for the options
-(spaces in parentheses/brackets, single-line paired tags, block indentation).
-
-Reformatting, `Ctrl+Alt+I`, Enter and Tab all derive the indent from the same model, so
-they never disagree – see [Indentation](../configuration/indentation.html) for which
-settings drive what.
+`Ctrl+Alt+L` re-indents the Latte side of a template rather than rewriting it: there
+is no Latte spacing model, so nothing gets re-spaced inside a tag. The HTML around the
+tags is formatted by PhpStorm's own HTML formatter, which is why wrapped attributes
+follow your HTML code style – see
+[Indentation](../configuration/indentation.html) for which settings drive what.

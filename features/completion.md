@@ -33,6 +33,10 @@ Inside an HTML tag, completion offers the 28 valid `n:attributes`, correctly
 distinguishing flag attributes (`n:ifcontent`) from value attributes (`n:href`), and
 offering the `inner-` / `tag-` prefixed variants where they apply.
 
+An attribute that Latte compiles without a value is inserted bare, without an empty
+`=""` to delete afterwards; `n:block` and `n:snippet` keep the pre-filled name slot,
+because a name is what you are about to type there anyway.
+
 ![n:attribute completion inside an HTML tag]({{ '/assets/img/screens/S12-nattr-completion.png' | relative_url }})
 
 ## Variables
@@ -109,7 +113,12 @@ PHP class names complete inside `{varType}`, `{templateType}` and `instanceof`
 expressions; PHP functions complete inside any Latte expression. Short names match
 and the fully-qualified name is inserted automatically.
 
+`true`, `false` and `null` are inserted as the literals they are, not as a call.
+
 ## HTML attribute values
 
 Inside `n:attr="…"` and regular attributes, the HTML5 schema provides value
 completion just as it would in a plain HTML file.
+
+Latte tags complete inside an attribute value too – in `class`, `href` and `id` as
+readily as anywhere else, and with text already typed in front of them.

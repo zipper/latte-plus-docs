@@ -24,10 +24,14 @@ templates, and you won't get false *"tag start is not closed"* errors from Latte
 that wrap or span HTML elements.
 
 PhpStorm's own HTML inspections keep running in a `.latte` file: a misspelled tag or
-attribute name, a missing `alt` or `lang`, an unbound namespace prefix or a stray closing
-tag are reported exactly as they would be in a plain `.html` file. They are quieted only
-at the spot where a Latte tag or an `n:attribute` is the thing the HTML parser cannot
-read – never across the whole file.
+attribute name, a missing `alt` or `lang`, an unbound namespace prefix or a stray
+closing tag are reported nearly as they would be in a plain `.html` file. What is held
+back is the spot a Latte construct occupies – a tag name, an attribute name or an
+attribute value written by Latte is not a name the HTML parser can judge. The
+required-attribute checks are the one exception with a wider reach: because a Latte
+construct in a tag's opening header may be the very thing that supplies `src`, `alt` or
+`lang` at runtime, those checks are held back on that tag as a whole. Everywhere else
+in the file they run untouched.
 
 ## PHP inside `{php}` and `{do}`
 
@@ -62,10 +66,10 @@ JavaScript inside `<script>`, CSS inside `<style>`, and values in inline `style=
 and event `on*=""` attributes behave just like they do in a plain HTML file –
 completion, inspections and formatting included.
 
-Crucially, JS object literals `{ }` and CSS rule blocks `{ }` are **not** mistaken
-for Latte tags. The `n:syntax="double"` and `n:syntax="off"` switches are fully
-respected, so you can opt parts of a template out of Latte interpolation when your
-JS/CSS needs literal braces.
+Crucially, JS object literals `{ }` and CSS rule blocks `{ }` are **not** mistaken for
+Latte tags, and `n:syntax="double"` / `n:syntax="off"` let you opt a part of a template
+out of Latte interpolation where your JS or CSS needs literal braces. A few edge cases
+of those switches are listed under [known limitations](../limitations.html).
 
 ![A template with a style block and a script block, both highlighted, with Latte expressions inside them]({{ '/assets/img/screens/S23-embedded-js-css.png' | relative_url }})
 

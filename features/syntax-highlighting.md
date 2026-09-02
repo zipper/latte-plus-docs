@@ -36,7 +36,7 @@ plugins don't expose.
 ## Sticky lines
 
 As you scroll through a long template, the enclosing Latte tags – `{if}`,
-`{foreach}`, `{block}`, `{define}`, `{switch}` and 27+ other paired tags – stay
+`{foreach}`, `{block}`, `{define}`, `{switch}` and the other paired tags – stay
 pinned to the top of the editor, just like sticky lines work for PHP or JavaScript.
 You always know which block you're inside.
 
