@@ -30,16 +30,16 @@ The recommended way:
 4. Click **Install** and restart the IDE when prompted.
 
 > **Already using another Latte plugin?**
-> Disable or uninstall any other Latte plugin first (e.g. *Latte Pro* or the free
-> *Latte* plugin). Running two plugins that register the `.latte` file type at the
-> same time leads to conflicting highlighting and duplicated inspections.
-> See [Comparison](./comparison.html) for the differences.
+> Disable or uninstall it before installing Latte+. Running two plugins that register
+> the `.latte` file type at the same time leads to conflicting highlighting and
+> duplicated inspections. See [Comparison](./comparison.html) for the differences, and
+> [Reliability](./reliability.html) for what a clean template looks like.
 
 ## Install from disk
 
 If you received a plugin `.zip` directly, or want a specific build:
 
-1. Download the `Latte+-<version>.zip` archive.
+1. Download the Latte+ plugin `.zip`.
 2. Open **Settings / Preferences** → **Plugins**.
 3. Click the **⚙ gear icon** → **Install Plugin from Disk…**.
 4. Select the downloaded `.zip` and restart the IDE.
