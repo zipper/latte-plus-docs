@@ -298,8 +298,8 @@ of "where is this template used?".
 
 A `createComponentX()` factory is never called by name in PHP, because the framework
 builds the name out of what the template writes. Latte+ indexes those names, so the
-three factories this template reaches stay live and the fourth one, which no template
-names, is the only one greyed out as unused.
+three factories this template reaches read as live code, while the fourth one, which no
+template names, is greyed out as unused.
 
 ![Component factories kept alive by a template, next to one that no template names]({{ '/assets/img/screens/S36-kept-alive-by-template.png' | relative_url }})
 
