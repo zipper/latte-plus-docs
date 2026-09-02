@@ -23,5 +23,6 @@ features by area – start with the ones most relevant to how you work.
 | [Embedded languages](./embedded-languages.html) | PHP inside `{php}`/`{do}`, plus JavaScript and CSS parity inside HTML. |
 | [Documentation & hints](./documentation-hints.html) | Hover docs, parameter info and inlay hints. |
 
-> **The killer features at a glance** are highlighted on the [Home](../) page and
-> contrasted with other plugins on the [Comparison](../comparison.html) page.
+> **The killer features at a glance** are highlighted on the [Home](../) page,
+> contrasted with other plugins on the [Comparison](../comparison.html) page, and
+> measured on the [Reliability](../reliability.html) page.

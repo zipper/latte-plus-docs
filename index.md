@@ -45,7 +45,7 @@ won't find as complete – in other Latte plugins:
 | **Nette integration** | `{control}` factory completion, `{link}` target resolution, `{form}` field awareness and `{snippet}` support. |
 | **Sticky lines for Latte tags** | The enclosing `{if}` / `{foreach}` / `{block}` stays pinned to the top of the editor as you scroll. |
 | **Embedded JS & CSS** | JavaScript and CSS inside `<script>`, `<style>`, `style=""` and `on*=""` behave as in a plain HTML file – Latte `{...}` never breaks them. |
-| **Quiet, reliable inspections** | Valid templates stay clean – Latte+ accepts everything the Latte engine accepts, so you're not buried under false errors. |
+| **Quiet, reliable inspections** | Valid templates stay clean – what Latte+ reports is measured against what the Latte engine accepts, so you're not buried under false errors. |
 
 [Read the full feature reference](./features/){: .btn .btn-outline }
 
@@ -75,5 +75,6 @@ won't find as complete – in other Latte plugins:
 - **[Features](./features/)** – the complete, categorized reference.
 - **[Configuration](./configuration/)** – path aliases, implicit variables, PHP mode, colors.
 - **[Comparison](./comparison.html)** – how Latte+ compares to other Latte plugins.
+- **[Reliability](./reliability.html)** – what a clean template looks like, measured.
 - **[Known limitations](./limitations.html)** – honest list of current edge cases.
 - **[Support](./support.html)** – reporting bugs and requesting features.
