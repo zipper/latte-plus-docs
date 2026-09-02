@@ -2,7 +2,7 @@
 layout: default
 title: Custom tag signatures
 parent: Configuration
-nav_order: 5
+nav_order: 7
 ---
 
 # Custom tag signatures

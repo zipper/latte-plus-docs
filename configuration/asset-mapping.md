@@ -2,7 +2,7 @@
 layout: default
 title: Asset mappers
 parent: Configuration
-nav_order: 8
+nav_order: 5
 ---
 
 # Asset mappers
@@ -53,7 +53,7 @@ parameters in it are resolved rather than skipped:
 | `%appDir%` | The directory holding `Bootstrap.php`. |
 
 Anything else leaves the path unresolved, and an unresolved path means **no verdict**:
-the reference is left unchecked rather than measured against a guess. That is deliberate —
+the reference is left unchecked rather than measured against a guess. That is deliberate –
 a missing message costs one unchecked reference, a wrong one sends you looking for a file
 that was never meant to be there.
 
@@ -89,7 +89,7 @@ used.
 The optional forms stay quiet about a missing file, since the runtime hands back null
 instead of throwing. They still report an unknown mapper, which throws either way.
 
-The marker goes on the **name**, not into the reference — `{asset? 'logo.png'}` and
+The marker goes on the **name**, not into the reference – `{asset? 'logo.png'}` and
 `n:asset?="logo.png"`. Written inside the string it is simply the first character of a
 path: `{asset '?logo.png'}` looks for a file called `?logo.png`, which is almost never
 what was meant, so it is reported as missing.

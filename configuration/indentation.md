@@ -2,7 +2,7 @@
 layout: default
 title: Indentation
 parent: Configuration
-nav_order: 6
+nav_order: 9
 ---
 
 # Indentation

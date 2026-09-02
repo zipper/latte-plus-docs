@@ -19,8 +19,8 @@ Nette ones out of the box, and you can add your own application globals.
 
 ## Built-in variables
 
-Latte+ ships with these implicit variables, so they get type-aware completion and are
-**not** reported by the *undefined variable* inspection – no configuration needed:
+Latte+ ships with these implicit variables, so they get type-aware completion and the
+optional *undefined variable* inspection leaves them alone – no configuration needed:
 
 | Variable | Type | Available |
 |---|---|---|
@@ -31,9 +31,9 @@ Latte+ ships with these implicit variables, so they get type-aware completion an
 | `$basePath` | `string` | everywhere |
 | `$baseUrl` | `string` | everywhere |
 | `$this` | `Latte\Runtime\Template` | everywhere |
-| `$form` | `Nette\Application\UI\Form` | inside `{form}` / `n:form` |
+| `$form` | `Nette\Application\UI\Form` | inside `{form}` or `<form n:name=…>` |
 | `$formContainer` | `Nette\Forms\Container` | inside `{formContainer}` / `n:formContainer` |
-| `$iterator` | `Latte\Essential\CachingIterator` | inside `{foreach}` / `n:foreach` |
+| `$iterator` | `Latte\Runtime\CachingIterator\|Latte\Essential\CachingIterator` | inside `{foreach}` / `n:foreach` |
 
 A few notes:
 
@@ -66,7 +66,7 @@ it's limited to a `{foreach}` scope.
 
 Once added, these behave exactly like the built-ins:
 
-- they stop being reported by the **undefined variable** inspection,
+- they are not reported by the **undefined variable** inspection, where you have it on,
 - they offer **type-aware completion** on their members (`$currentLocale->code`),
 - they take part in [type flow](../features/type-inference.html) like any typed
   variable.
@@ -76,8 +76,8 @@ Once added, these behave exactly like the built-ins:
 In the same settings page you can:
 
 - **Disable** a built-in you don't use, or
-- **Override** one with a different type – handy for legacy projects (for example, a
-  Latte 2.x project where `$iterator` resolves to `Latte\Runtime\CachingIterator`
-  instead of `Latte\Essential\CachingIterator`).
+- **Override** one with a different type, for a project whose framework hands over
+  something of its own. The built-in `$iterator` already covers both the Latte 2.x and
+  the Latte 3.x class, so that case needs no override.
 
 A custom entry that shares a name with a built-in takes precedence.

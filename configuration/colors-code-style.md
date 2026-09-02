@@ -2,7 +2,7 @@
 layout: default
 title: Colors & code style
 parent: Configuration
-nav_order: 5
+nav_order: 8
 ---
 
 # Colors & code style
@@ -31,19 +31,21 @@ per color scheme so your light and dark themes can differ.
 
 [More screenshots]({{ site.baseurl }}/screenshots.html#token-colors)
 
-## Code style & formatter
+## Code style
 
-Under **Settings → Code Style → Latte** you control how the formatter
-(`Ctrl+Alt+L`) reflows templates:
+**Settings → Code Style → Latte** has two tabs. **Tabs and Indents** carries the usual
+indent settings, plus one Latte-specific switch; **Paired Tag Insert** decides which
+paired tags completion inserts on a single line instead of opening a body for you.
 
-| Option | Effect | Default |
+| Setting | Where | Effect |
 |---|---|---|
-| **Spaces within parentheses** | `( $foo )` vs `($foo)` | off |
-| **Spaces within brackets** | `[ 1, 2 ]` vs `[1, 2]` | off |
-| **Single-line paired tags** | Comma-separated list of paired tags kept on one line (e.g. `first,last,sep,translate,label`) | `first,last,sep,translate,label` |
-| **Indent inside top-level block** | Indent the body of a top-level `{block}` that has no `{/block}` | off |
+| **Indent content inside top-level `{block}`** | Tabs and Indents | Indents the body of a top-level `{block}` that has no `{/block}`. Off by default. |
+| Two lists of paired tags | Paired Tag Insert | A tag in the **Single-line** list is inserted as `{first}…{/first}` on one line; everything in the **3-line** list opens a body. Single-line by default: `first`, `last`, `sep`, `translate`, `label`. |
 
-Tabs and indent size are configured in the same panel (`Use tab character`, `Indent`),
-and per-file overrides (detected indents) are respected. Which of them applies to what
-– and why wrapped HTML attributes follow your **HTML** code style instead – is
-explained in [Indentation](./indentation.html).
+Inserting a paired tag in the middle of a line always produces the single-line form,
+whichever list the tag is in.
+
+Reformatting a template (`Ctrl+Alt+L`) sets the indentation of the Latte tags
+themselves; the HTML around them goes through PhpStorm's own HTML formatter, so your
+**HTML** code style decides how markup and wrapped attributes come out. Which setting
+drives what is explained in [Indentation](./indentation.html).

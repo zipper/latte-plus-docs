@@ -29,18 +29,18 @@ checked – and you get no spurious errors about what the tag is allowed to cont
 By default Latte+ figures out the mode automatically, in this order:
 
 1. A per-file marker, if present.
-2. Your **PHP Mode** project setting (below).
+2. Your **`{php}` tag mode** project setting (below).
 3. The presenter/template factory chain.
 4. A project-wide scan for `RawPhpExtension` registration.
 
 ## Overriding the mode
 
-Under **Settings → Languages & Frameworks → Latte+ → PHP Mode** you can force the
-behavior instead of relying on detection:
+Under **Settings → Languages & Frameworks → Latte+ → `{php}` tag mode** you can force
+the behavior instead of relying on detection:
 
-- **Auto** (default) – use the detection above.
-- **Force strict** – always treat `{php}` / `{do}` as a single expression.
-- **Force permissive** – always allow full raw PHP.
+- **Auto** – the default, using the detection above.
+- **Force STRICT** – a single expression, with `{do}` semantics.
+- **Force PERMISSIVE** – multiple statements, assuming `RawPhpExtension` is registered.
 
 Set this if your project's configuration can't be auto-detected, or to silence
 spurious PHP-tag inspections in an unusual setup.

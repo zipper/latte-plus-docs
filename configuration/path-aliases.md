@@ -14,12 +14,17 @@ navigation and the *missing file* inspection all work.
 ## What it does
 
 Under **Settings → Languages & Frameworks → Latte+ → Path Aliases** you define one or
-more aliases. Each alias is a **prefix** mapped to one or more **search paths**.
+more aliases. Each alias is a prefix with a description and **two independent lists of
+folders**: the path-based one answers a reference that carries a slash or a file
+extension (`{include '~Home/default.latte'}`, `{include '~Gallery.latte'}`), the
+name-based one is searched recursively for a reference with neither
+(`{include '~gallery'}`), which is how a component is named. Leave a list empty and
+that kind of reference simply is not resolved for this alias.
 
-| Prefix | Search paths |
-|---|---|
-| `@layout` | `app/Presentation/@layout` |
-| `~` | `app/Presentation`, `app/Components` |
+| Prefix | Path-based folders | Name-based folders |
+|---|---|---|
+| `@layout` | `app/Presentation/@layout` | – |
+| `~` | `app/Presentation`, `app/Components` | `app/Components` |
 
 With the aliases above, both of these resolve correctly:
 

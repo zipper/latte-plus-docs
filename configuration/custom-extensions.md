@@ -2,7 +2,7 @@
 layout: default
 title: Custom extensions
 parent: Configuration
-nav_order: 4
+nav_order: 6
 ---
 
 # Custom extensions
@@ -33,7 +33,7 @@ The settings UI is split into sub-tabs for the four kinds of extension:
 - **Tags** – custom `{macro}` names (and whether they're paired, argument modes).
 - **Filters** – name and parameter signature.
 - **Functions** – name and signature.
-- **n:attributes** – name and where it applies.
+- **N-Attributes** – name and where it applies.
 
 Manually registered entries behave identically to discovered ones in completion,
 documentation and inspections.

@@ -2,7 +2,7 @@
 layout: default
 title: Presenter mapping
 parent: Configuration
-nav_order: 7
+nav_order: 4
 ---
 
 # Presenter mapping
