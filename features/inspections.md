@@ -197,6 +197,8 @@ one. To say that a block arrives from elsewhere, wrap the include in `{ifset #na
 - **No-escape filter** – flags a `|noescape`-only modifier on a `{control}`.
 - **Nonce attribute** – `n:nonce` used outside its valid scope.
 
+![A misspelled form name in n:name, with the quick fix offering the name the factory really builds]({{ '/assets/img/screens/S39-form-name-quickfix.png' | relative_url }})
+
 ## PHP tag mode
 
 - Validates `{php}` / `{do}` bodies against the active

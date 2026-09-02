@@ -122,3 +122,5 @@ completion just as it would in a plain HTML file.
 
 Latte tags complete inside an attribute value too – in `class`, `href` and `id` as
 readily as anywhere else, and with text already typed in front of them.
+
+![Latte tag completion inside the value of a class attribute, offered after text already typed in front of it]({{ '/assets/img/screens/S38-tag-in-attribute-value.png' | relative_url }})

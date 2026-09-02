@@ -101,6 +101,8 @@ renames it to the closest one the factory really builds.
 
 ![Completion of form field names inside a form tag]({{ '/assets/img/screens/S30-form-input-completion.png' | relative_url }})
 
+![A misspelled form name in n:name, with the quick fix offering the name the factory really builds]({{ '/assets/img/screens/S39-form-name-quickfix.png' | relative_url }})
+
 ## `{snippet}` and AJAX
 
 `{snippet}` and `{snippetArea}` names are recognised and checked within the template

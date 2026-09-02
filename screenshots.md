@@ -94,6 +94,14 @@ insert for you.
 
 ![Tag completion after an opening brace]({{ '/assets/img/screens/S06-tag-completion.png' | relative_url }})
 
+### Latte tags inside an attribute value
+
+A tag completes inside an attribute value as readily as anywhere else, here in `class`
+with `btn ` already typed in front of it. Tags your own project registers are in the
+list next to the built-in ones, each with the arguments it takes.
+
+![Latte tag completion inside an attribute value]({{ '/assets/img/screens/S38-tag-in-attribute-value.png' | relative_url }})
+
 ### PHP members, with types
 
 `$image->` completes against the item type of the collection you are looping over, read
@@ -236,6 +244,13 @@ spot, so you can keep writing the template you are in.
 
 ![Quick fix creating a missing template]({{ '/assets/img/screens/S20-quickfix-create-file.png' | relative_url }})
 
+### A form name that does not exist
+
+`<form n:name="…">` is checked against the forms the presenter really builds, so a typo
+is reported where you wrote it and the fix renames it to the closest name that exists.
+
+![Quick fix for a misspelled form name]({{ '/assets/img/screens/S39-form-name-quickfix.png' | relative_url }})
+
 ---
 
 ## Navigation
@@ -255,6 +270,14 @@ component, instead of you searching the presenter for the right `createComponent
 
 ![Go to declaration from a control tag]({{ '/assets/img/screens/S31-goto-control.png' | relative_url }})
 
+### From a typed variable to both of its sources
+
+A variable that a `{varType}` types and a presenter fills has two places worth opening,
+and `Ctrl+B` offers both: the `{varType}` line that gives it a type, and the presenter
+method that puts the value in, named in full so you know where you are going.
+
+![Go to declaration on a typed variable]({{ '/assets/img/screens/S37-goto-typed-variable.png' | relative_url }})
+
 ### Find usages of a block across the project
 
 Find Usages on a `{define}` collects every `{include}` that pulls the block in, anywhere
@@ -270,6 +293,15 @@ alone are not in the list, so you get the answer to "who actually sets this?" in
 of "where is this template used?".
 
 ![Find usages of an optional template parameter]({{ '/assets/img/screens/S35-find-usages-parameter.png' | relative_url }})
+
+### PHP that only a template uses
+
+A `createComponentX()` factory is never called by name in PHP, because the framework
+builds the name out of what the template writes. Latte+ indexes those names, so the
+three factories this template reaches stay live and the fourth one, which no template
+names, is the only one greyed out as unused.
+
+![Component factories kept alive by a template, next to one that no template names]({{ '/assets/img/screens/S36-kept-alive-by-template.png' | relative_url }})
 
 ---
 

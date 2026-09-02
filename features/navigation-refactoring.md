@@ -51,6 +51,8 @@ including **across files**.
 
 ![Ctrl+B on a control tag landing on the factory method that builds the component]({{ '/assets/img/screens/S31-goto-control.png' | relative_url }})
 
+![Go to declaration on a typed variable, offering the varType line and the presenter method that sets the value]({{ '/assets/img/screens/S37-goto-typed-variable.png' | relative_url }})
+
 ## Find Usages (`Alt+F7`)
 
 Run Find Usages on a `{block}`, `{define}`, variable, component or filter to get every
@@ -86,6 +88,8 @@ whole-project **Inspect Code** run alike.
 
 The same references work in both directions: `Alt+F7` on the method lists the template
 that reaches it, and `Shift+F6` rewrites the template along with the declaration.
+
+![Three component factories a template names, live, next to a fourth that no template names and stays greyed out as unused]({{ '/assets/img/screens/S36-kept-alive-by-template.png' | relative_url }})
 
 ## Rename (`Shift+F6`)
 

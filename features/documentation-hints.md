@@ -26,11 +26,14 @@ Hover or press `Ctrl+Q` on almost anything for inline documentation:
 On a tag you get its syntax, a short description of what it does and a link straight to
 the matching page of the Latte documentation.
 
+![Quick documentation of a foreach tag with its syntax, description and a link to the Latte docs]({{ '/assets/img/screens/S14-quick-doc-tag.png' | relative_url }})
+
 A variable that a `{varType}` types and a presenter fills is the interesting case here.
 On such a variable the hover adds a **`Set by Class::method().`** line under the type,
-so the declaration and the source of the value are one popup apart.
+so the declaration and the source of the value are one popup apart. The same wording
+names the second target when you jump to the declaration instead.
 
-![Quick documentation of a foreach tag with its syntax, description and a link to the Latte docs]({{ '/assets/img/screens/S14-quick-doc-tag.png' | relative_url }})
+![The two declarations offered for a typed variable, the second naming the method that sets the value]({{ '/assets/img/screens/S37-goto-typed-variable.png' | relative_url }})
 
 ## Parameter info (`Ctrl+P`)
 
