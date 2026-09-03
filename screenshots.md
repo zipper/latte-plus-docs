@@ -244,10 +244,16 @@ spot, so you can keep writing the template you are in.
 
 ![Quick fix creating a missing template]({{ '/assets/img/screens/S20-quickfix-create-file.png' | relative_url }})
 
+The fix asks for a name and offers the directory the reference itself names, so the new
+template lands where the `{include}` is looking – and opens ready to write in:
+
+![Creating the missing template, start to finish]({{ '/assets/video/V06-create-missing-template.gif' | relative_url }})
+
 ### A form name that does not exist
 
 `<form n:name="…">` is checked against the forms the presenter really builds, so a typo
 is reported where you wrote it and the fix renames it to the closest name that exists.
+`Ctrl+Q` on the fix shows what it will do before you accept it.
 
 ![Quick fix for a misspelled form name]({{ '/assets/img/screens/S39-form-name-quickfix.png' | relative_url }})
 
