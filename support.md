@@ -40,5 +40,9 @@ The bug-report template walks you through these fields.
 
 ## Contact
 
-For commercial or licensing questions, contact **Radek Šerý** at
-[radek.sery@gmail.com](mailto:radek.sery@gmail.com).
+Purchases, invoices and billing are handled by **JetBrains** as the seller of the
+plugin, so those belong to JetBrains Marketplace support.
+
+Everything else – questions about the plugin, its licence terms or its behaviour –
+goes to the [issue tracker](https://github.com/zipper/latte-plus-docs/issues)
+linked above. The [licence terms](./eula.html) are published in full on this site.
