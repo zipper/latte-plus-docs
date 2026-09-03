@@ -322,6 +322,14 @@ matter how you got there.
 
 ![Tab indentation and space alignment shown with whitespace rendering]({{ '/assets/img/screens/S32-smart-tabs.png' | relative_url }})
 
+Indenting is a movement, so here it is as one. A template with no indentation at all is
+straightened by a single Reformat; a class added inside a multi-line `n:class` lines up
+with the list it joins; joining two attributes leaves exactly one space between them; and
+`{else}` snaps back onto its `{if}` as it is accepted. Whitespace rendering is on
+throughout, so every tab and every space is visible:
+
+![Auto-indent, smart tabs and a clause snapping back onto its tag]({{ '/assets/video/V04-smart-indent.gif' | relative_url }})
+
 ---
 
 ## Configuration
