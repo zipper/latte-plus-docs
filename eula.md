@@ -14,7 +14,6 @@ This End User License Agreement (the "Agreement") is a legally binding agreement
 **Radek Šerý**
 Charvatská 1609/25, 612 00 Brno, Czech Republic
 Business registration number (IČO): 88135900
-E-mail: radek.sery@gmail.com
 
 (the "Licensor", "we", "us"), governing your use of the **Latte+** plugin for IntelliJ-based IDEs
 (plugin ID `com.github.zipper.latteplus`, the "Plugin").
@@ -85,7 +84,8 @@ applicable law;
 3.3 decompile, disassemble or reverse engineer the Plugin, except to the extent such acts are
 expressly permitted by mandatory applicable law, including Article 6 of Directive 2009/24/EC on the
 legal protection of computer programs (interoperability); before relying on that exception, you may
-contact us at the e-mail address above and we will consider providing the required information;
+contact us through the support channel referred to in clause 7.2 and we will consider providing the
+required information;
 
 3.4 circumvent, remove, disable or interfere with any license verification, license key or usage
 limitation mechanism of the Plugin, or use the Plugin outside the scope of a valid license;
@@ -154,8 +154,9 @@ JetBrains.
 depends on your license type and term as stated in the Confirmation. Updates are provided under
 this Agreement unless accompanied by separate terms.
 
-7.2 Support is provided on a reasonable-effort basis by e-mail at the address above. No specific
-response time, availability or resolution is guaranteed unless separately agreed in writing.
+7.2 Support is provided on a reasonable-effort basis through the support channel published on the
+Plugin's documentation site. No specific response time, availability or resolution is guaranteed
+unless separately agreed in writing.
 
 7.3 We may discontinue development of the Plugin at any time. If we discontinue it, we will not
 charge you for any Subscription period starting after the discontinuation.
@@ -253,4 +254,5 @@ supersedes any prior communication regarding it.
 
 Radek Šerý, Charvatská 1609/25, 612 00 Brno, Czech Republic
 IČO: 88135900
-E-mail: radek.sery@gmail.com
+
+Support requests: see the Support page on the Plugin's documentation site.
