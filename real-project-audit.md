@@ -11,7 +11,7 @@ Feature tables say what a plugin *can* do. They say nothing about how loud it is
 codebase nobody wrote as a demo.
 {: .fs-6 .fw-300 }
 
-<span class="label label-blue">Latte+ 1.0.1</span> <span class="label label-green">373 templates</span> <span class="label label-purple">Latte 2.11.7</span> <span class="label">monorepo</span>
+<span class="label label-blue">Latte+ 1.0.1</span> <span class="label label-green">373 templates</span> <span class="label label-purple">Latte 2.11.7</span> <span class="label">monorepo</span> <span class="label label-yellow">zero manual setup</span>
 
 So Latte+ and another Latte plugin were pointed at the same real project, in two sandboxes
 of the same PhpStorm, and every report either of them made – error, warning and weak
@@ -31,6 +31,25 @@ afterthought – but of the two, a Latte 2 codebase is the harder test, which is
 picked. The numbers below are the first public release on its *worse* footing. They are a
 snapshot, not a ceiling: the audit is repeated after each round of fixes, and a companion
 audit on a Latte 3 project will follow.
+</div>
+
+<div class="la-note la-note-warn" markdown="1">
+**Latte+ ran out of the box. The other plugin didn't – and the handicap is ours.**
+
+Both plugins let you declare a project's own tags and filters by hand in the project
+settings. Latte+ ran with that list **empty**: everything it knew about this project's
+macros it worked out for itself, by scanning the code. The other plugin ran with **one tag
+entered by hand**, written into its project configuration ten months before the
+measurement – it does not read tag registrations from code at all, so a person had to put
+it there.
+
+Every number below is therefore measured with the scales tipped **towards** the other
+plugin, and it still comes out behind on this project's own macros: a custom tag and a
+custom filter that Latte+ discovers by itself are reported as unknown on the other side.
+The tail of that is the part worth keeping: this project had been developed with that
+plugin all along, by people who knew how to fill its list – and in ten months nothing more
+was added to it, not even the image macro the project uses in nineteen templates. A
+hand-kept list doesn't get kept. Discovery doesn't get forgotten.
 </div>
 
 ## The yardstick: what Latte compiles is not an error
@@ -204,6 +223,12 @@ weighs severity and how many reports survive classification, not the count alone
 | Syntax | The other plugin's only reports in this whole area: `{var $arr[] = expr}` flagged as an error. Latte accepts it – measured: `{var $ids[] = 5}{var $ids[] = 6}` renders `[5, 6]` – so those three are false too. Latte+ stays quiet. | 0 | 3 err |
 | Syntax | Dynamic names Latte 2 accepts: `{block 'x-' . $key}`, `{include '~x' . ucfirst($s)}`, `n:ifset="#block"`, `n:class="key: value"`. **Here it is us who report them and the other plugin that doesn't.** | 9 err | 0 |
 
+Unknown tags and filters dominate the error counts on both sides: **34 of the other
+plugin's 58 errors** are one, and **21 of our 33**. Manual configuration would silence both,
+so the real noise on a tuned project is lower than either column suggests. What differs is
+the price of getting there – one fix to our scanner, against one list entry for every new
+dependency, forever.
+
 ## What Latte+ still gets wrong
 
 167 of our own reports are demonstrably false. They are not spread thinly across the
@@ -238,8 +263,9 @@ report is worse than silence, and an error on code Latte compiles is the most ex
 item on the list. None of the three survived as a point in its favour.
 
 - **Unused variable** (20 reports) – **a check Latte+ genuinely does not have.** We report
-  an unused `{define}` and an undefined variable, but not an unused variable; it is a known
-  gap and it is on the list. Its report in the sample here is false, though:
+  an unused `{define}` and an undefined variable – both opt-in, and both off during this run
+  – but an unused *variable* we do not check at all. It is a known gap and it is on the
+  list. Its report in the sample here is false, though:
   `$relatedArticlesTitle` is used 53 lines further down. A missing check is a debt, a report
   over live code is worse.
 - **HTML anchor targets** (~25 reports) – this isn't its feature, it is **the platform's own
@@ -285,6 +311,7 @@ plugin, samples of its largest groups were classified rather than all 1161.</p>
 .la-note { background: #f0f6fb; border: 1px solid #cfe0ec; border-left: 4px solid #3b7ea8; padding: 0.9rem 1.1rem; margin: 1.5rem 0; }
 .la-note p { margin: 0.35rem 0 0; }
 .la-note p:first-child { margin-top: 0; }
+.la-note-warn { background: #fdf6ec; border-color: #ecdcc2; border-left-color: #a8761a; }
 
 .la-etalon { display: flex; gap: 1.25rem; align-items: flex-start; background: #f3f8f5; border: 1px solid #cfe3d7; border-left: 4px solid #2c7355; padding: 1.1rem 1.25rem; margin: 1.25rem 0; }
 .la-etalon .la-figure { font-size: 2.4rem; font-weight: 700; line-height: 1; color: #2c7355; font-variant-numeric: tabular-nums; white-space: nowrap; }
