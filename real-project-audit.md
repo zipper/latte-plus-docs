@@ -148,7 +148,7 @@ according to verified samples.
       <div class="la-row"><span class="who">Latte+</span><span class="track"><i class="w" style="width:9.4%"></i><i class="k" style="width:0.2%"></i></span><span class="tot us">49</span></div>
       <div class="la-row"><span class="who">other</span><span class="track"></span><span class="tot them">0</span></div>
     </div>
-    <span class="la-verdict v-us">only Latte+</span>
+    <span class="la-verdict v-us">Only Latte+</span>
   </div>
 
   <div class="la-area">
@@ -166,7 +166,7 @@ according to verified samples.
       <div class="la-row"><span class="who">Latte+</span><span class="track"><i class="e" style="width:0.4%"></i><i class="w" style="width:3.5%"></i></span><span class="tot us">20</span></div>
       <div class="la-row"><span class="who">other</span><span class="track"><i class="w" style="width:4.3%"></i></span><span class="tot them">22</span></div>
     </div>
-    <span class="la-verdict v-draw">a draw</span>
+    <span class="la-verdict v-draw">Draw</span>
   </div>
 
   <div class="la-area">
@@ -175,7 +175,7 @@ according to verified samples.
       <div class="la-row"><span class="who">Latte+</span><span class="track"><i class="e" style="width:1.8%"></i><i class="k" style="width:1.8%"></i></span><span class="tot us">18</span></div>
       <div class="la-row"><span class="who">other</span><span class="track"><i class="e" style="width:0.6%"></i></span><span class="tot them">3</span></div>
     </div>
-    <span class="la-verdict v-them">the other one</span>
+    <span class="la-verdict v-them">Other plugin</span>
   </div>
 
 </div>
@@ -312,7 +312,7 @@ plugin, samples of its largest groups were classified rather than all 1161.</p>
 .sw.k, .la-row .track .k { background: #8b98a1; }
 
 .la-areas { display: flex; flex-direction: column; gap: 1px; background: #dae1e7; border: 1px solid #dae1e7; margin: 0.75rem 0 0.5rem; container-type: inline-size; }
-.la-area { background: #fff; display: grid; grid-template-columns: minmax(9rem, 1fr) minmax(11rem, 1.6fr) auto; gap: 0.5rem 1rem; padding: 0.9rem 1rem 0.9rem 0.75rem; align-items: center; border-left: 4px solid transparent; }
+.la-area { background: #fff; display: grid; grid-template-columns: minmax(9rem, 1fr) minmax(11rem, 1.6fr) 7.5rem; gap: 0.5rem 1rem; padding: 0.9rem 1rem 0.9rem 0.75rem; align-items: center; border-left: 4px solid transparent; }
 @container (max-width: 40rem) { .la-area { grid-template-columns: 1fr; align-items: start; } }
 .la-area:has(.v-us) { border-left-color: #2f6f8f; }
 .la-area:has(.v-them) { border-left-color: #a8622c; }
@@ -327,7 +327,8 @@ plugin, samples of its largest groups were classified rather than all 1161.</p>
 .la-row .track { height: 0.8rem; background: #eceff2; display: flex; overflow: hidden; }
 .la-row .track i { display: block; height: 100%; }
 .la-row .tot { font-size: 0.82rem; font-variant-numeric: tabular-nums; text-align: right; font-weight: 600; }
-.la-verdict { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; padding: 0.25rem 0.5rem; border: 1px solid currentColor; white-space: nowrap; justify-self: start; }
+.la-verdict { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; padding: 0.25rem 0.35rem; border: 1px solid currentColor; white-space: nowrap; justify-self: stretch; text-align: center; }
+@container (max-width: 40rem) { .la-verdict { justify-self: start; padding-inline: 0.6rem; } }
 .v-us { color: #2f6f8f; background: #e7f0f6; }
 .v-them { color: #a8622c; background: #f6eade; }
 .v-draw { color: #55636f; background: #eff2f4; }
