@@ -73,11 +73,13 @@ audit on a Latte 3 project will follow.
   </div>
 </div>
 
-Not every report costs the same. A grey weak warning is ignorable. A red error on working
-code is expensive twice over: the file turns red in the project tree, and after the second
-false one you stop reading the true ones. And a file carrying twenty warnings doesn't get
-read – it gets its inspection switched off, useful reports and all. That is why the last
-two tiles weigh more than the first.
+Not every report costs the same, and the ordering used throughout this page is that **a
+false report is worse than silence**. A missing check is a debt that holds nobody up; a
+report over valid code holds up everyone who opens the file. A grey weak warning is
+ignorable. A red error on working code is expensive twice over: the file turns red in the
+project tree, and after the second false one you stop reading the true ones. A file
+carrying twenty warnings doesn't get read at all – it gets its inspection switched off,
+useful reports and all. That is why the last two tiles weigh more than the first.
 
 Of the 292 Latte+ reports, 57 come from the platform's own HTML and CSS support; 235 are
 Latte+'s own. Of those, **167 are demonstrably false**, **31 are genuine finds**, and the
@@ -105,7 +107,7 @@ according to verified samples.
   </div>
 
   <div class="la-area">
-    <div class="la-name"><b>Variables &amp; scope</b><span>Where a variable came from – an include argument, <code>{capture}</code>, <code>{var}</code>.</span></div>
+    <div class="la-name"><b>Variables &amp; scope</b><span>Where a variable came from – an include argument, <code>{capture}</code>, <code>{var}</code>. <em>Our undefined-variable check is opt-in and was off during the sweep – see the caveat at the end.</em></span></div>
     <div class="la-bars">
       <div class="la-row"><span class="who">Latte+</span><span class="track"><i class="w" style="width:3.5%"></i></span><span class="tot us">18</span></div>
       <div class="la-row"><span class="who">other</span><span class="track"><i class="w" style="width:51.8%"></i><i class="k" style="width:3.9%"></i></span><span class="tot them">283</span></div>
@@ -199,8 +201,7 @@ weighs severity and how many reports survive classification, not the count alone
 | Forms | Field checking the other plugin doesn't do at all. Ours produced 48 false reports here – see below. | 49 | 0 |
 | HTML validity | Seven stray `</span>` in one template. Latte+ reports them; the other plugin makes 29 other reports on that same file and misses the real fault. | 7 err | 0 |
 | Blocks & embed | A block passed into an `{embed}` slot is found by neither plugin, on the same lines. A shared limitation. | 18 | 22 |
-| Unused variables | 20 reports, of which the sampled one is used 53 lines further down. Latte+ raised none on this project. | 0 | 20 |
-| Syntax | `{var $arr[] = expr}` flagged as an error. Latte accepts it – measured: `{var $ids[] = 5}{var $ids[] = 6}` renders `[5, 6]` – and an error on working code is worse than saying nothing. Latte+ stays quiet. | 0 | err |
+| Syntax | The other plugin's only reports in this whole area: `{var $arr[] = expr}` flagged as an error. Latte accepts it – measured: `{var $ids[] = 5}{var $ids[] = 6}` renders `[5, 6]` – so those three are false too. Latte+ stays quiet. | 0 | 3 err |
 | Syntax | Dynamic names Latte 2 accepts: `{block 'x-' . $key}`, `{include '~x' . ucfirst($s)}`, `n:ifset="#block"`, `n:class="key: value"`. **Here it is us who report them and the other plugin that doesn't.** | 9 err | 0 |
 
 ## What Latte+ still gets wrong
@@ -225,16 +226,30 @@ to a route that had been removed.
 
 ## Where the other plugin does better
 
-- **Syntax.** Nine of our errors and nine of our weak warnings land on code Latte compiles
-  happily, against three reports from the other plugin in the whole area. It is quieter and
-  more accurate here – and this is the most expensive category of report there is. Most of
-  it traces back to Latte 3 rules meeting Latte 2 templates, which is exactly what this
-  project was chosen to expose.
-- **A more specific message** when a filter's input doesn't match: it names the type it
-  actually inferred, where our wording stays general.
-- **Checking HTML anchor targets** (~25 reports) – an inspection Latte+ doesn't have. On
-  this project it was noise, because the anchors point at targets JavaScript creates at
-  runtime, but the capability is real.
+**Syntax, and that one is real.** Nine of our errors and nine of our weak warnings land on
+code Latte compiles happily. The other plugin makes three reports in the whole area, and it
+is the most expensive category of report there is. Most of our loss traces back to Latte 3
+rules meeting Latte 2 templates, which is exactly what this project was chosen to expose.
+
+## What it has that Latte+ doesn't – and how each one held up
+
+Three more things the other plugin does that we don't, held to the same standard: a false
+report is worse than silence, and an error on code Latte compiles is the most expensive
+item on the list. None of the three survived as a point in its favour.
+
+- **Unused variable** (20 reports) – **a check Latte+ genuinely does not have.** We report
+  an unused `{define}` and an undefined variable, but not an unused variable; it is a known
+  gap and it is on the list. Its report in the sample here is false, though:
+  `$relatedArticlesTitle` is used 53 lines further down. A missing check is a debt, a report
+  over live code is worse.
+- **HTML anchor targets** (~25 reports) – this isn't its feature, it is **the platform's own
+  inspection**, and the difference is that Latte+ suppresses it inside templates. So the
+  question isn't "we're missing it" but "is our suppression too broad" – targeted
+  suppression is awkward because of n:attributes, and nothing burns here: on this project
+  the check would have pointed at anchors JavaScript creates at runtime.
+- **A more specific message** when a filter's input doesn't match – it names the type it
+  actually inferred, where our wording stays general. Better wording over a false positive
+  still loses to plainer wording over a true one, but the phrasing is worth borrowing.
 
 ## The short version
 
@@ -252,6 +267,12 @@ and why this page will be measured again.
 [Back to the capability comparison](./comparison.html){: .btn .btn-outline }
 
 ---
+
+<p class="la-foot"><b>A caveat on our own side.</b> The sweep ran with the default inspection profile, and two
+Latte+ checks are opt-in and were therefore off: unused <code>{define}</code> and undefined
+variable. In <i>Variables &amp; scope</i> that puts the other plugin's enabled check against
+our disabled one, so take that particular verdict with reserve. Both are switched on now,
+and the re-run will include them.</p>
 
 <p class="la-foot"><b>Method.</b> Both plugins were driven through the same sweep in two sandboxes of the
 same PhpStorm, opening each of the 373 files and reading everything the IDE reported, weak
