@@ -11,7 +11,7 @@ Feature tables say what a plugin *can* do. They say nothing about how loud it is
 codebase nobody wrote as a demo.
 {: .fs-6 .fw-300 }
 
-<span class="label label-blue">Latte+ 1.0.1</span> <span class="label label-green">373 templates</span> <span class="label label-purple">Latte 2.11.7</span> <span class="label">monorepo</span> <span class="label label-yellow">zero manual setup</span>
+<span class="label label-blue">Latte+ 1.0.1</span> <span class="label label-green">373 templates</span> <span class="label label-purple">Latte 2.11.7</span> <span class="label">monorepo</span> <span class="label label-yellow">out of the box</span>
 
 So Latte+ and another Latte plugin were pointed at the same real project, in two sandboxes
 of the same PhpStorm, and every report either of them made – error, warning and weak
@@ -34,22 +34,13 @@ audit on a Latte 3 project will follow.
 </div>
 
 <div class="la-note la-note-warn" markdown="1">
-**Latte+ ran out of the box. The other plugin didn't – and the handicap is ours.**
+**Measured out of the box.**
 
-Both plugins let you declare a project's own tags and filters by hand in the project
-settings. Latte+ ran with that list **empty**: everything it knew about this project's
-macros it worked out for itself, by scanning the code. The other plugin ran with **one tag
-entered by hand**, written into its project configuration ten months before the
-measurement – it does not read tag registrations from code at all, so a person had to put
-it there.
-
-Every number below is therefore measured with the scales tipped **towards** the other
-plugin, and it still comes out behind on this project's own macros: a custom tag and a
-custom filter that Latte+ discovers by itself are reported as unknown on the other side.
-The tail of that is the part worth keeping: this project had been developed with that
-plugin all along, by people who knew how to fill its list – and in ten months nothing more
-was added to it, not even the image macro the project uses in nineteen templates. A
-hand-kept list doesn't get kept. Discovery doesn't get forgotten.
+Both plugins let you declare a project's own tags and filters by hand. Latte+ ran with that
+list empty – it finds registrations by scanning the code. The other plugin ran with part of
+its project configuration filled in by hand, which is the route it needs, since it does not
+read registrations from code. The numbers below are worth reading with that difference in
+mind.
 </div>
 
 ## The yardstick: what Latte compiles is not an error
@@ -223,11 +214,9 @@ weighs severity and how many reports survive classification, not the count alone
 | Syntax | The other plugin's only reports in this whole area: `{var $arr[] = expr}` flagged as an error. Latte accepts it – measured: `{var $ids[] = 5}{var $ids[] = 6}` renders `[5, 6]` – so those three are false too. Latte+ stays quiet. | 0 | 3 err |
 | Syntax | Dynamic names Latte 2 accepts: `{block 'x-' . $key}`, `{include '~x' . ucfirst($s)}`, `n:ifset="#block"`, `n:class="key: value"`. **Here it is us who report them and the other plugin that doesn't.** | 9 err | 0 |
 
-Unknown tags and filters dominate the error counts on both sides: **34 of the other
-plugin's 58 errors** are one, and **21 of our 33**. Manual configuration would silence both,
-so the real noise on a tuned project is lower than either column suggests. What differs is
-the price of getting there – one fix to our scanner, against one list entry for every new
-dependency, forever.
+Unknown tags and filters make up much of the error count on both sides: 34 of the other
+plugin's 58, and 21 of our 33. Manual configuration would silence both, so the real noise on
+a tuned project is lower than either column suggests.
 
 ## What Latte+ still gets wrong
 
