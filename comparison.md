@@ -2,6 +2,7 @@
 layout: default
 title: Comparison
 nav_order: 6
+has_children: true
 ---
 
 # How Latte+ compares
@@ -12,6 +13,11 @@ that came before it, especially around **type inference**, **embedded languages*
 plugins typically offer; the right-hand column is a general guide rather than a promise
 about any particular one. Where a row was measured against another plugin, the footnote
 says so.
+
+Capabilities are one thing, behaviour on real code another. For a full sweep of 373
+templates in a production monorepo – how many reports each plugin makes, how many of them
+hold up, and where Latte+ is the one getting it wrong – see the
+[real-project audit](./real-project-audit.html).
 
 | Capability | Latte+ | Other Latte plugins |
 |---|:---:|:---:|
