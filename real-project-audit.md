@@ -11,7 +11,7 @@ Feature tables say what a plugin *can* do. They say nothing about how loud it is
 codebase nobody wrote as a demo.
 {: .fs-6 .fw-300 }
 
-<span class="label label-blue">Latte+ 1.0.1</span> <span class="label label-green">373 templates</span> <span class="label label-purple">Latte 2.11.7</span> <span class="label">monorepo</span> <span class="label label-yellow">out of the box</span>
+<span class="label label-blue">Latte+ 1.0.1</span> <span class="label label-green">373 templates</span> <span class="label label-purple">Latte 2.11.7</span> <span class="label">monorepo</span> <span class="label label-yellow">zero manual setup</span>
 
 So Latte+ and another Latte plugin were pointed at the same real project, in two sandboxes
 of the same PhpStorm, and every report either of them made – error, warning and weak
