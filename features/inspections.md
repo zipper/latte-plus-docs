@@ -15,9 +15,9 @@ nav_order: 5
 
 Latte+ ships **67 inspections** that validate templates as you type. Each one can be
 toggled and given a severity (Error / Warning / Weak warning) under
-**Settings → Editor → Inspections**, where most of them sit under **Latte** – grouped
+**Settings → Editor → Inspections**, where all of them sit under **Latte** – grouped
 into Templates, File resolution, Block references, Variables, n:attributes, Filters,
-PHP tag and Custom extensions – and the rest under a separate **Latte+** node.
+PHP tag, Components and controls, Forms, Links and snippets, and Custom extensions.
 
 A core design goal is **few false positives**: what Latte+ reports is measured against
 what the real Latte engine accepts, so valid templates stay clean and you can trust a
