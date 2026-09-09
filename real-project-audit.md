@@ -204,12 +204,8 @@ So on locating real defects the two are level. The difference is what comes with
 
 ## By area
 
-Each row carries both numbers, because one of them is good news and the other is not:
+Each row reads *how many of that plugin's reports here were real*, and then that as a share. A higher share means less to read past to get to something; the bar is the volume it took.
 
-<div class="la-legend">
-  <span><b>found</b> = faults located here <span class="la-dir la-dir-up">higher is better</span></span>
-  <span><b>said</b> = reports made here <span class="la-dir la-dir-down">lower is better</span></span>
-</div>
 <div class="la-legend">
   <span><i class="sw e"></i> error</span>
   <span><i class="sw w"></i> warning</span>
@@ -222,8 +218,8 @@ Each row carries both numbers, because one of them is good news and the other is
   <div class="la-area">
     <div class="la-name"><b>Types &amp; nullability</b><span>Nullable access, members that don't exist, printing a value that may be null. <em>Two thirds of everything either plugin found is here.</em></span></div>
     <div class="la-bars">
-      <div class="la-row"><span class="who">Latte+</span><span class="fnd">28</span><span class="track"><i class="w" style="width:9.9%"></i><i class="k" style="width:5.5%"></i></span><span class="tot us">45</span></div>
-      <div class="la-row"><span class="who">other</span><span class="fnd">26</span><span class="track over"><i class="e" style="width:4.1%"></i><i class="w" style="width:78.3%"></i><i class="k" style="width:17.5%"></i></span><span class="tot them">508</span></div>
+      <div class="la-row"><span class="who">Latte+</span><span class="mix"><b>28</b> real of 45</span><span class="snr">62&thinsp;%</span><span class="track"><i class="w" style="width:9.9%"></i><i class="k" style="width:5.5%"></i></span></div>
+      <div class="la-row"><span class="who">other</span><span class="mix"><b>26</b> real of 508</span><span class="snr">5&thinsp;%</span><span class="track over"><i class="e" style="width:4.1%"></i><i class="w" style="width:78.3%"></i><i class="k" style="width:17.5%"></i></span></div>
     </div>
     <span class="la-verdict v-us">Latte+</span>
   </div>
@@ -231,8 +227,8 @@ Each row carries both numbers, because one of them is good news and the other is
   <div class="la-area">
     <div class="la-name"><b>Variables &amp; scope</b><span>Where a variable came from – an include argument, <code>{capture}</code>, <code>{var}</code>. <em>Latte+'s check here is opt-in, was switched on for this run, and every one of its 83 reports is false. The other plugin found five unused declarations Latte+ has no check for.</em></span></div>
     <div class="la-bars">
-      <div class="la-row"><span class="who">Latte+</span><span class="fnd z">0</span><span class="track"><i class="k" style="width:28.4%"></i></span><span class="tot us">83</span></div>
-      <div class="la-row"><span class="who">other</span><span class="fnd">5</span><span class="track"><i class="w" style="width:90.8%"></i><i class="k" style="width:9.2%"></i></span><span class="tot them">292</span></div>
+      <div class="la-row"><span class="who">Latte+</span><span class="mix"><b>0</b> real of 83</span><span class="snr">0&thinsp;%</span><span class="track"><i class="k" style="width:28.4%"></i></span></div>
+      <div class="la-row"><span class="who">other</span><span class="mix"><b>5</b> real of 292</span><span class="snr">2&thinsp;%</span><span class="track"><i class="w" style="width:90.8%"></i><i class="k" style="width:9.2%"></i></span></div>
     </div>
     <span class="la-verdict v-draw">Draw</span>
   </div>
@@ -240,8 +236,8 @@ Each row carries both numbers, because one of them is good news and the other is
   <div class="la-area">
     <div class="la-name"><b>Presenters, actions, links</b><span><code>n:href</code> targets, whether an action exists, finding the presenter in a monorepo. <em>Both Latte+ reports are findings – a link to an action that was removed – and there are no others.</em></span></div>
     <div class="la-bars">
-      <div class="la-row"><span class="who">Latte+</span><span class="fnd">2</span><span class="track"><i class="w" style="width:0.7%"></i></span><span class="tot us">2</span></div>
-      <div class="la-row"><span class="who">other</span><span class="fnd z">0</span><span class="track"><i class="w" style="width:93.2%"></i></span><span class="tot them">272</span></div>
+      <div class="la-row"><span class="who">Latte+</span><span class="mix"><b>2</b> real of 2</span><span class="snr">100&thinsp;%</span><span class="track"><i class="w" style="width:0.7%"></i></span></div>
+      <div class="la-row"><span class="who">other</span><span class="mix"><b>0</b> real of 272</span><span class="snr">0&thinsp;%</span><span class="track"><i class="w" style="width:93.2%"></i></span></div>
     </div>
     <span class="la-verdict v-us">Latte+</span>
   </div>
@@ -249,8 +245,8 @@ Each row carries both numbers, because one of them is good news and the other is
   <div class="la-area">
     <div class="la-name"><b>Components &amp; factories</b><span>Whether a <code>createComponent*</code> exists for a <code>{control}</code>. <em>Nothing to find here, and Latte+ says nothing; all 36 reports on the other side were checked and none holds.</em></span></div>
     <div class="la-bars">
-      <div class="la-row"><span class="who">Latte+</span><span class="fnd z">0</span><span class="track"></span><span class="tot us">0</span></div>
-      <div class="la-row"><span class="who">other</span><span class="fnd z">0</span><span class="track"><i class="w" style="width:12.3%"></i></span><span class="tot them">36</span></div>
+      <div class="la-row"><span class="who">Latte+</span><span class="mix"><b>0</b> real of 0</span><span class="snr">&ndash;</span><span class="track"></span></div>
+      <div class="la-row"><span class="who">other</span><span class="mix"><b>0</b> real of 36</span><span class="snr">0&thinsp;%</span><span class="track"><i class="w" style="width:12.3%"></i></span></div>
     </div>
     <span class="la-verdict v-us">Latte+</span>
   </div>
@@ -258,8 +254,8 @@ Each row carries both numbers, because one of them is good news and the other is
   <div class="la-area">
     <div class="la-name"><b>Custom tags &amp; filters</b><span>Recognising macros and filters the project or its dependencies register. <em>Neither plugin reports an unknown tag any more – Latte+ scans for them, the other plugin was told about them by hand.</em></span></div>
     <div class="la-bars">
-      <div class="la-row"><span class="who">Latte+</span><span class="fnd">2</span><span class="track"><i class="w" style="width:3.1%"></i></span><span class="tot us">9</span></div>
-      <div class="la-row"><span class="who">other</span><span class="fnd">1</span><span class="track"><i class="e" style="width:0.3%"></i><i class="w" style="width:5.1%"></i></span><span class="tot them">16</span></div>
+      <div class="la-row"><span class="who">Latte+</span><span class="mix"><b>2</b> real of 9</span><span class="snr">22&thinsp;%</span><span class="track"><i class="w" style="width:3.1%"></i></span></div>
+      <div class="la-row"><span class="who">other</span><span class="mix"><b>1</b> real of 16</span><span class="snr">6&thinsp;%</span><span class="track"><i class="e" style="width:0.3%"></i><i class="w" style="width:5.1%"></i></span></div>
     </div>
     <span class="la-verdict v-us">Latte+, just</span>
   </div>
@@ -267,8 +263,8 @@ Each row carries both numbers, because one of them is good news and the other is
   <div class="la-area">
     <div class="la-name"><b>Forms</b><span>Form fields and containers, read from the PHP factory. <em>Only Latte+ looks here at all – 48 false reports last round, one now – but this round it turned up nothing either.</em></span></div>
     <div class="la-bars">
-      <div class="la-row"><span class="who">Latte+</span><span class="fnd z">0</span><span class="track"><i class="w" style="width:0.3%"></i><i class="k" style="width:0.3%"></i></span><span class="tot us">2</span></div>
-      <div class="la-row"><span class="who">other</span><span class="fnd z">0</span><span class="track"></span><span class="tot them">0</span></div>
+      <div class="la-row"><span class="who">Latte+</span><span class="mix"><b>0</b> real of 2</span><span class="snr">0&thinsp;%</span><span class="track"><i class="w" style="width:0.3%"></i><i class="k" style="width:0.3%"></i></span></div>
+      <div class="la-row"><span class="who">other</span><span class="mix"><b>0</b> real of 0</span><span class="snr">&ndash;</span><span class="track"></span></div>
     </div>
     <span class="la-verdict v-draw">Draw</span>
   </div>
@@ -276,8 +272,8 @@ Each row carries both numbers, because one of them is good news and the other is
   <div class="la-area">
     <div class="la-name"><b>HTML validity</b><span>Unclosed tags, forbidden attributes, anchor targets – raised by the platform, but only as well as the injection allows. <em>The two sets barely overlap: stray closing tags on one side, dead anchors on the other.</em></span></div>
     <div class="la-bars">
-      <div class="la-row"><span class="who">Latte+</span><span class="fnd">8</span><span class="track"><i class="e" style="width:2.4%"></i><i class="w" style="width:14.7%"></i></span><span class="tot us">50</span></div>
-      <div class="la-row"><span class="who">other</span><span class="fnd">7</span><span class="track"><i class="w" style="width:24.7%"></i></span><span class="tot them">72</span></div>
+      <div class="la-row"><span class="who">Latte+</span><span class="mix"><b>8</b> real of 50</span><span class="snr">16&thinsp;%</span><span class="track"><i class="e" style="width:2.4%"></i><i class="w" style="width:14.7%"></i></span></div>
+      <div class="la-row"><span class="who">other</span><span class="mix"><b>7</b> real of 72</span><span class="snr">10&thinsp;%</span><span class="track"><i class="w" style="width:24.7%"></i></span></div>
     </div>
     <span class="la-verdict v-us">Latte+, just</span>
   </div>
@@ -285,8 +281,8 @@ Each row carries both numbers, because one of them is good news and the other is
   <div class="la-area">
     <div class="la-name"><b>Blocks, embed, include</b><span>A block handed from the calling template into an <code>{embed}</code> slot – missed by both, on the same lines.</span></div>
     <div class="la-bars">
-      <div class="la-row"><span class="who">Latte+</span><span class="fnd">2</span><span class="track"><i class="e" style="width:0.3%"></i><i class="w" style="width:7.2%"></i><i class="k" style="width:2.4%"></i></span><span class="tot us">29</span></div>
-      <div class="la-row"><span class="who">other</span><span class="fnd z">0</span><span class="track"><i class="e" style="width:2.1%"></i><i class="w" style="width:8.6%"></i></span><span class="tot them">31</span></div>
+      <div class="la-row"><span class="who">Latte+</span><span class="mix"><b>2</b> real of 29</span><span class="snr">7&thinsp;%</span><span class="track"><i class="e" style="width:0.3%"></i><i class="w" style="width:7.2%"></i><i class="k" style="width:2.4%"></i></span></div>
+      <div class="la-row"><span class="who">other</span><span class="mix"><b>0</b> real of 31</span><span class="snr">0&thinsp;%</span><span class="track"><i class="e" style="width:2.1%"></i><i class="w" style="width:8.6%"></i></span></div>
     </div>
     <span class="la-verdict v-us">Latte+, just</span>
   </div>
@@ -294,8 +290,8 @@ Each row carries both numbers, because one of them is good news and the other is
   <div class="la-area">
     <div class="la-name"><b>Syntax &amp; parsing</b><span>Handling the spellings Latte accepts – dynamic names, <code>{php}</code>, n:attributes. <em>Three reports each, false on both sides, and nothing found by either.</em></span></div>
     <div class="la-bars">
-      <div class="la-row"><span class="who">Latte+</span><span class="fnd z">0</span><span class="track"><i class="e" style="width:1.0%"></i></span><span class="tot us">3</span></div>
-      <div class="la-row"><span class="who">other</span><span class="fnd z">0</span><span class="track"><i class="e" style="width:1.0%"></i></span><span class="tot them">3</span></div>
+      <div class="la-row"><span class="who">Latte+</span><span class="mix"><b>0</b> real of 3</span><span class="snr">0&thinsp;%</span><span class="track"><i class="e" style="width:1.0%"></i></span></div>
+      <div class="la-row"><span class="who">other</span><span class="mix"><b>0</b> real of 3</span><span class="snr">0&thinsp;%</span><span class="track"><i class="e" style="width:1.0%"></i></span></div>
     </div>
     <span class="la-verdict v-draw">Draw</span>
   </div>
@@ -308,11 +304,12 @@ Each row carries both numbers, because one of them is good news and the other is
   <span class="t-them"><b>0</b> to the other plugin</span>
 </div>
 
-<p class="la-foot">An area goes to the plugin that found more for fewer reports; where that is not clear-cut, it is a
-draw. <i>Variables &amp; scope</i> and <i>Forms</i> are draws for the same reason from opposite directions:
-one side is quieter, the other found something, and neither combination wins. Latte+'s find counts come
-from classifying all 173 of its own reports; the other plugin's come from the groups checked in full plus
-the faults both plugins report, so they are a floor.</p>
+<p class="la-foot">Across every area together, <b>42 of Latte+'s 223 reports were real – 19&thinsp;% – against 39 of
+1230, or 3&thinsp;%</b>. An area goes to the plugin that found more for fewer reports; where that is not
+clear-cut, it is a draw. <i>Variables &amp; scope</i> and <i>Forms</i> are draws for the same reason from
+opposite directions: one side is quieter, the other found something, and neither combination wins.
+Latte+'s counts come from classifying all 173 of its own reports; the other plugin's come from the groups
+checked in full plus the faults both plugins report, so they are a floor.</p>
 
 ## What drives the gap
 
@@ -474,8 +471,8 @@ path alias are excluded on both sides.</p>
 .la-score .la-pair b { font-size: 1.7rem; line-height: 1; }
 .la-score .la-pair i { color: #9aa6b0; font-style: normal; }
 .la-score .la-cap { font-size: 0.8rem; color: #55636f; line-height: 1.4; }
-.la-score .us, .la-row .us { color: #2f6f8f; }
-.la-score .them, .la-row .them { color: #a8622c; }
+.la-score .us { color: #2f6f8f; }
+.la-score .them { color: #a8622c; }
 
 .la-legend { display: flex; flex-wrap: wrap; gap: 0.3rem 1.2rem; font-size: 0.78rem; color: #55636f; margin: 0.75rem 0; align-items: center; }
 .la-legend span { display: inline-flex; align-items: center; gap: 0.35rem; }
@@ -497,14 +494,14 @@ path alias are excluded on both sides.</p>
 .la-area .la-name b { font-size: 0.98rem; }
 .la-area .la-name span { font-size: 0.82rem; color: #55636f; line-height: 1.45; }
 .la-bars { display: flex; flex-direction: column; gap: 0.4rem; min-width: 0; }
-.la-row { display: grid; grid-template-columns: 3.4rem 2.1rem 1fr 2.6rem; gap: 0.5rem; align-items: center; }
+.la-row { display: grid; grid-template-columns: 3.4rem 7.4rem 2.6rem 1fr; gap: 0.5rem; align-items: center; }
 .la-row .who { font-size: 0.72rem; color: #55636f; }
-.la-row .fnd { font-size: 0.9rem; font-weight: 700; font-variant-numeric: tabular-nums; text-align: right; color: #2c7355; }
-.la-row .fnd.z { color: #a8b2ba; font-weight: 600; }
+.la-row .mix { font-size: 0.78rem; color: #55636f; white-space: nowrap; font-variant-numeric: tabular-nums; }
+.la-row .mix b { font-size: 0.9rem; color: #2f3a44; }
+.la-row .snr { font-size: 0.82rem; font-weight: 700; font-variant-numeric: tabular-nums; text-align: right; color: #2f3a44; }
 .la-row .track { height: 0.8rem; background: #eceff2; display: flex; overflow: hidden; }
 .la-row .track i { display: block; height: 100%; }
 .la-row .track.over { outline: 1px dashed #a8622c; outline-offset: 1px; }
-.la-row .tot { font-size: 0.82rem; font-variant-numeric: tabular-nums; text-align: right; font-weight: 600; }
 .la-verdict { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; padding: 0.25rem 0.35rem; border: 1px solid currentColor; white-space: nowrap; justify-self: stretch; text-align: center; }
 @container (max-width: 40rem) { .la-verdict { justify-self: start; padding-inline: 0.6rem; } }
 .v-us { color: #2f6f8f; background: #e7f0f6; }
