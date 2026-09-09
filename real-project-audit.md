@@ -43,11 +43,11 @@ read registrations from code.
 
 One thing was configured on the Latte+ side: the project's `~` path alias, which is how its
 template library is addressed. It is left out of every number on this page, for both
-plugins – the other plugin has nowhere to declare such an alias, so with its file-reference check
-enabled it raises **1849 errors** on references that resolve perfectly well at runtime, which is
-presumably why the project had that check switched off. Latte+ has the equivalent check, on by
-default and at error severity too; the alias declaration is what keeps it quiet. Leaving those
-references out on both sides is the only way to compare the rest.
+plugins. Other Latte plugins have nowhere to declare such an alias: the only thing you can do
+about the reports is switch the check off. With it on, the other plugin raises **1849 errors** on
+references that resolve perfectly well at runtime. Latte+ has the equivalent check, on by default
+and at error severity too, and the alias declaration is what keeps it quiet – so those references
+are left out on both sides, and everything else is compared as measured.
 </div>
 
 ## How to read these numbers
@@ -58,13 +58,13 @@ everywhere on this page:
 <div class="la-howto">
   <div class="la-howto-row">
     <span class="la-dir la-dir-down">lower is better</span>
-    <div markdown="1">**Noise** – reports over code that is correct. A missing check is a debt that
-    holds nobody up; a report over valid code holds up everyone who opens the file.</div>
+    <p><b>Noise</b> – reports over code that is correct. A missing check is a debt that holds
+    nobody up; a report over valid code holds up everyone who opens the file.</p>
   </div>
   <div class="la-howto-row">
     <span class="la-dir la-dir-up">higher is better</span>
-    <div markdown="1">**Findings** – reports that point at a real defect. This is the whole
-    reason to run an inspection, and it is counted as *defects located*, not as reports emitted.</div>
+    <p><b>Findings</b> – reports that point at a real defect. This is the whole reason to run an
+    inspection, and it is counted as <i>defects located</i>, not as reports emitted.</p>
   </div>
 </div>
 
@@ -144,31 +144,30 @@ Latte+'s own checks located **34 real defects**, and the platform's HTML inspect
 <div class="la-tiers">
   <div class="la-tier">
     <span class="la-tier-n">11</span>
-    <div markdown="1">**Latent faults.** Seven are a nullable value dereferenced with no guard and
-    one more feeds it to a filter that won't take it; one is a method the type does not have,
-    called inside a branch; two are links to an action that was removed. On today's data none of
-    them fire, because the data is complete – which is exactly why nobody would find them by using
-    the site. The day a field comes back empty they surface far from the template that caused
-    them.</div>
+    <p><b>Latent faults.</b> Seven are a nullable value dereferenced with no guard and one more
+    feeds it to a filter that won't take it; one is a method the type does not have, called inside
+    a branch; two are links to an action that was removed. On today's data none of them fire,
+    because the data is complete – which is exactly why nobody would find them by using the site.
+    The day a field comes back empty they surface far from the template that caused them.</p>
   </div>
   <div class="la-tier">
     <span class="la-tier-n">14</span>
-    <div markdown="1">**Silently empty output.** One of them names a property the model does not
-    declare and has no `__get` for – the neighbouring lines address that same model correctly – so
+    <p><b>Silently empty output.</b> One of them names a property the model does not declare and
+    has no <code>__get</code> for – the neighbouring lines address that same model correctly – so
     what that element prints is nothing. The other thirteen print a nullable value with nothing to
-    fall back on.</div>
+    fall back on.</p>
   </div>
   <div class="la-tier">
     <span class="la-tier-n">6</span>
-    <div markdown="1">**Broken editor support, no runtime effect.** A `{varType}` pointing at
-    a class that does not exist – copied from a skeleton – or at a base class missing the method
-    the template calls. `{varType}` generates no code, so nothing breaks at runtime; what breaks
-    is completion, navigation and type checking for that whole file.</div>
+    <p><b>Broken editor support, no runtime effect.</b> A <code>{varType}</code> pointing at a
+    class that does not exist – copied from a skeleton – or at a base class missing the method the
+    template calls. <code>{varType}</code> generates no code, so nothing breaks at runtime; what
+    breaks is completion, navigation and type checking for that whole file.</p>
   </div>
   <div class="la-tier">
     <span class="la-tier-n">3</span>
-    <div markdown="1">**Code that contradicts itself.** A named argument passed twice in one
-    call, so one of the two values is dead, and a `{define}` nothing includes.</div>
+    <p><b>Code that contradicts itself.</b> A named argument passed twice in one call, so one of
+    the two values is dead, and a <code>{define}</code> nothing includes.</p>
   </div>
 </div>
 
