@@ -214,7 +214,7 @@ Each row carries both numbers, because one of them is good news and the other is
   <span><i class="sw e"></i> error</span>
   <span><i class="sw w"></i> warning</span>
   <span><i class="sw k"></i> weak warning</span>
-  <span class="la-legend-note">bar length = share of the loudest measurement in the run (508 reports)</span>
+  <span class="la-legend-note">bar length = share of 292 reports, the second-loudest measurement; the outlined bar is the 508 one, on a scale of its own</span>
 </div>
 
 <div class="la-areas">
@@ -222,8 +222,8 @@ Each row carries both numbers, because one of them is good news and the other is
   <div class="la-area">
     <div class="la-name"><b>Types &amp; nullability</b><span>Nullable access, members that don't exist, printing a value that may be null. <em>Two thirds of everything either plugin found is here.</em></span></div>
     <div class="la-bars">
-      <div class="la-row"><span class="who">Latte+</span><span class="fnd">28</span><span class="track"><i class="w" style="width:5.7%"></i><i class="k" style="width:3.1%"></i></span><span class="tot us">45</span></div>
-      <div class="la-row"><span class="who">other</span><span class="fnd">26</span><span class="track"><i class="e" style="width:4.1%"></i><i class="w" style="width:78.3%"></i><i class="k" style="width:17.5%"></i></span><span class="tot them">508</span></div>
+      <div class="la-row"><span class="who">Latte+</span><span class="fnd">28</span><span class="track"><i class="w" style="width:9.9%"></i><i class="k" style="width:5.5%"></i></span><span class="tot us">45</span></div>
+      <div class="la-row"><span class="who">other</span><span class="fnd">26</span><span class="track over"><i class="e" style="width:4.1%"></i><i class="w" style="width:78.3%"></i><i class="k" style="width:17.5%"></i></span><span class="tot them">508</span></div>
     </div>
     <span class="la-verdict v-us">Latte+</span>
   </div>
@@ -231,8 +231,8 @@ Each row carries both numbers, because one of them is good news and the other is
   <div class="la-area">
     <div class="la-name"><b>Variables &amp; scope</b><span>Where a variable came from – an include argument, <code>{capture}</code>, <code>{var}</code>. <em>Latte+'s check here is opt-in, was switched on for this run, and every one of its 83 reports is false. The other plugin found five unused declarations Latte+ has no check for.</em></span></div>
     <div class="la-bars">
-      <div class="la-row"><span class="who">Latte+</span><span class="fnd z">0</span><span class="track"><i class="k" style="width:16.3%"></i></span><span class="tot us">83</span></div>
-      <div class="la-row"><span class="who">other</span><span class="fnd">5</span><span class="track"><i class="w" style="width:52.2%"></i><i class="k" style="width:5.3%"></i></span><span class="tot them">292</span></div>
+      <div class="la-row"><span class="who">Latte+</span><span class="fnd z">0</span><span class="track"><i class="k" style="width:28.4%"></i></span><span class="tot us">83</span></div>
+      <div class="la-row"><span class="who">other</span><span class="fnd">5</span><span class="track"><i class="w" style="width:90.8%"></i><i class="k" style="width:9.2%"></i></span><span class="tot them">292</span></div>
     </div>
     <span class="la-verdict v-draw">Draw</span>
   </div>
@@ -240,8 +240,8 @@ Each row carries both numbers, because one of them is good news and the other is
   <div class="la-area">
     <div class="la-name"><b>Presenters, actions, links</b><span><code>n:href</code> targets, whether an action exists, finding the presenter in a monorepo. <em>Both Latte+ reports are findings – a link to an action that was removed – and there are no others.</em></span></div>
     <div class="la-bars">
-      <div class="la-row"><span class="who">Latte+</span><span class="fnd">2</span><span class="track"><i class="w" style="width:0.4%"></i></span><span class="tot us">2</span></div>
-      <div class="la-row"><span class="who">other</span><span class="fnd z">0</span><span class="track"><i class="w" style="width:53.5%"></i></span><span class="tot them">272</span></div>
+      <div class="la-row"><span class="who">Latte+</span><span class="fnd">2</span><span class="track"><i class="w" style="width:0.7%"></i></span><span class="tot us">2</span></div>
+      <div class="la-row"><span class="who">other</span><span class="fnd z">0</span><span class="track"><i class="w" style="width:93.2%"></i></span><span class="tot them">272</span></div>
     </div>
     <span class="la-verdict v-us">Latte+</span>
   </div>
@@ -250,7 +250,7 @@ Each row carries both numbers, because one of them is good news and the other is
     <div class="la-name"><b>Components &amp; factories</b><span>Whether a <code>createComponent*</code> exists for a <code>{control}</code>. <em>Nothing to find here, and Latte+ says nothing; all 36 reports on the other side were checked and none holds.</em></span></div>
     <div class="la-bars">
       <div class="la-row"><span class="who">Latte+</span><span class="fnd z">0</span><span class="track"></span><span class="tot us">0</span></div>
-      <div class="la-row"><span class="who">other</span><span class="fnd z">0</span><span class="track"><i class="w" style="width:7.1%"></i></span><span class="tot them">36</span></div>
+      <div class="la-row"><span class="who">other</span><span class="fnd z">0</span><span class="track"><i class="w" style="width:12.3%"></i></span><span class="tot them">36</span></div>
     </div>
     <span class="la-verdict v-us">Latte+</span>
   </div>
@@ -258,8 +258,8 @@ Each row carries both numbers, because one of them is good news and the other is
   <div class="la-area">
     <div class="la-name"><b>Custom tags &amp; filters</b><span>Recognising macros and filters the project or its dependencies register. <em>Neither plugin reports an unknown tag any more – Latte+ scans for them, the other plugin was told about them by hand.</em></span></div>
     <div class="la-bars">
-      <div class="la-row"><span class="who">Latte+</span><span class="fnd">2</span><span class="track"><i class="w" style="width:1.8%"></i></span><span class="tot us">9</span></div>
-      <div class="la-row"><span class="who">other</span><span class="fnd">1</span><span class="track"><i class="e" style="width:0.2%"></i><i class="w" style="width:3.0%"></i></span><span class="tot them">16</span></div>
+      <div class="la-row"><span class="who">Latte+</span><span class="fnd">2</span><span class="track"><i class="w" style="width:3.1%"></i></span><span class="tot us">9</span></div>
+      <div class="la-row"><span class="who">other</span><span class="fnd">1</span><span class="track"><i class="e" style="width:0.3%"></i><i class="w" style="width:5.1%"></i></span><span class="tot them">16</span></div>
     </div>
     <span class="la-verdict v-us">Latte+, just</span>
   </div>
@@ -267,7 +267,7 @@ Each row carries both numbers, because one of them is good news and the other is
   <div class="la-area">
     <div class="la-name"><b>Forms</b><span>Form fields and containers, read from the PHP factory. <em>Only Latte+ looks here at all – 48 false reports last round, one now – but this round it turned up nothing either.</em></span></div>
     <div class="la-bars">
-      <div class="la-row"><span class="who">Latte+</span><span class="fnd z">0</span><span class="track"><i class="w" style="width:0.2%"></i><i class="k" style="width:0.2%"></i></span><span class="tot us">2</span></div>
+      <div class="la-row"><span class="who">Latte+</span><span class="fnd z">0</span><span class="track"><i class="w" style="width:0.3%"></i><i class="k" style="width:0.3%"></i></span><span class="tot us">2</span></div>
       <div class="la-row"><span class="who">other</span><span class="fnd z">0</span><span class="track"></span><span class="tot them">0</span></div>
     </div>
     <span class="la-verdict v-draw">Draw</span>
@@ -276,8 +276,8 @@ Each row carries both numbers, because one of them is good news and the other is
   <div class="la-area">
     <div class="la-name"><b>HTML validity</b><span>Unclosed tags, forbidden attributes, anchor targets – raised by the platform, but only as well as the injection allows. <em>The two sets barely overlap: stray closing tags on one side, dead anchors on the other.</em></span></div>
     <div class="la-bars">
-      <div class="la-row"><span class="who">Latte+</span><span class="fnd">8</span><span class="track"><i class="e" style="width:1.4%"></i><i class="w" style="width:8.5%"></i></span><span class="tot us">50</span></div>
-      <div class="la-row"><span class="who">other</span><span class="fnd">7</span><span class="track"><i class="w" style="width:14.2%"></i></span><span class="tot them">72</span></div>
+      <div class="la-row"><span class="who">Latte+</span><span class="fnd">8</span><span class="track"><i class="e" style="width:2.4%"></i><i class="w" style="width:14.7%"></i></span><span class="tot us">50</span></div>
+      <div class="la-row"><span class="who">other</span><span class="fnd">7</span><span class="track"><i class="w" style="width:24.7%"></i></span><span class="tot them">72</span></div>
     </div>
     <span class="la-verdict v-us">Latte+, just</span>
   </div>
@@ -285,8 +285,8 @@ Each row carries both numbers, because one of them is good news and the other is
   <div class="la-area">
     <div class="la-name"><b>Blocks, embed, include</b><span>A block handed from the calling template into an <code>{embed}</code> slot – missed by both, on the same lines.</span></div>
     <div class="la-bars">
-      <div class="la-row"><span class="who">Latte+</span><span class="fnd">2</span><span class="track"><i class="e" style="width:0.2%"></i><i class="w" style="width:4.1%"></i><i class="k" style="width:1.4%"></i></span><span class="tot us">29</span></div>
-      <div class="la-row"><span class="who">other</span><span class="fnd z">0</span><span class="track"><i class="e" style="width:1.2%"></i><i class="w" style="width:4.9%"></i></span><span class="tot them">31</span></div>
+      <div class="la-row"><span class="who">Latte+</span><span class="fnd">2</span><span class="track"><i class="e" style="width:0.3%"></i><i class="w" style="width:7.2%"></i><i class="k" style="width:2.4%"></i></span><span class="tot us">29</span></div>
+      <div class="la-row"><span class="who">other</span><span class="fnd z">0</span><span class="track"><i class="e" style="width:2.1%"></i><i class="w" style="width:8.6%"></i></span><span class="tot them">31</span></div>
     </div>
     <span class="la-verdict v-us">Latte+, just</span>
   </div>
@@ -294,8 +294,8 @@ Each row carries both numbers, because one of them is good news and the other is
   <div class="la-area">
     <div class="la-name"><b>Syntax &amp; parsing</b><span>Handling the spellings Latte accepts – dynamic names, <code>{php}</code>, n:attributes. <em>Three reports each, false on both sides, and nothing found by either.</em></span></div>
     <div class="la-bars">
-      <div class="la-row"><span class="who">Latte+</span><span class="fnd z">0</span><span class="track"><i class="e" style="width:0.6%"></i></span><span class="tot us">3</span></div>
-      <div class="la-row"><span class="who">other</span><span class="fnd z">0</span><span class="track"><i class="e" style="width:0.6%"></i></span><span class="tot them">3</span></div>
+      <div class="la-row"><span class="who">Latte+</span><span class="fnd z">0</span><span class="track"><i class="e" style="width:1.0%"></i></span><span class="tot us">3</span></div>
+      <div class="la-row"><span class="who">other</span><span class="fnd z">0</span><span class="track"><i class="e" style="width:1.0%"></i></span><span class="tot them">3</span></div>
     </div>
     <span class="la-verdict v-draw">Draw</span>
   </div>
@@ -503,6 +503,7 @@ path alias are excluded on both sides.</p>
 .la-row .fnd.z { color: #a8b2ba; font-weight: 600; }
 .la-row .track { height: 0.8rem; background: #eceff2; display: flex; overflow: hidden; }
 .la-row .track i { display: block; height: 100%; }
+.la-row .track.over { outline: 1px dashed #a8622c; outline-offset: 1px; }
 .la-row .tot { font-size: 0.82rem; font-variant-numeric: tabular-nums; text-align: right; font-weight: 600; }
 .la-verdict { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; padding: 0.25rem 0.35rem; border: 1px solid currentColor; white-space: nowrap; justify-self: stretch; text-align: center; }
 @container (max-width: 40rem) { .la-verdict { justify-self: start; padding-inline: 0.6rem; } }
