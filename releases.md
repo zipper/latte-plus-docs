@@ -6,6 +6,115 @@ nav_order: 11
 
 # Release notes
 
+## 1.0.3 - 2026-10-02
+
+### Added
+
+- Tag completion offers `{else}` inside `{try}`, `{first}`, `{last}`, `{sep}`
+  and `{ifchanged}`.
+- On a Latte 3 project, a Latte tag on the other side of an HTML comment
+  boundary than its pair is reported, because Latte 3 compiles a comment as a
+  fragment of its own: a closer inside a comment whose opener is outside, a
+  clause or a `{case}` inside a comment of a pair outside it, and a pair opened
+  inside a comment and closed outside it. Hidden conditional comments such as
+  `<!--[if mso]>` are checked the same way. A comment with no `-->` is reported
+  where it starts. Latte 2 compiles all of these shapes, so nothing is reported
+  there, nor on a project whose Latte version is unknown.
+- An `{include}` whose `#` marker is followed by a space and the word `from`,
+  with nothing behind it, gets a weak warning that a block name between the
+  marker and `from` is probably missing. Latte reads that line as a block named
+  `from`, which is almost never what a half-written from-clause meant.
+- The name in `n:block`, `n:define` and `n:snippetArea` is highlighted as a
+  block declaration, the same way it is in the braced tag.
+
+### Changed
+
+- On a Latte 3 project, closing-tag completion offers only tags opened on the
+  same side of an HTML comment boundary as the caret.
+- `{case}` and `{default}` have to stand directly inside `{switch}`; one nested
+  in another tag of the switch body is reported, and so is `{default}` with
+  arguments inside a switch, where it is the clause and not the variable tag.
+- Custom paired tags are matched by name, so a closing tag of a custom pair
+  with no opener is reported as unexpected, and an opener with no closer as
+  unclosed. A tag registered as unpaired no longer waits for a closer.
+- `{define name($x)}` is read the way Latte reads it: the parenthesis makes the
+  name a function call, so `$x` is not a parameter and is reported as
+  undefined. Declare parameters as `{define name, $x}` or `{define name $x}`.
+- A dynamic snippet name that Latte can only know at run time gets the advice
+  to wrap it in `{snippetArea}` in `n:snippet` too, and when it reads an array
+  item such as `{snippet $a['k']}`.
+- The `|noescape` check inside HTML comments (Latte 3.1 and newer) also covers
+  hidden conditional comments, no longer counts the text behind the first
+  `-->` as part of the comment, and stays silent in text, JavaScript, CSS and
+  iCal templates, where `<!--` is ordinary text.
+- Backspace on an empty line inside `{first}`, `{last}`, `{sep}` and
+  `{ifchanged}` unindents to the level of the tag, as it does in `{foreach}`,
+  because an `{else}` may follow.
+- Quick documentation of `{else}` lists the tags that really take it, now
+  including `{try}`, `{first}`, `{last}`, `{sep}` and `{ifchanged}`, and no
+  longer `{switch}`.
+
+### Fixed
+
+- `{else}` inside `{first}`, `{last}`, `{sep}` and `{ifchanged}` is no longer
+  reported as an error, and the rest of the template is checked again. A second
+  `{else}` in these tags is reported as a duplicate, like in `{if}`.
+- A paired tag written whole inside an HTML comment, such as
+  `<!-- {if $a}…{/if} -->`, no longer breaks the rest of the template, and a
+  comment that holds a closing tag or a clause no longer stops the plugin from
+  checking everything below it.
+- `{else}`, `{elseif}` or `{elseifset}` with no tag around them is reported as
+  an unexpected tag, the way Latte reports it, instead of with an internal
+  parser message that also switched off the rest of the template.
+- `{rollback}` is accepted anywhere inside `{try}`, also nested in another tag,
+  and in an element with `n:try`. Completion inserts it at the indent of the
+  surrounding code instead of at the column of `{try}`.
+- `{l}`, `{r}` and `{}` inside an HTML comment are read as literal braces, not
+  reported as unknown tags.
+- The word `from` in the arguments of an `{include}` no longer breaks the tag:
+  a call such as `Foo::from($id)`, an array key or an argument named `from` is
+  an ordinary name again. Until now the tag failed to parse and every tag below
+  it lost its colours and checks. `from` separates a block from its template
+  only between the target and the first argument, which is where Latte reads
+  it.
+- A member read whose name is computed in braces, such as `$item->{$name}`,
+  `$item?->{$name}` or `Foo::{$name}`, is no longer a syntax error.
+- A block name may be any expression Latte accepts, behind the `block` keyword
+  and the `#` marker in `{include}` and `{embed}`, and in `{block}`,
+  `{define}`, `{snippet}`, `n:define`, `n:block` and `n:snippet`: a property, an
+  array item, a class constant, a call or an operator, such as
+  `{include block $item->name from 'x.latte'}`, `{define Foo::BAR}` or
+  `{snippet $a + $b}`. These were syntax errors, which on a paired tag took its
+  body and the rest of the template with it.
+- `{include block}` and `{include block, 5}` include the block named `block`,
+  as in Latte, instead of being a syntax error. The name is checked for a
+  missing block and Ctrl+B follows it.
+- A block name glued with `-` or `/`, such as `{block a/b}` or
+  `{include block a/b}`, is one name: it is no longer a syntax error, it is
+  painted as one name, Ctrl+B and the missing-block check work over the whole
+  of it, and block completion offers it whole. `{include #content-2}` now
+  includes the block `content-2` instead of `content` with `-2` as an argument.
+  An unmarked `{include a/b}` stays a file, as in Latte.
+- Holding Ctrl over a block name glued from several parts underlines the whole
+  name instead of one part at a time.
+- A block named with a Latte keyword is highlighted and checked like any other:
+  `{include block from from 'x.latte'}` and `{include #from}` now report a block
+  that does not exist and navigate to one that does. The `#` marker followed by
+  a space and `from` is painted as a block name too, and Ctrl+B follows it.
+- A block included from a template that only run time can tell, such as
+  `{include inner from $paths['layout']}`, is no longer reported as missing,
+  and the "Did you mean" fix no longer suggests the very name it reports.
+- A block name built by concatenation behind the `block` keyword, the `#`
+  marker or a from-clause no longer offers Ctrl+B to a file on its pieces.
+- With the Czech language pack, every inspection, settings page, quick fix and
+  notification is in Czech, instead of mixing in English wherever a
+  translation was missing. The Czech missing-asset message shows the directory
+  that was searched instead of always naming `www/assets/`.
+- PHP class names in the settings texts keep their backslashes, so
+  `Latte\Extension` no longer shows as `LatteExtension`.
+- The notification and the preview of the "Add to custom Latte extensions"
+  quick fix spell the attribute category as `n:attribute`, without a space.
+
 ## 1.0.2 - 2026-09-17
 
 ### Added

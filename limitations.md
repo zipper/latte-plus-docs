@@ -20,7 +20,6 @@ list is kept honest on purpose – if you hit something not listed here, please
 - **Live paired-tag rename does not update clauses** – renaming `{if}` to `{foreach}`
   updates `{/if}`, but `{elseif}` and `{else}` stay as they are. The synchronizer links
   exactly two points (opener and closer); IntelliJ behaves the same way for HTML.
-- **The shorthand closing tag `{/}` is not synchronised**, because it carries no name.
 - **A block name mid-deletion** – while a `{block}` header stands with its name
   erased, a reference to that name can report as missing for a moment. It clears as
   soon as you type a character.
@@ -32,9 +31,22 @@ list is kept honest on purpose – if you hit something not listed here, please
   occur in real templates.
 - A **literal `{/syntax}` inside a JS regex** within `n:syntax="double"` scope is not
   recognized (not seen in practice).
-- **`n:try` with `{rollback}`** is out of scope.
+- **The shorthand closing tag `{/}` is not recognised yet.** Latte closes the most
+  recently opened tag with it, but Latte+ reads it as plain text, so the tag it closes
+  is not seen as closed, and pair highlighting and the live paired-tag rename do not
+  reach it. Write the closing tag out in full (`{/if}`) where this matters.
+- **Only Latte tags are checked against an HTML comment boundary.** On Latte 3 a tag
+  inside `<!-- … -->` cannot pair with one outside it, and Latte+ reports such a
+  crossing (see [inspections](./features/inspections.html#template-structure)).
+  `n:attributes` and HTML elements are not covered by this check, and neither are the
+  inner tags of your own paired tags. In a `{contentType xml}` template, a comment
+  inside `<script>` or `<style>` is not checked either.
 - **Member access inside a bare string** – `"$user->name"` resolves `$user` but not
   the `->name` part.
+- **`{$…}` inside an `n:attribute` value** is read as a nested Latte tag rather than as
+  part of the expression. `n:define="$o->{$x}"` therefore reports a syntax error, and an
+  interpolated name such as `n:block="foo-{$id}"` is cut off at the brace. The braced
+  tags (`{define $o->{$x}}`, `{block foo-{$id}}`) are read in full.
 - **A closing tag with no opening tag** (`{/if}` with no `{if}`) ends Latte parsing
   for the rest of the file: tags written below it are not recognized, so nothing
   there completes, navigates or gets reported. Adding the opener – or removing the
@@ -97,6 +109,12 @@ list is kept honest on purpose – if you hit something not listed here, please
   `{link Admin:Product:edit}` relative to the current module, Latte+ reads it as
   absolute, so such a link resolves even where Nette would refuse it. Writing the
   leading colon makes both readings agree.
+- **The Latte version is read from the project root only.** Checks that depend on the
+  Latte version – a tag crossing an HTML comment, `|noescape` inside a comment, a
+  hand-written `|escape` – look for `latte/latte` in the `composer.lock` (or
+  `composer.json`) at the root of the project. Where Latte is installed elsewhere, such
+  as in a subdirectory of a monorepo, those checks stay silent, and there is no setting
+  to name the version by hand yet.
 
 > None of these block everyday template work. They're documented so you know exactly
 > where the boundaries are.

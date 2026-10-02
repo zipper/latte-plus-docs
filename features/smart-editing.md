@@ -64,6 +64,10 @@ Inside an existing `{/…}` you can also invoke completion (Ctrl+Space) to pick 
 the popup offers the tags actually open at that position, innermost first, and inserts
 just the closing tag.
 
+On a Latte 3 project the popup respects HTML comments: inside `<!-- … -->` it offers only
+the tags opened in that same comment, and outside every comment it leaves out tags opened
+inside one, because Latte 3 cannot pair a closer across that boundary.
+
 ![A completion popup after a closing brace listing the tags open at that position, the innermost one first]({{ '/assets/img/screens/S13-close-tag-completion.png' | relative_url }})
 
 ## Smart Enter

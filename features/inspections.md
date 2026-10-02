@@ -13,7 +13,7 @@ nav_order: 5
 
 ---
 
-Latte+ ships **67 inspections** that validate templates as you type. Each one can be
+Latte+ ships **70+ inspections** that validate templates as you type. Each one can be
 toggled and given a severity (Error / Warning / Weak warning) under
 **Settings → Editor → Inspections**, where all of them sit under **Latte** – grouped
 into Templates, File resolution, Block references, Variables, n:attributes, Filters,
@@ -41,7 +41,22 @@ keyboard.
 ## Template structure
 
 - Unclosed or mismatched tags.
-- Invalid clause ordering (e.g. `{else}` before its `{if}`).
+- Invalid clause placement – a clause with no tag around it (`{else}`, `{elseif}` or
+  `{elseifset}` on its own is "Unexpected tag", as in Latte), a second `{else}` under any
+  tag that takes one, and `{case}` or `{default}` anywhere but directly inside
+  `{switch}`. `{default}` with arguments inside a switch is reported too, because there
+  it is the clause, not the variable tag.
+- **A Latte tag crossing an HTML comment** – Latte 3 compiles an HTML comment as a
+  fragment of its own, so a pair, its closer and its clauses have to sit all inside one
+  comment or all outside it. A closer or a clause inside a comment whose opener is
+  outside is reported, and so is a pair opened inside a comment and closed outside it.
+  Hidden conditional comments (`<!--[if mso]> … <![endif]-->`) are checked the same way,
+  and a comment with no `-->` is reported where it starts. Latte 2 compiles all of these
+  shapes, so the check runs only when the project uses Latte 3, and stays silent where
+  the version cannot be read.
+- Your own paired tags are matched by name: a closing tag with no opener is reported as
+  unexpected, an opener with no closer as unclosed. A tag registered as unpaired opens
+  nothing.
 - **Duplicate `{block}` or `{define}`** – two declarations of the same name in one
   layer of the template, which Latte refuses outright. A block declared inside an
   `{embed}` belongs to that embed's own layer, so a name used both in the main template
@@ -105,6 +120,11 @@ keyboard.
 ## Files & includes
 
 - **Missing file** – `{include 'does/not/exist.latte'}`.
+- **An include target that is almost certainly a typo** – a weak warning on shapes that
+  compile but rarely mean what they say: `{include from 'x.latte'}` includes a block
+  literally named `from`, `{include block 'parts/box.latte' from 'x.latte'}` asks for a
+  block whose name reads like a path, and `{include # from}` with nothing behind it is a
+  from-clause whose block name was never filled in.
 - **Missing asset** – a file that `{asset}`, `{preload}` or `n:asset` names but that is
   not there. The message names the directory actually searched, which behind a mapper is
   not the default assets root.
@@ -162,6 +182,9 @@ rule, in the order it is applied.
 
 - **The name is dynamic.** `{include #$name}` or `{block foo-{$id}}` cannot be checked
   before runtime.
+- **The `from` target is computed.** `{include inner from $paths['layout']}` names a
+  template only runtime can tell, so nothing is claimed about the blocks in it. A `from`
+  path that is written out but names no file is still reported.
 - **The include is guarded.** `{ifset #name}` and `{if hasBlock('name')}` are the
   documented way to ask whether a block was passed in, so anything inside them is
   treated as intentional.
