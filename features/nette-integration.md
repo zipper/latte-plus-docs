@@ -28,9 +28,24 @@ components, routing and forms.
   presenter/component inheritance chain.
 - After `:` it lists the component's `render*` methods.
 - Hover (`Ctrl+Q`) shows the factory/render method signature and PHPDoc.
-- `Ctrl+B` jumps to the `createComponentX()` factory – or, after `:`, to the `renderX`
-  method; Find Usages lists every `{control x}`.
+- `Ctrl+B` offers the **template the component renders** first and the
+  `createComponentX()` factory second – or, after `:`, the template of that render
+  method and the `renderX` method itself. Find Usages lists every `{control x}`.
 - A did-you-mean quick fix suggests the closest component when the name is misspelled.
+
+The template is read from the component's PHP: `$this->template->setFile(…)`,
+`$this->template->render(…)` with a path, a getter a subclass overrides, or a base class
+building the path from the class name. `{control menu:detail}` looks at `renderDetail()`
+and falls back to the template of `render()` when that method names none. A factory
+typed with an abstract class or an interface stands for its concrete subclasses. The
+path is evaluated, never guessed: when it cannot be read, only the PHP side is offered –
+see [known limitations]({{ '/limitations.html' | relative_url }}).
+
+A **`Multiplier`** is looked through. `{control parts-1}` and
+`{control "parts-{$id}"}` address the component the `parts` multiplier creates, so
+`Ctrl+B`, render-method completion, `Ctrl+P`, hover and the checks work on that child
+class – taken from the callback's declared return type, or from the one class every
+`return` in it creates. `{control parts}` still means the multiplier itself.
 
 ![Component completion listing the createComponent factories of the presenter]({{ '/assets/img/screens/S25-control-completion.png' | relative_url }})
 
@@ -86,6 +101,28 @@ The same holds in `{link}` and `{plink}`, so the template you are about to edit 
 keystroke away from the link that leads to it.
 
 ![Go to declaration on a link destination offering the target template and the presenter render method]({{ '/assets/img/screens/S21-goto-link-target.png' | relative_url }})
+
+## Which class a template belongs to
+
+Components, forms, signals and relative links are names that only make sense on the
+presenter or component that renders the template. Latte+ finds that owner in three
+ways:
+
+1. **By the directory layout** – a presenter's view and the template next to a
+   component, as before.
+2. **By the PHP that renders it** – a class that sets the template with `setFile()`,
+   `render()` with a path or `setLayout()` owns it too. The classes next to the
+   template and one directory up are asked, plus any class whose PHP file spells the
+   template's `.latte` name.
+3. **By the templates that include it** – a partial with no owner of its own takes the
+   owners of every template that renders it through `{include}`, `{embed}`,
+   `{include … from}`, `{layout}` / `{extends}` or `{import}`.
+
+With an owner known, completion, navigation and the checks work in a shared partial as
+they do in a view, and a report names all owners when there are several
+(*Action 'detail' not found on A or B.*). Where the answer would be a guess – too many
+candidate classes, an includer with no known owner – Latte+ leaves the template without
+an owner instead; see [known limitations]({{ '/limitations.html' | relative_url }}).
 
 ## `{form}` and form fields
 
