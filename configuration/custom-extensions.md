@@ -36,7 +36,12 @@ The settings UI is split into sub-tabs for the four kinds of extension:
 - **N-Attributes** – name and where it applies.
 
 Manually registered entries behave identically to discovered ones in completion,
-documentation and inspections.
+documentation and inspections. A change made here, or by a new scan, applies to the
+templates already open, without waiting for you to edit them.
+
+A discovered `n:attribute` whose arguments are not described accepts any value. To have
+a value rejected, give it the empty signature `()` – see
+[Custom tag signatures](./custom-tag-signatures.html).
 
 ![The Custom Extensions settings page listing tags found in the project, with the signature of one of them]({{ '/assets/img/screens/S27-settings-custom-extensions.png' | relative_url }})
 

@@ -53,7 +53,7 @@ keyboard.
   Hidden conditional comments (`<!--[if mso]> … <![endif]-->`) are checked the same way,
   and a comment with no `-->` is reported where it starts. Latte 2 compiles all of these
   shapes, so the check runs only when the project uses Latte 3, and stays silent where
-  the version cannot be read.
+  the [version](../configuration/latte-version.html) is not known.
 - Your own paired tags are matched by name: a closing tag with no opener is reported as
   unexpected, an opener with no closer as unclosed. A tag registered as unpaired opens
   nothing.
@@ -106,8 +106,9 @@ keyboard.
 - **Filter Latte refuses to run** – calling `|escape` by hand. Latte reserves it for its
   own escaping and rejects the template, so the report is an error rather than a warning.
   It appears only where Latte actually refuses it: from Latte 3.1 on. On earlier versions
-  the spelling is valid and stays quiet, and where the installed version cannot be read
-  from `composer.lock` Latte+ says nothing rather than risk a false error.
+  the spelling is valid and stays quiet, and where the installed version cannot be
+  [detected or set](../configuration/latte-version.html) Latte+ says nothing rather than
+  risk a false error.
 - **Wrong number of arguments** – too few or too many, for a PHP function and for a
   filter alike, checked against the signature the project really has.
 - **Calling a number** – `{= 10(5)}`, which Latte refuses to compile. Only a numeric
@@ -127,7 +128,16 @@ keyboard.
   from-clause whose block name was never filled in.
 - **Missing asset** – a file that `{asset}`, `{preload}` or `n:asset` names but that is
   not there. The message names the directory actually searched, which behind a mapper is
-  not the default assets root.
+  not the default assets root. A configured mapper whose directory does not exist is
+  reported as such. A single unquoted word, `{asset logo.svg}`, is a string to Latte and
+  is checked like a quoted path; `{asset img/logo.svg}` is a division at runtime, not a
+  path, so it is left alone.
+- **Unchecked asset reference** – a weak warning on a reference Latte+ cannot check: no
+  assets root and no `default` mapper, a mapper path built from a DI parameter that
+  cannot be resolved, or a prefix no `assets:` mapping declares. Before, such a reference
+  stayed as quiet as one that was checked and fine. The quick fix **Open Latte+ asset
+  mapper settings** opens the [asset mapper settings](../configuration/asset-mapping.html)
+  prefilled from your configuration. The inspection can be switched off on its own.
 - **Named asset mappers** – a reference like `images:logo.gif` names a *mapper*, not a
   directory. Latte+ reads the mappers from your `assets:` configuration, so it can tell
   the two failures apart: the file is missing under that mapper's own root, or no mapper
@@ -209,10 +219,16 @@ one. To say that a block arrives from elsewhere, wrap the include in `{ifset #na
 
 - **Undefined component** – `{control x}` with no matching factory (plus a
   did-you-mean fix).
+- **Unknown render method** – `{control x:m}` where the component has no `renderM()`.
+  In a template no presenter or component renders, the method is checked against the
+  class of every `createComponentX()` factory in the project, and reported only when
+  each of them gives a known class and none has the method.
 - **Link target** – a destination that doesn't resolve, in `{link}` / `{plink}`, in
   `n:href` and in `{ifCurrent}` alike. All three are checked: an unknown presenter, an
   action the presenter does not have, and a signal whose handler Nette could not
-  dispatch.
+  dispatch. When two presenters share the name and nothing decides between them, an
+  action neither of them has is reported once, naming both. In a template with no
+  owner, `{link x:save!}` is first asked whether any factory creates `x`.
 - **Form checks** – an unknown form or field, in `{form}` / `{input}` and in `n:name`
   alike, and an unknown container in `{formContainer}` / `n:formContainer`, each with a
   did-you-mean fix. A template that renders a form nobody in scope owns says so, and

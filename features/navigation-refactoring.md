@@ -21,7 +21,12 @@ including **across files**.
 
 - `{include #header from 'layout.latte'}` jumps to the `{block header}` /
   `{define header}` in `layout.latte`.
-- `{control reviews}` jumps to the `createComponentReviews()` factory.
+- `{control reviews}` offers the template the component renders first and the
+  `createComponentReviews()` factory second; in `{control reviews:compact}` the template
+  belongs to `compact`, so `reviews` opens just the factory – see
+  [`{control}`](./nette-integration.html#control).
+- A class name in `n:class` opens its rule in your stylesheet – see
+  [CSS classes in `n:class`](./completion.html#css-classes-in-nclass).
 - A `{link}` / `n:href` destination offers **two** targets at once: the action's template
   first, the presenter's `render`/`action` method second – see
   [one destination, two places to land](./nette-integration.html#one-destination-two-places-to-land).
@@ -52,6 +57,36 @@ including **across files**.
 ![Ctrl+B on a control tag landing on the factory method that builds the component]({{ '/assets/img/screens/S31-goto-control.png' | relative_url }})
 
 ![Go to declaration on a typed variable, offering the varType line and the presenter method that sets the value]({{ '/assets/img/screens/S37-goto-typed-variable.png' | relative_url }})
+
+### Template, PHP code or both
+
+Where a name has a template and PHP code behind it – a link destination, a `{control}`
+tag – `Ctrl+B` offers both, template first. Under
+**Settings → Languages & Frameworks → Latte+**, the **Navigation** section lets you
+choose instead:
+
+- **The template and the PHP code (template first)** – the default.
+- **The template only.**
+- **The PHP code only.**
+
+The choice only narrows the kind of target: where just one kind exists, `Ctrl+B` goes
+there whatever is chosen. Rename, Find Usages and Quick Documentation are not affected.
+The setting is IDE-wide, so it applies to every project.
+
+### When a name is declared more than once
+
+Sometimes the template cannot tell which declaration it means: a shared partial that no
+presenter or component renders, a template several classes could own, two presenters
+of the same name, or a form factory without a `Form` return type. Latte+ then does not
+report the name as long as it is declared somewhere – and `Ctrl+B` offers **every**
+declaration that keeps it quiet, templates first, then the PHP declarations ordered by
+class. In a template that nothing renders, a name exactly one method in the project
+declares is followed directly by `Ctrl+B`, completion, `Ctrl+Q` and the parameter hints.
+Rename and Find Usages stay with a single, certain target.
+
+In a monorepo that installs the same package into several of its packages, `Ctrl+B`
+offers the copy belonging to the template's own package, the one PhpStorm itself would
+pick; a template outside every package gets all copies.
 
 ## Find Usages (`Alt+F7`)
 
@@ -98,6 +133,13 @@ that reaches it, and `Shift+F6` rewrites the template along with the declaration
 - **Blocks & defines** rename **atomically across the whole project** – every
   `{include}` caller is updated in one operation.
 - **Include argument keys** rename together with all callers.
+- **Components** rename from the template together with their `createComponentX()`
+  factory, also where the template's owner comes from PHP or from the template that
+  includes it. Renaming the factory rewrites quoted names too (`{control "parts-1"}`,
+  `{control 'parts-{$id}'}`), and Find Usages lists them. When two owners declare the
+  name, or the factory comes from a library, the rename is refused with a message
+  instead of picking one.
+- **CSS classes** used in `n:class` are renamed along with their stylesheet rule.
 
 ## Quick fixes
 

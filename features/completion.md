@@ -120,7 +120,38 @@ and the fully-qualified name is inserted automatically.
 Inside `n:attr="…"` and regular attributes, the HTML5 schema provides value
 completion just as it would in a plain HTML file.
 
+As in a plain HTML file, the popup in a `class` value stays open while you type a dashed
+name such as `text-red-500`.
+
 Latte tags complete inside an attribute value too – in `class`, `href` and `id` as
 readily as anywhere else, and with text already typed in front of them.
 
 ![Latte tag completion inside the value of a class attribute, offered after text already typed in front of it]({{ '/assets/img/screens/S38-tag-in-attribute-value.png' | relative_url }})
+
+## CSS classes in `n:class`
+
+`n:class` gets the class names a plain `class` attribute gets. Wherever Latte renders a
+value as a class name – a word in a string, a bare name, either branch of a ternary, the
+value of a `key => value` or `key: value` pair, the right side of `??` – completion
+offers the classes defined in your project's stylesheets, at the top of the list:
+
+```latte
+<a n:class="'btn btn-primary', $active ? 'is-active' : 'is-idle'">
+```
+
+A condition, an array item or a function argument is not a class name, so nothing is
+offered there.
+
+- The popup opens by itself at a class name and stays open across the dashes of the
+  name, so `text-red-500` filters as you type. Classes from other sources, such as a
+  Tailwind language server, appear alongside, each name only once – see
+  [Tailwind CSS](./tailwind.html) for the settings that bring Tailwind into `n:class`.
+- A picked class is followed by a space, unless a space, a comma or the closing quote
+  already comes next. On a bare name, a class Latte would not render literally is
+  inserted in quotes.
+- At a class name only class names are offered. In an empty bare slot, where a variable
+  or a call is just as likely, `Ctrl+Space` offers the variables and functions too, below
+  the classes; a `$` brings the variables back anywhere.
+- Each class name is also a reference to its CSS rule: `Ctrl+B` opens the rule, Find
+  Usages and Rename on the rule reach the template, and a rule used only from `n:class`
+  is no longer reported as unused.

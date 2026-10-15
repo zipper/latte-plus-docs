@@ -25,6 +25,11 @@ With this configuration `images:logo.gif` is checked against `www/images/logo.gi
 name no mapper declares – `{asset 'imgs:logo.gif'}` – is reported as **the mapper being
 wrong**, rather than sending you to look for a file that was never meant to exist.
 
+A reference without a prefix, `{asset 'logo.gif'}`, goes through the mapper named
+`default`. Only when no `default` is declared does Latte+ look under the conventional
+`www/assets` or `assets` directory instead. A declared `default` whose path cannot be
+checked is **not** replaced by that convention.
+
 ## Where the configuration is looked for
 
 The same walk as [presenter mapping](./presenter-mapping.html): Latte+ goes **up** from
@@ -48,14 +53,23 @@ parameters in it are resolved rather than skipped:
 
 | Parameter | How it is resolved |
 |---|---|
-| `%rootDir%` | The project root. |
+| `%rootDir%` | The root of the application the configuration belongs to (below). |
 | `%wwwDir%` | The directory holding the entry script (`index.php`), which is where Nette takes it from – **not** `%rootDir%/www` by convention. A project whose entry script is `public/index.php` gets `public/`. Where there is no entry script at all, a conventional directory that exists on disk is used instead. |
 | `%appDir%` | The directory holding `Bootstrap.php`. |
+
+The application root is the nearest directory, from the `.neon` file up to the project
+root, that holds an entry script (`index.php` directly or in `www/`, `public/`, `web/` or
+`htdocs/`), a `Bootstrap.php` in `app/` or `src/`, or a `composer.json`. A Nette
+application in a subdirectory of a monorepo therefore gets its own `%wwwDir%`. Without
+such a directory – and for the override below, which comes from no NEON file – the
+project root is used.
 
 Anything else leaves the path unresolved, and an unresolved path means **no verdict**:
 the reference is left unchecked rather than measured against a guess. That is deliberate –
 a missing message costs one unchecked reference, a wrong one sends you looking for a file
-that was never meant to be there.
+that was never meant to be there. It is not silent, though: the **Unchecked
+nette/assets reference** inspection marks such a reference with a weak warning, so you
+can tell it apart from one that was checked and is fine.
 
 ## The override
 
@@ -74,8 +88,15 @@ NEON. One row per mapper, and the directory may be absolute or relative to the p
 
 Entries here **replace** the configuration rather than adding to it. The override exists
 for a configuration that cannot be trusted, so merging the two would put back the half
-that was wrong. Leave the table empty – the normal case – and the project's own NEON is
-used.
+that was wrong – which also means the table has to list **every** mapper, `default`
+included. Leave the table empty – the normal case – and the project's own NEON is used.
+
+You rarely need to open the page by hand. An unchecked reference and a mapper no
+configuration declares both offer the quick fix **Open Latte+ asset mapper settings**,
+which opens the page prefilled with the mappers read from the NEON the template uses
+and the reported mapper's row selected. Double-click its path to edit it; nothing is
+saved until you press Apply. For an undeclared mapper the did-you-mean rename stays the
+first choice, since a typo is the likelier cause.
 
 ## What changes once the mappers are read
 

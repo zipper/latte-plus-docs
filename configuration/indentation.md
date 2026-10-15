@@ -65,6 +65,17 @@ continued.
 | HTML tag (`<a href=… n:class=…>`) | **HTML** code style |
 | Latte tag (`{parameters …}`, `{if …}`) | **Latte** code style |
 
+With `Align attributes` **off**, the lines of a multi-line attribute value are your own
+text, as they are in an HTML file: Reformat leaves them where they are, and Enter, Tab,
+End and Backspace copy the whitespace of the line above instead of computing a column.
+That holds for `n:attributes` and plain ones alike. The one exception is Enter right
+after a Latte block tag inside the value (`class="a {if $x}`), which still adds a level.
+
+JavaScript and CSS inside `<script>` and `<style>` follow
+**Use HTML indents within style and script tags** in **Code Style → HTML**, as in an
+HTML file: with the option on they are indented with the HTML settings, with it off
+with the language's own.
+
 The Latte panel deliberately has **no `Smart tabs` option**: Latte tag arguments are
 not aligned, and the alignment of HTML attributes is governed by the HTML settings
 above.
@@ -98,6 +109,8 @@ agree with each other by design:
 - **Tab** / **Shift+Tab** on a selection – indent or unindent a block.
 - **Ctrl+Alt+L** (Reformat Code).
 - **Ctrl+Alt+I** (Auto-Indent Lines).
+- **Finishing a closing tag** – the body it closes gets its indent, see
+  [Smart editing](../features/smart-editing.html#closing-a-tag-indents-its-body).
 
 In other words, pressing Enter puts the line exactly where reformatting the file would
 put it. If one of these actions surprises you, the cause is almost always a setting

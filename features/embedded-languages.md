@@ -71,6 +71,12 @@ Latte tags, and `n:syntax="double"` / `n:syntax="off"` let you opt a part of a t
 out of Latte interpolation where your JS or CSS needs literal braces. A few edge cases
 of those switches are listed under [known limitations](../limitations.html).
 
+Latte tags inside a script or style body take part in its layout. Reformat Code puts
+the JavaScript or CSS between `{if}` and `{/if}` (or in a `{case}` branch) one level
+deeper, and does not force a blank line next to a Latte tag in CSS. The HTML option
+**Use HTML indents within style and script tags** applies in a `.latte` file the way it
+does in an `.html` one, for Reformat and for Enter, Tab, End and Backspace alike.
+
 ![A template with a style block and a script block, both highlighted, with Latte expressions inside them]({{ '/assets/img/screens/S23-embedded-js-css.png' | relative_url }})
 
 [More screenshots]({{ site.baseurl }}/screenshots.html#embedded-languages)

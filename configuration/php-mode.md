@@ -35,8 +35,9 @@ By default Latte+ figures out the mode automatically, in this order:
 
 ## Overriding the mode
 
-Under **Settings → Languages & Frameworks → Latte+ → `{php}` tag mode** you can force
-the behavior instead of relying on detection:
+Under **Settings → Languages & Frameworks → Latte+ → Latte runtime**, in the
+**`{php}` tag mode** section, you can force the behavior instead of relying on
+detection:
 
 - **Auto** – the default, using the detection above.
 - **Force STRICT** – a single expression, with `{do}` semantics.

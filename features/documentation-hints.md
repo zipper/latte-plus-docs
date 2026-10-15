@@ -35,6 +35,12 @@ names the second target when you jump to the declaration instead.
 
 ![The two declarations offered for a typed variable, the second naming the method that sets the value]({{ '/assets/img/screens/S37-goto-typed-variable.png' | relative_url }})
 
+Where a component, a signal, a form or a presenter has more than one candidate
+declaration and nothing decides between them, `Ctrl+Q` documents the first one
+`Ctrl+B` would offer and names the others in a **Declared by A, B, C or 2 more** row –
+or **One of A or B** for presenters of the same name. A class installed in several
+copies counts once.
+
 ## Parameter info (`Ctrl+P`)
 
 Parameter hints appear as you fill in arguments for `{include}`, `{control}`,
