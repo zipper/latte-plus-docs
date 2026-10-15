@@ -28,9 +28,12 @@ components, routing and forms.
   presenter/component inheritance chain.
 - After `:` it lists the component's `render*` methods.
 - Hover (`Ctrl+Q`) shows the factory/render method signature and PHPDoc.
-- `Ctrl+B` offers the **template the component renders** first and the
-  `createComponentX()` factory second – or, after `:`, the template of that render
-  method and the `renderX` method itself. Find Usages lists every `{control x}`.
+- `Ctrl+B` on `{control reviews}` offers the **template the component renders** first
+  and the `createComponentReviews()` factory second. In `{control gallery:thumb}` each
+  part leads to its own place, the way `Class::method` does in PHP: `gallery` opens the
+  factory, `thumb` the template of `renderThumb()` and the method itself. The same holds
+  in a template with no owner and through a `Multiplier` (`{control parts-1:detail}`).
+  Find Usages lists every `{control x}`.
 - A did-you-mean quick fix suggests the closest component when the name is misspelled.
 
 The template is read from the component's PHP: `$this->template->setFile(…)`,

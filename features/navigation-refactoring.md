@@ -22,7 +22,8 @@ including **across files**.
 - `{include #header from 'layout.latte'}` jumps to the `{block header}` /
   `{define header}` in `layout.latte`.
 - `{control reviews}` offers the template the component renders first and the
-  `createComponentReviews()` factory second – see
+  `createComponentReviews()` factory second; in `{control reviews:compact}` the template
+  belongs to `compact`, so `reviews` opens just the factory – see
   [`{control}`](./nette-integration.html#control).
 - A class name in `n:class` opens its rule in your stylesheet – see
   [CSS classes in `n:class`](./completion.html#css-classes-in-nclass).
