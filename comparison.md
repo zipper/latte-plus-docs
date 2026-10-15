@@ -36,8 +36,8 @@ hold up, and where Latte+ is the one getting it wrong – see the
 | **Configurable `n:attribute` color** | ✅ | ❌ |
 | **Automatic completion trigger** (after `{`, `'`, `#`) | ✅ | ⚠️ varies |
 | **`Ctrl+B` on a link offers the action's template, not only the presenter method** | ✅ template first, method second | – not measured |
-| **`Ctrl+B` on `{control}` offers the component's template, read from its PHP** | ✅ template first, factory second | – not measured |
-| **Project CSS classes in `n:class`** (completion, `Ctrl+B`, rename with the rule) | ✅ | – not measured |
+| **`Ctrl+B` on `{control}` offers the component's template, read from its PHP** | ✅ template first, factory second | ❌ |
+| **Project CSS classes in `n:class`** (completion, `Ctrl+B`, rename with the rule) | ✅ | ❌ |
 | `{control}` factory & render-method completion | ✅ | ⚠️ varies |
 | Embedded JS / CSS support inside templates | ✅ | ⚠️ varies[^jscss] |
 | **Custom extension discovery** (tags/filters/functions read from your PHP) | ✅ automatic | ❌[^ext] |
