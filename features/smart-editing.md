@@ -22,6 +22,13 @@ Latte's mix of tags, HTML and indentation.
 - Quotes (`'`, `"`) and brackets (`(`, `[`) pair automatically, with context
   awareness so they don't get in your way inside strings.
 - Bracket pairs auto-expand when you press Enter between them.
+- Inside an `n:attribute` value, brackets and quotes pair by the rules of the Latte
+  expression there; in the element content and in plain attributes next to it they are
+  left alone, as in HTML. The quote the attribute value itself is written in is never
+  paired – at the end of the value it steps over the closing quote.
+- In a `class` value and in the strings of `n:class`, `[` is paired and its `]` stepped
+  over, so Tailwind arbitrary values such as `w-[12px]` type naturally. A plain `.html`
+  file keeps the platform's behaviour.
 
 ## Live paired-tag rename
 
@@ -42,7 +49,7 @@ selection, no refactoring dialog, no completion popup needed.
 - Only the tag name changes, so an argument on the closing tag (`{/cache 'key'}`) and
   `{{double}}` syntax stay intact.
 - Honours the IDE-wide **Simultaneous `<tag></tag>` editing** setting
-  (Settings → Editor → Smart Keys) – no separate option to learn.
+  (Settings → Editor → General → Smart Keys) – no separate option to learn.
 
 Known limitation: clauses are not renamed with their tag. Turning `{if}` into
 `{foreach}` updates `{/if}`, but leaves `{elseif}` in place – see
@@ -70,6 +77,29 @@ inside one, because Latte 3 cannot pair a closer across that boundary.
 
 ![A completion popup after a closing brace listing the tags open at that position, the innermost one first]({{ '/assets/img/screens/S13-close-tag-completion.png' | relative_url }})
 
+## Closing a tag indents its body
+
+Paste a chunk of markup and it usually lands on column 0. Finish the closing tag around
+it and Latte+ gives every line from the opening tag down to the closer the indent
+Reformat Code would give it:
+
+```latte
+{if $showGallery}
+<div class="gallery">
+<img n:foreach="$photos as $photo" src="{$photo->url}">
+</div>
+{/   ← becomes {/if}, and the three lines above move one level in
+```
+
+- It works for Latte closers (`{/block}`, `{/if}`, …) and HTML ones (`</div>`, …),
+  whether the closer is completed automatically, typed by hand, typed over an existing
+  one or picked from completion – and with several carets at once.
+- Only the indent of the lines changes; the text inside them stays as it is.
+- The first **Ctrl+Z** takes back just the indent, leaving the closer you typed.
+- Elements over 300 lines and files over 30 000 characters are left alone.
+- It can be switched off under **Settings → Editor → General → Smart Keys** –
+  *Latte: indent the body of a tag when typing its closing tag*.
+
 ## Smart Enter
 
 Pressing Enter is context-aware across 10+ situations, including:
@@ -77,6 +107,27 @@ Pressing Enter is context-aware across 10+ situations, including:
 - Indenting the body after an opening paired tag.
 - Aligning a closing tag with its opener.
 - Expanding a multi-line Latte tag and aligning its arguments.
+- Deciding where the `}` of a multi-line tag goes by the end of the line before the
+  caret: after a binary operator or a comma it moves one continuation indent in, so the
+  expression goes on there; otherwise the tag is finished and the `}` goes back under
+  the tag, also when more text follows it (`}</p>`).
+- Splitting a class list. In a string of `n:class`, Enter closes the string, adds a
+  comma and opens a new string with the same quote on the next line, aligned with the
+  first item. Pressed right before the closing `'` of `'btn btn-primary'`, it gives:
+
+  ```latte
+  <div n:class="'btn btn-primary',
+                ''">
+  ```
+
+  with the caret inside the new `''`. Everywhere else in the value – a ternary branch, an array, a function argument – Enter
+  only breaks the line.
+- Leaving a line that starts inside a multi-line string literal alone: its leading
+  whitespace is part of the string, so Enter writes no indent there.
+
+Enter, Tab, End and Backspace all ask the same question – where does this line belong? –
+so they agree with each other on every line of a multi-line tag, an HTML tag header and
+a line typed too deep or too shallow.
 
 ## Smart Tab, End & Backspace
 
@@ -105,3 +156,21 @@ is no Latte spacing model, so nothing gets re-spaced inside a tag. The HTML arou
 tags is formatted by PhpStorm's own HTML formatter, which is why wrapped attributes
 follow your HTML code style – see
 [Indentation](../configuration/indentation.html) for which settings drive what.
+
+Reformat Code and Auto-Indent Lines (`Ctrl+Alt+I`) lay out a few shapes the way the
+editor writes them while you type:
+
+- The continuation lines of a multi-line tag (`{if $a &&` / `$b}`, `{var}`, `{=…}`,
+  `{foreach}`) stay one continuation indent below the tag.
+- A call, a `new`, a parenthesised expression or filter arguments broken over several
+  lines inside a tag sit one level below the line holding the `(`.
+- The body of a `{case}` or `{default}` branch goes one level deeper than the branch.
+- A multi-line HTML comment or `{* … *}` comment moves as a whole and keeps its own
+  alignment, as in an HTML file.
+- Inside `<pre>`, `<textarea>`, `<span>` and the other elements listed in the HTML
+  **Keep white spaces inside** option, Latte tags keep their whitespace, as the
+  surrounding HTML does – in `<pre>` and `<textarea>` that whitespace is what the page
+  shows and the form sends.
+- A Latte tag written over several lines inside a plain HTML attribute value
+  (`class="{=…}"`, `title`, `data-*`) keeps its lines as typed, as the value text does
+  in an HTML file.

@@ -39,7 +39,7 @@ paired tags completion inserts on a single line instead of opening a body for yo
 
 | Setting | Where | Effect |
 |---|---|---|
-| **Indent content inside top-level `{block}`** | Tabs and Indents | Indents the body of a top-level `{block}` that has no `{/block}`. Off by default. |
+| **Indent content inside top-level `{block}`** | Tabs and Indents | Indents the body of a top-level `{block}` that has no `{/block}`, the same way the body of a closed block is indented – for Reformat Code, Auto-Indent Lines and Enter alike, and stable on every repeated Reformat. Off by default. |
 | Two lists of paired tags | Paired Tag Insert | A tag in the **Single-line** list is inserted as `{first}…{/first}` on one line; everything in the **3-line** list opens a body. Single-line by default: `first`, `last`, `sep`, `translate`, `label`. |
 
 Inserting a paired tag in the middle of a line always produces the single-line form,
