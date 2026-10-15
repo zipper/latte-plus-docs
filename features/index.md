@@ -21,6 +21,7 @@ features by area – start with the ones most relevant to how you work.
 | [Smart editing](./smart-editing.html) | Auto-pairing, smart Enter/Backspace/Tab, indenting a body when you close it, comment toggling and the formatter. |
 | [Nette integration](./nette-integration.html) | `{link}`, `{control}`, `{form}`, `{snippet}` and layout/extends awareness. |
 | [Embedded languages](./embedded-languages.html) | PHP inside `{php}`/`{do}`, plus JavaScript and CSS parity inside HTML. |
+| [Tailwind CSS](./tailwind.html) | Tailwind utilities in `class` and `n:class`, and the recommended Tailwind settings for Latte. |
 | [Documentation & hints](./documentation-hints.html) | Hover docs, parameter info and inlay hints. |
 
 > **The killer features at a glance** are highlighted on the [Home](../) page,

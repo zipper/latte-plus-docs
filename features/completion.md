@@ -144,7 +144,8 @@ offered there.
 
 - The popup opens by itself at a class name and stays open across the dashes of the
   name, so `text-red-500` filters as you type. Classes from other sources, such as a
-  Tailwind language server, appear alongside, each name only once.
+  Tailwind language server, appear alongside, each name only once – see
+  [Tailwind CSS](./tailwind.html) for the settings that bring Tailwind into `n:class`.
 - A picked class is followed by a space, unless a space, a comma or the closing quote
   already comes next. On a bare name, a class Latte would not render literally is
   inserted in quotes.
