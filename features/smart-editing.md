@@ -120,8 +120,10 @@ Pressing Enter is context-aware across 10+ situations, including:
                 ''">
   ```
 
-  with the caret inside the new `''`. Everywhere else in the value – a ternary branch, an array, a function argument – Enter
-  only breaks the line.
+  with the caret inside the new `''`. The same works in the value of a `key => '…'` or
+  `key: '…'` item, in the `else` branch of a ternary and on the right of `??`. Everywhere
+  else – the `then` branch of a ternary, parentheses, an array, a function argument –
+  Enter only breaks the line.
 - Leaving a line that starts inside a multi-line string literal alone: its leading
   whitespace is part of the string, so Enter writes no indent there.
 
