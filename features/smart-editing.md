@@ -26,8 +26,9 @@ Latte's mix of tags, HTML and indentation.
   expression there; in the element content and in plain attributes next to it they are
   left alone, as in HTML. The quote the attribute value itself is written in is never
   paired – at the end of the value it steps over the closing quote.
-- In a `class` value and in the strings of `n:class`, `[` is paired and its `]` stepped
-  over, so Tailwind arbitrary values such as `w-[12px]` type naturally. A plain `.html`
+- In a `class` value and in the strings of `n:class`, `[` and `(` are paired and their
+  `]` and `)` stepped over, so Tailwind arbitrary values such as `w-[12px]` or
+  `px-(--gap)` type naturally. A plain `.html`
   file keeps the platform's behaviour.
 
 ## Live paired-tag rename
