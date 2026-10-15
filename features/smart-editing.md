@@ -82,7 +82,8 @@ inside one, because Latte 3 cannot pair a closer across that boundary.
 
 Paste a chunk of markup and it usually lands on column 0. Finish the closing tag around
 it and Latte+ gives every line from the opening tag down to the closer the indent
-Reformat Code would give it:
+Reformat Code would give it
+([clip]({{ site.baseurl }}/screenshots.html#closing-a-tag-indents-its-body)):
 
 ```latte
 {if $showGallery}
@@ -121,7 +122,12 @@ Pressing Enter is context-aware across 10+ situations, including:
                 ''">
   ```
 
-  with the caret inside the new `''`. The same works in the value of a `key => '…'` or
+  with the caret inside the new `''`. Pressed in the middle of the string, the classes
+  after the caret move into the new string and the space at the split is dropped, so
+  `'btn btn--primary inline-flex'` with the caret before `inline-flex` becomes
+  `'btn btn--primary',` and `'inline-flex'` on the next line
+  ([clip]({{ site.baseurl }}/screenshots.html#splitting-a-long-nclass)).
+  The same works in the value of a `key => '…'` or
   `key: '…'` item, in the `else` branch of a ternary and on the right of `??`. Everywhere
   else – the `then` branch of a ternary, parentheses, an array, a function argument –
   Enter only breaks the line.

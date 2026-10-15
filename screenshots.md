@@ -15,6 +15,17 @@ All shots were taken in PhpStorm 2025.3 with the default dark theme, on a small 
 blog with a real `vendor/` directory – so completion, hover, inspections and Find Usages
 behave exactly as they do in a project of your own, not in a stripped-down demo.
 
+If you have one minute, start here. A card's `n:class` is written from scratch: classes
+from the stylesheet and Tailwind utilities complete in the strings, the long list is split
+over several lines, `Ctrl+B` jumps from a class into the stylesheet, and a rule renamed
+there is renamed in the template too:
+
+<video class="clip" width="1600" height="1000" autoplay loop muted playsinline
+       preload="metadata" style="max-width:100%;height:auto" aria-label="One minute of n:class work, from completion to a rename made in the stylesheet">
+  <source src="{{ '/assets/video/V10-nclass-tailwind-promo.webm' | relative_url }}" type="video/webm">
+  <source src="{{ '/assets/video/V10-nclass-tailwind-promo.mp4' | relative_url }}" type="video/mp4">
+</video>
+
 1. TOC
 {:toc}
 
@@ -176,6 +187,24 @@ so you pick the one you meant instead of recalling the full set.
 
 <img src="{{ '/assets/img/screens/S12-nattr-completion.png' | relative_url }}" alt="n:attribute completion" loading="lazy" decoding="async">
 
+### CSS classes in `n:class`
+
+A class name inside `n:class` completes like one in a plain `class` attribute. The
+classes your stylesheets define come first, the Tailwind utilities follow below them, so
+`b` offers `badge` and `btn--primary` before `backdrop-blur-lg`.
+
+<img src="{{ '/assets/img/screens/S40-nclass-completion.png' | relative_url }}" alt="Completion inside n:class, the project's own classes above the Tailwind utilities" loading="lazy" decoding="async">
+
+Every part of the expression gets what belongs there: a class in the string, the
+template parameter in the condition, the modifier in the branch, and a Tailwind utility
+after it – `ring-` lists the widths and the colours together with their values:
+
+<video class="clip" width="1600" height="1000" autoplay loop muted playsinline
+       preload="metadata" style="max-width:100%;height:auto" aria-label="Writing an n:class with stylesheet classes, a parameter and Tailwind utilities completed">
+  <source src="{{ '/assets/video/V07-nclass-class-completion.webm' | relative_url }}" type="video/webm">
+  <source src="{{ '/assets/video/V07-nclass-class-completion.mp4' | relative_url }}" type="video/mp4">
+</video>
+
 ### Closing tags
 
 A paired tag inserted from completion already comes with its closing tag, so normally you
@@ -289,6 +318,14 @@ is reported where you wrote it and the fix renames it to the closest name that e
 
 <img src="{{ '/assets/img/screens/S39-form-name-quickfix.png' | relative_url }}" alt="Quick fix for a misspelled form name" loading="lazy" decoding="async">
 
+### An asset mapper that does not exist
+
+`{asset 'imaages:logo.gif'}` names a mapper your `assets:` configuration does not
+declare. The fix renames it to the mapper that does exist, and when the configuration is
+what is wrong, the second fix opens the asset mapper settings instead.
+
+<img src="{{ '/assets/img/screens/S44-asset-mapper-quickfix.png' | relative_url }}" alt="Quick fixes for a misspelled asset mapper: the closest declared mapper, or the asset mapper settings" loading="lazy" decoding="async">
+
 ---
 
 ## Navigation
@@ -303,10 +340,11 @@ either one in a single step, without opening the presenter to find the template.
 
 ### From a component tag to the component
 
-`Ctrl+B` on `{control commentList}` lands on the factory method that builds that
-component, instead of you searching the presenter for the right `createComponent*`.
+`Ctrl+B` on `{control commentList}` offers both places the component lives – the
+template it renders, listed first, and the factory method that builds it – instead of
+you searching the presenter for the right `createComponent*`.
 
-<img src="{{ '/assets/img/screens/S31-goto-control.png' | relative_url }}" alt="Go to declaration from a control tag" loading="lazy" decoding="async">
+<img src="{{ '/assets/img/screens/S31-goto-control.png' | relative_url }}" alt="Go to declaration from a control tag, offering the component template and its factory method" loading="lazy" decoding="async">
 
 ### From a typed variable to both of its sources
 
@@ -342,6 +380,14 @@ together.
   <source src="{{ '/assets/video/V03-rename-across-files.mp4' | relative_url }}" type="video/mp4">
 </video>
 
+### Find usages of a CSS class
+
+The class names in `n:class` are references to their CSS rules, so Find Usages on a rule
+in the stylesheet reaches the templates. Every `n:class` string that uses
+`.btn--primary` is listed under **Latte template**, with the class marked in the preview.
+
+<img src="{{ '/assets/img/screens/S41-find-usages-css-class.png' | relative_url }}" alt="Find usages of a stylesheet rule, listing the n:class strings that use the class" loading="lazy" decoding="async">
+
 ### PHP that only a template uses
 
 A `createComponentX()` factory is never called by name in PHP, because the framework
@@ -376,9 +422,48 @@ throughout, so every tab and every space is visible:
   <source src="{{ '/assets/video/V04-smart-indent.mp4' | relative_url }}" type="video/mp4">
 </video>
 
+### Splitting a long `n:class`
+
+Enter inside a string of `n:class` ends the string there and carries the rest of the
+classes into a new one on the next line, aligned under the first. At the end of the last
+string it opens an empty one, ready for the next class:
+
+<video class="clip" width="1600" height="1000" autoplay loop muted playsinline
+       preload="metadata" style="max-width:100%;height:auto" aria-label="Splitting a long n:class string over several lines with Enter">
+  <source src="{{ '/assets/video/V08-nclass-split.webm' | relative_url }}" type="video/webm">
+  <source src="{{ '/assets/video/V08-nclass-split.mp4' | relative_url }}" type="video/mp4">
+</video>
+
+### Closing a tag indents its body
+
+Pasted markup usually lands on column 0. Type `{/` under it and the closer becomes
+`{/block}`, while every line between the two tags moves to the indent it belongs at:
+
+<video class="clip" width="1600" height="1000" autoplay loop muted playsinline
+       preload="metadata" style="max-width:100%;height:auto" aria-label="Typing a closing tag, the unindented body above it moving into place">
+  <source src="{{ '/assets/video/V09-close-tag-indent.webm' | relative_url }}" type="video/webm">
+  <source src="{{ '/assets/video/V09-close-tag-indent.mp4' | relative_url }}" type="video/mp4">
+</video>
+
 ---
 
 ## Configuration
+
+### What `Ctrl+B` offers
+
+Where a name has both a template and PHP code behind it, `Ctrl+B` offers both, template
+first. The **Latte+** page lets you keep just one of them instead; where only one kind
+exists, `Ctrl+B` goes there whatever is chosen.
+
+<img src="{{ '/assets/img/screens/S42-settings-navigation.png' | relative_url }}" alt="The Latte+ settings page with the Navigation choice between the template, the PHP code or both" loading="lazy" decoding="async">
+
+### Latte version
+
+Checks that depend on the Latte version run only when the version is known. Auto reads it
+from `composer.lock` or `composer.json` and says under the choice what it found; Latte 2
+or Latte 3 can be set by hand. The `{php}` tag mode lives on the same page.
+
+<img src="{{ '/assets/img/screens/S43-settings-latte-runtime.png' | relative_url }}" alt="The Latte runtime settings page with the Latte version detected from composer.lock and the php tag mode below" loading="lazy" decoding="async">
 
 ### Path aliases
 
@@ -420,8 +505,3 @@ Every kind of Latte token has its own colour setting, with a live preview undern
 stand out or blend in.
 
 <img src="{{ '/assets/img/screens/S28-settings-colors.png' | relative_url }}" alt="Latte token colour settings" loading="lazy" decoding="async">
-
----
-
-Short clips of the interactive features – live paired-tag rename, cross-file parameter
-rename and smart indentation – will be added here later.

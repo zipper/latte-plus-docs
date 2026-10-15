@@ -98,6 +98,8 @@ and the reported mapper's row selected. Double-click its path to edit it; nothin
 saved until you press Apply. For an undeclared mapper the did-you-mean rename stays the
 first choice, since a typo is the likelier cause.
 
+![A misspelled mapper with the did-you-mean rename offered first and the asset mapper settings second]({{ '/assets/img/screens/S44-asset-mapper-quickfix.png' | relative_url }})
+
 ## What changes once the mappers are read
 
 - `{asset 'images:logo.gif'}` is checked against the right directory instead of being

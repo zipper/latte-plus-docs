@@ -142,6 +142,8 @@ offers the classes defined in your project's stylesheets, at the top of the list
 A condition, an array item or a function argument is not a class name, so nothing is
 offered there.
 
+![Completion inside n:class, the project's own classes listed above the Tailwind utilities]({{ '/assets/img/screens/S40-nclass-completion.png' | relative_url }})
+
 - The popup opens by itself at a class name and stays open across the dashes of the
   name, so `text-red-500` filters as you type. Classes from other sources, such as a
   Tailwind language server, appear alongside, each name only once – see

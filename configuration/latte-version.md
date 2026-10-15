@@ -43,4 +43,6 @@ detects nothing, including which versions are in conflict. With a manual choice 
 shows what Auto would pick, so you can tell when the override is no longer needed. A
 change applies to open templates straight away.
 
+![The Latte runtime settings page with the Latte version detected from composer.lock and the php tag mode below]({{ '/assets/img/screens/S43-settings-latte-runtime.png' | relative_url }})
+
 The same page holds the [`{php}` tag mode](./php-mode.html).

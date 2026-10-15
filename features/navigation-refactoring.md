@@ -54,7 +54,7 @@ including **across files**.
 - Renaming an asset rewrites the reference as a path under the **assets root**, so the
   template keeps working; a mapper prefix in front of it is left alone.
 
-![Ctrl+B on a control tag landing on the factory method that builds the component]({{ '/assets/img/screens/S31-goto-control.png' | relative_url }})
+![Ctrl+B on a control tag offering the component template first and the factory method that builds the component second]({{ '/assets/img/screens/S31-goto-control.png' | relative_url }})
 
 ![Go to declaration on a typed variable, offering the varType line and the presenter method that sets the value]({{ '/assets/img/screens/S37-goto-typed-variable.png' | relative_url }})
 
@@ -72,6 +72,8 @@ choose instead:
 The choice only narrows the kind of target: where just one kind exists, `Ctrl+B` goes
 there whatever is chosen. Rename, Find Usages and Quick Documentation are not affected.
 The setting is IDE-wide, so it applies to every project.
+
+![The Latte+ settings page with the Navigation choice between the template, the PHP code or both]({{ '/assets/img/screens/S42-settings-navigation.png' | relative_url }})
 
 ### When a name is declared more than once
 
@@ -108,6 +110,11 @@ template** from **Value written in Latte template** – so you see which line pu
 value in and which lines only take one out.
 
 ![Find Usages on an optional template parameter, listing the reads and the include arguments that pass it]({{ '/assets/img/screens/S35-find-usages-parameter.png' | relative_url }})
+
+From a stylesheet it works the other way round: Find Usages on a CSS rule lists the
+`n:class` strings that use the class, under **Latte template**.
+
+![Find Usages on a stylesheet rule, listing the n:class strings that use the class under Latte template]({{ '/assets/img/screens/S41-find-usages-css-class.png' | relative_url }})
 
 [More screenshots]({{ site.baseurl }}/screenshots.html#navigation)
 
