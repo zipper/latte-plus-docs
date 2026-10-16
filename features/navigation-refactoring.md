@@ -27,7 +27,7 @@ including **across files**.
   [`{control}`](./nette-integration.html#control).
 - A class name in `n:class` opens its rule in your stylesheet – see
   [CSS classes in `n:class`](./completion.html#css-classes-in-nclass).
-- A `{link}` / `n:href` destination offers **two** targets at once: the action's template
+- A `{link}` / `n:href` destination (and the one in `{ifCurrent}` / `n:ifCurrent`) offers **two** targets at once: the action's template
   first, the presenter's `render`/`action` method second – see
   [one destination, two places to land](./nette-integration.html#one-destination-two-places-to-land).
 - A filter your own project registers jumps to the method behind it – from a

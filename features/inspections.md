@@ -224,11 +224,17 @@ one. To say that a block arrives from elsewhere, wrap the include in `{ifset #na
   class of every `createComponentX()` factory in the project, and reported only when
   each of them gives a known class and none has the method.
 - **Link target** – a destination that doesn't resolve, in `{link}` / `{plink}`, in
-  `n:href` and in `{ifCurrent}` alike. All three are checked: an unknown presenter, an
+  `n:href` and in `{ifCurrent}` / `n:ifCurrent` alike. All three are checked: an unknown presenter, an
   action the presenter does not have, and a signal whose handler Nette could not
   dispatch. When two presenters share the name and nothing decides between them, an
   action neither of them has is reported once, naming both. In a template with no
   owner, `{link x:save!}` is first asked whether any factory creates `x`.
+- **`{ifCurrent}` syntax** – on a Latte 3 project, the shapes Latte 3 refuses while
+  Latte 2 compiled them: an unquoted `*` in the destination (`Product:*`; quote it as
+  `'Product:*'`), a second argument without a comma, and a filter in `n:ifCurrent`. A
+  filter in the `{ifCurrent}` tag is refused by every version, so it is reported
+  whatever the version. On a Latte 2 project, or when the version cannot be told, the
+  rest stays quiet.
 - **Form checks** – an unknown form or field, in `{form}` / `{input}` and in `n:name`
   alike, and an unknown container in `{formContainer}` / `n:formContainer`, each with a
   did-you-mean fix. A template that renders a form nobody in scope owns says so, and

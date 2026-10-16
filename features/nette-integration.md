@@ -60,8 +60,12 @@ class – taken from the callback's declared return type, or from the one class 
 <a n:href="Product:detail $product->id">{$product->name}</a>
 ```
 
+- `{ifCurrent}` and `n:ifCurrent` take the destination and arguments of a link, so they
+  get everything below: completion of the destination, `Ctrl+B`, parameter info and
+  hints, rename and the checks. (Nette marks `{ifCurrent}` deprecated in favour of
+  `{if isLinkCurrent(…)}`; the support is there for templates that still use it.)
 - Link destinations (`Presenter:action`) are resolved and validated – in `{link}` and
-  `{plink}`, in `n:href`, and in `{ifCurrent}`. An action the target presenter does not
+  `{plink}`, in `n:href`, and in `{ifCurrent}` / `n:ifCurrent`. An action the target presenter does not
   have is reported too, not just an unknown presenter. A destination that starts with a
   slash is a URL, not a presenter path, so `{link //Product:detail}` is left alone
   instead of being reported as an unknown presenter. An inner slash stays checked –
