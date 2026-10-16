@@ -84,7 +84,9 @@ report the name as long as it is declared somewhere – and `Ctrl+B` offers **ev
 declaration that keeps it quiet, templates first, then the PHP declarations ordered by
 class. In a template that nothing renders, a name exactly one method in the project
 declares is followed directly by `Ctrl+B`, completion, `Ctrl+Q` and the parameter hints.
-Rename and Find Usages stay with a single, certain target.
+Rename stays with a single, certain target, and so does Find Usages on a PHP
+declaration. Find Usages on a template lists every place `Ctrl+B` leads to it from,
+these guesses included.
 
 In a monorepo that installs the same package into several of its packages, `Ctrl+B`
 offers the copy belonging to the template's own package, the one PhpStorm itself would
@@ -97,6 +99,16 @@ reference across the project – for blocks and defines that means every `{inclu
 caller, in every file.
 
 ![Find Usages on a define listing every include of it across the project]({{ '/assets/img/screens/S22-find-usages-block.png' | relative_url }})
+
+On a **template file** (select it in the Project view and press `Alt+F7`), the result
+lists every place whose `Ctrl+B` leads to that template, next to the PHP lines that name
+it: `{control reviews}` and `{control reviews:compact}` for the template of a
+component – a `render<M>()` without a template of its own falls back to the one of
+`render()`, and Multiplier children, subclasses, traits and generated factories count
+too – and `{link}`, `{plink}`, `n:href`, `{ifCurrent}` and `n:ifCurrent` for the
+template of a presenter action. Renaming or deleting the template still touches only
+the PHP that names it: the tags keep their component and action names. What the search
+cannot see is in [known limitations]({{ '/limitations.html' | relative_url }}).
 
 It works on a **template parameter** too, and on an optional one that is where it earns
 its keep. The result lists every use of the parameter – the reads inside the template and

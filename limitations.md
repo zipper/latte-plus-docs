@@ -74,6 +74,10 @@ list is kept honest on purpose – if you hit something not listed here, please
 
 ## Other
 
+- **Find Usages on a template needs its file name in the PHP** – Find Usages on a
+  template does not list the places that reach it only through PHP that never spells
+  the template's file name, for example a path assembled from a class name or from
+  pieces in an overridden getter, although `Ctrl+B` offers the template there.
 - **Structure view lists Latte tags only** – HTML elements and `n:attributes` are not
   part of the tree, because an `n:attribute` belongs to the HTML side of the file. The
   tree is a map of the template's Latte structure.
