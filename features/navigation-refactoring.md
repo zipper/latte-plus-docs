@@ -119,7 +119,8 @@ question it answers is "who actually sets this?", not "where is this template us
 Results are named rather than filed under "Unclassified": a usage from a template reads
 as **Latte template**, and on a variable the window separates **Value read in Latte
 template** from **Value written in Latte template** – so you see which line puts a
-value in and which lines only take one out.
+value in and which lines only take one out. On a template file, the PHP strings that
+name it (`setFile(__DIR__ . '/detail.latte')`) are grouped as **Template path in PHP**.
 
 ![Find Usages on an optional template parameter, listing the reads and the include arguments that pass it]({{ '/assets/img/screens/S35-find-usages-parameter.png' | relative_url }})
 
