@@ -15,13 +15,13 @@ All shots were taken in PhpStorm 2025.3 with the default dark theme, on a small 
 blog with a real `vendor/` directory – so completion, hover, inspections and Find Usages
 behave exactly as they do in a project of your own, not in a stripped-down demo.
 
-If you have one minute, start here. A card's `n:class` is written from scratch: classes
+If you have half a minute, start here. A card's `n:class` is written from scratch: classes
 from the stylesheet and Tailwind utilities complete in the strings, the long list is split
 over several lines, `Ctrl+B` jumps from a class into the stylesheet, and a rule renamed
 there is renamed in the template too:
 
 <video class="clip" width="1600" height="1000" autoplay loop muted playsinline
-       preload="metadata" style="max-width:100%;height:auto" aria-label="One minute of n:class work, from completion to a rename made in the stylesheet">
+       preload="metadata" style="max-width:100%;height:auto" aria-label="Half a minute of n:class work, from completion to a rename made in the stylesheet">
   <source src="{{ '/assets/video/V10-nclass-tailwind-promo.webm' | relative_url }}" type="video/webm">
   <source src="{{ '/assets/video/V10-nclass-tailwind-promo.mp4' | relative_url }}" type="video/mp4">
 </video>
