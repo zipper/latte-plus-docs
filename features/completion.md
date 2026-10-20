@@ -79,7 +79,9 @@ files and honors your [path aliases](../configuration/path-aliases.html) with fu
 camel-hump matching (e.g. `PaAvail` matches `PartialAvailability`).
 
 Once the file is named, the block names it defines are offered too, so you don't have
-to open the other template to remember them.
+to open the other template to remember them. Behind `from`, that means the blocks of the
+named template and of its own `{import}` and `{layout}` – the ones Latte reads there –
+and none from the template you are editing.
 
 ![Block name completion in an include, listing the blocks defined by the referenced template]({{ '/assets/img/screens/S10-block-completion.png' | relative_url }})
 

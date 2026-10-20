@@ -185,8 +185,14 @@ rule, in the order it is applied.
    `@layout.latte` Nette attaches to it on its own is part of the chain too. A layout or
    import named by a concatenated path counts as part of that chain, so the blocks it
    declares are not reported as missing.
-3. With `{include #name from 'file.latte'}`, that one file and nothing else. The `from`
-   clause names a concrete target, so the chain is deliberately ignored.
+3. With `{include #name from 'file.latte'}`, that file and the templates it pulls in
+   through its own `{import}` and `{layout}` – never the current template or its chain,
+   even when the current template declares that name. That is how Latte reads it. The
+   `@layout.latte` Nette attaches on its own does not count here: Latte attaches it
+   only to the template rendered first. Latte also reads the first `from` behind a block
+   name as the clause when a colon follows it, so Latte+ reads
+   `{include foo from: 'x.latte'}` as `foo` from a template named `:` and reports the
+   block as missing.
 
 **When it stays quiet even though the block was not found**
 
