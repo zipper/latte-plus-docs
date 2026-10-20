@@ -29,7 +29,8 @@ including **across files**.
   [CSS classes in `n:class`](./completion.html#css-classes-in-nclass).
 - A `{link}` / `n:href` destination (and the one in `{ifCurrent}` / `n:ifCurrent`) offers **two** targets at once: the action's template
   first, the presenter's `render`/`action` method second – see
-  [one destination, two places to land](./nette-integration.html#one-destination-two-places-to-land).
+  [one destination, two places to land](./nette-integration.html#one-destination-two-places-to-land)
+  ([clip]({{ site.baseurl }}/screenshots.html#following-links-and-components-to-their-code)).
 - A filter your own project registers jumps to the method behind it – from a
   `Latte\Extension`, from an `addFilter()` call, from a factory array or from the
   Latte+ settings – and so do PHP functions. A filter built into Latte has no
@@ -109,6 +110,8 @@ too – and `{link}`, `{plink}`, `n:href`, `{ifCurrent}` and `n:ifCurrent` for t
 template of a presenter action. Renaming or deleting the template still touches only
 the PHP that names it: the tags keep their component and action names. What the search
 cannot see is in [known limitations]({{ '/limitations.html' | relative_url }}).
+
+![Find Usages on the template of a presenter action, listing the links and ifCurrent tags that lead to it and the setFile() path in PHP]({{ '/assets/img/screens/S46-find-usages-template.png' | relative_url }})
 
 It works on a **template parameter** too, and on an optional one that is where it earns
 its keep. The result lists every use of the parameter – the reads inside the template and

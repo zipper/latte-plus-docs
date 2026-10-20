@@ -346,6 +346,19 @@ you searching the presenter for the right `createComponent*`.
 
 <img src="{{ '/assets/img/screens/S31-goto-control.png' | relative_url }}" alt="Go to declaration from a control tag, offering the component template and its factory method" loading="lazy" decoding="async">
 
+### Following links and components to their code
+
+Here the destination of an `{ifCurrent}` is completed – the presenter first, then its
+actions – and `Ctrl+B` follows it to the action's template. On
+`{control commentList:compact}`, `compact` leads to the template of `renderCompact()`,
+while `commentList` jumps straight to the factory, because it has nothing else to offer:
+
+<video class="clip" width="1600" height="1000" autoplay loop muted playsinline
+       preload="metadata" style="max-width:100%;height:auto" aria-label="Completing a link destination in ifCurrent and following it, then a control tag, to the template and the factory">
+  <source src="{{ '/assets/video/V11-link-and-control-navigation.webm' | relative_url }}" type="video/webm">
+  <source src="{{ '/assets/video/V11-link-and-control-navigation.mp4' | relative_url }}" type="video/mp4">
+</video>
+
 ### From a typed variable to both of its sources
 
 A variable that a `{varType}` types and a presenter fills has two places worth opening,
@@ -379,6 +392,16 @@ together.
   <source src="{{ '/assets/video/V03-rename-across-files.webm' | relative_url }}" type="video/webm">
   <source src="{{ '/assets/video/V03-rename-across-files.mp4' | relative_url }}" type="video/mp4">
 </video>
+
+### Find usages of a template
+
+Find Usages on a template file lists every place whose `Ctrl+B` leads to it. For the
+template of a presenter action that is each `{link}`, `n:href`, `{ifCurrent}` and
+`n:ifCurrent` with its action – including the relative ones in a template the action
+includes – and the `setFile()` call that names the file is grouped as
+**Template path in PHP**.
+
+<img src="{{ '/assets/img/screens/S46-find-usages-template.png' | relative_url }}" alt="Find usages of a template file" loading="lazy" decoding="async">
 
 ### Find usages of a CSS class
 
