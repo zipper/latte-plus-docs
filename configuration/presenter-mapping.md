@@ -46,8 +46,8 @@ mask built out of them (`%appDir%\*Presenter`) is skipped rather than guessed at
 
 ## What changes once the mapping is read
 
-- Presenters your layout places unusually are offered in `{link}`, `{plink}` and
-  `n:href` – for example `Front:Home` in a flat modular layout, whose module directory
+- Presenters your layout places unusually are offered in `{link}`, `{plink}`,
+  `n:href` and `{ifCurrent}` – for example `Front:Home` in a flat modular layout, whose module directory
   carries no `Module` suffix and whose presenter is not in a directory of its own name.
 - Names that a convention would guess wrongly are corrected. In a flat modular project
   `App\Presentation\Admin\AdminPresenter` is `Admin:Admin`, not `Admin`.

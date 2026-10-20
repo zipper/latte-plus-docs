@@ -44,8 +44,8 @@ copies counts once.
 ## Parameter info (`Ctrl+P`)
 
 Parameter hints appear as you fill in arguments for `{include}`, `{control}`,
-`{cache}`, `{link}`, filters and custom tags – showing parameter names, types and
-defaults.
+`{cache}`, `{link}`, `{ifCurrent}`, filters and custom tags – showing parameter
+names, types and defaults.
 
 Filling in an `{include}`, you see the parameters the target template expects without
 opening it.
@@ -59,7 +59,8 @@ Inline hints render directly in the editor to reduce guesswork:
 - **Filter parameter names** before filter arguments – `{$n|number: 2, ',', ' '}`
   shows `decimals:`, `decPoint:`, `thousandsSep:`.
 - **Component and link arguments** – the values you pass to `{control}`, `{link}`
-  and `n:href` are labelled with the parameter they fill.
+  and `n:href` (and to `{ifCurrent}` / `n:ifCurrent`) are labelled with the parameter
+  they fill.
 - **Function parameter names** before PHP function arguments.
 - **Include argument types** – the type each `{include}` or `{embed}` argument is
   declared with in the template you are calling.
