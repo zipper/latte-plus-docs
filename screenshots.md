@@ -348,13 +348,13 @@ you searching the presenter for the right `createComponent*`.
 
 ### Following links and components to their code
 
-Here the destination of an `{ifCurrent}` is completed – the presenter first, then its
+Here the destination of an `n:href` is completed – the presenter first, then its
 actions – and `Ctrl+B` follows it to the action's template. On
 `{control commentList:compact}`, `compact` leads to the template of `renderCompact()`,
 while `commentList` jumps straight to the factory, because it has nothing else to offer:
 
 <video class="clip" width="1600" height="1000" autoplay loop muted playsinline
-       preload="metadata" style="max-width:100%;height:auto" aria-label="Completing a link destination in ifCurrent and following it, then a control tag, to the template and the factory">
+       preload="metadata" style="max-width:100%;height:auto" aria-label="Completing a link destination in n:href and following it, then a control tag, to the template and the factory">
   <source src="{{ '/assets/video/V11-link-and-control-navigation.webm' | relative_url }}" type="video/webm">
   <source src="{{ '/assets/video/V11-link-and-control-navigation.mp4' | relative_url }}" type="video/mp4">
 </video>
