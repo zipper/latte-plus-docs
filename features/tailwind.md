@@ -27,7 +27,9 @@ the class names of a Latte template.
 - **Your own classes first.** Classes defined in your project's stylesheets sort above
   the Tailwind utilities. A name both of them offer appears once, as your CSS class.
 - **The same insert.** A picked utility is followed by a space, exactly like a project
-  class, unless a space, a comma or the closing quote already comes next.
+  class, unless a space or the closing quote already comes next (in `n:class` a comma
+  too). A class picked in the middle of a list in `class` or `n:class` therefore stays
+  apart from the one after it.
 - **Arbitrary values.** In a `class` value and in `n:class`, `[` and `(` are paired and
   their closer is stepped over, so `w-[12px]` and `px-(--gap)` type naturally.
 - **Long class lists.** In a string of `n:class`, Enter splits the list into a new string
