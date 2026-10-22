@@ -70,6 +70,12 @@ class – taken from the callback's declared return type, or from the one class 
   slash is a URL, not a presenter path, so `{link //Product:detail}` is left alone
   instead of being reported as an unknown presenter. An inner slash stays checked –
   `Front:product/detail` is a legitimate path segment.
+- Destination completion goes one step at a time: picking a presenter (`Author:`) opens
+  the list of its actions right away, in `n:href` and `n:ifCurrent` as in `{link}`, and
+  typing narrows that list instead of closing it. `Ctrl+Space` on a partly typed action
+  (`Order:de`) offers the actions of that presenter wherever a destination is written,
+  `isLinkCurrent()` included. Modules stay in the list, and picking one opens its
+  presenters the same way.
 - Route parameters and the target action's signature are surfaced as
   [parameter info](./documentation-hints.html).
 - Your project's own `application: mapping` is read from its NEON configuration, so
