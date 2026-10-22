@@ -125,6 +125,11 @@ completion just as it would in a plain HTML file.
 As in a plain HTML file, the popup in a `class` value stays open while you type a dashed
 name such as `text-red-500`.
 
+Unlike in a plain HTML file, a class picked in a quoted `class` value – one of your
+stylesheet classes or a [Tailwind](./tailwind.html) utility – is followed by a space,
+unless a space or the closing quote already comes next. A class picked in the middle of
+the list therefore does not run into the one after it.
+
 Latte tags complete inside an attribute value too – in `class`, `href` and `id` as
 readily as anywhere else, and with text already typed in front of them.
 
