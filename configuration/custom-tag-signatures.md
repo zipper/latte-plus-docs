@@ -81,14 +81,15 @@ Surrounding parentheses are optional – `(image: expr, size: string)` and
 | `name: type = default` | Optional with a default value | `decimals: int = 2` |
 | `...name: type` | Variadic rest-bucket (any number of trailing args) | `...attrs: attrs` |
 
-A variadic param implies tolerant mode automatically – missing-arg inspections
-skip the signature.
+A variadic param only collects the extra arguments at the end. The required params
+before it still have to be passed, so `n:srcset="$image"` with the signature
+`image: expr, size: string, ...attrs: attrs` reports the missing `size`.
 
 ## Signature-level flag
 
 Prefix `tolerant!` at the start of the signature to opt every required slot out of
-missing-arg validation. Useful when the tag has dispatch shapes a static spec can't
-capture cleanly.
+missing-arg validation, in both the braced and the attribute form. Useful when the tag
+has dispatch shapes a static spec can't capture cleanly.
 
 ```
 tolerant! image: expr, size: string
@@ -136,10 +137,10 @@ Latte+ checks two things against the signature as you type, for both the braced
 inspection, so you can silence one and keep the other (Settings → Editor → Inspections,
 under Latte):
 
-- **Missing required argument** – fewer arguments than the required positional params.
-  Reported as an **error** by default: a signature you declared yourself is a contract
-  Latte enforces at runtime, so the template would fail. A trailing `...` param or the
-  `tolerant!` flag relaxes the count check.
+- **Missing required argument** – a required param passed neither by position nor by
+  name. Reported as an **error** by default: a signature you declared yourself is a
+  contract Latte enforces at runtime, so the template would fail. Only the `tolerant!`
+  flag turns this check off; a trailing `...` param does not.
 - **Argument shape** – reported as a **warning**, because these are heuristics over a
   flat token stream:
     - a *surplus* positional argument, i.e. more than the signature declares (when there
