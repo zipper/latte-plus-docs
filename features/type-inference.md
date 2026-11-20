@@ -52,7 +52,12 @@ When no explicit type is given, Latte+ infers from context:
 - **`foreach` item types** – iterating `iterable<App\Image>` or `App\Image[]` types
   the loop variable as `App\Image`.
 - **Assignments** – `{var $u = $order->getCustomer()}` carries the return type onto `$u`.
-- **`{capture}`**, **`{for}`**, ternaries and array literals all contribute types.
+- **`{capture}`**, **`{for}`**, ternaries and array literals all contribute types. A
+  ternary is typed by both of its branches, also in parentheses and as an argument of
+  a function call that is printed.
+- **`static`, `$this` and `self`** – a member that returns one of them is bound to the
+  class it is called on, as PhpStorm does: `Enum::cases()` lists that enum's own cases,
+  and a fluent chain started on a child class keeps the child.
 - **`list<T>` generics** – the item type flows into the loop. (Some other plugins flag
   `list<…>` as an error.)
 
