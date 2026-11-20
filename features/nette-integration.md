@@ -50,6 +50,21 @@ A **`Multiplier`** is looked through. `{control parts-1}` and
 class – taken from the callback's declared return type, or from the one class every
 `return` in it creates. `{control parts}` still means the multiplier itself.
 
+A variable glued to the name with a dash, `{control parts-$id}`, depends on the Latte
+version. Latte 2 reads it as the name of the child, so Latte+ does the same there and
+when the [version]({{ '/configuration/latte-version.html' | relative_url }}) is not known. Latte 3 compiles
+it as the subtraction `'parts' - $id`, so it gets a warning with a quick fix to
+`parts-{$id}`, the spelling that addresses the child on every version (a longer
+expression after the dash gets the warning without the fix). Either way the
+glued `-$id` is never taken for the first render argument.
+
+A method written as a path – `{control menu:item/detail}`, `menu:item.detail`,
+`menu:item-detail` – names no render method Latte+ can read, and it is no longer read
+as its first segment: Latte never calls `renderItem()` for it. Navigation, hover,
+parameter info, hints and the argument checks stay out of such a path. On Latte 3 the
+slash compiles to a division that fails at runtime, so that one is reported as an
+error.
+
 ![Component completion listing the createComponent factories of the presenter]({{ '/assets/img/screens/S25-control-completion.png' | relative_url }})
 
 [More screenshots]({{ site.baseurl }}/screenshots.html#completion)
@@ -62,10 +77,26 @@ class – taken from the callback's declared return type, or from the one class 
 
 - `{ifCurrent}` and `n:ifCurrent` take the destination and arguments of a link, so they
   get everything below: completion of the destination, `Ctrl+B`, parameter info and
-  hints, rename and the checks. (Nette marks `{ifCurrent}` deprecated in favour of
-  `{if isLinkCurrent(…)}`; the support is there for templates that still use it.)
+  hints, rename and the checks. Nette deprecated `{ifCurrent}` in favour of
+  `{if isLinkCurrent(…)}` and nette/application 3.3 removed it, so on Latte 3 both
+  spellings are reported as deprecated, with a quick fix that rewrites
+  `{ifCurrent Product:detail}` … `{/ifCurrent}` to `{if isLinkCurrent('Product:detail')}`
+  … `{/if}` and `n:ifCurrent` to `n:if="isLinkCurrent(…)"`, moving named link
+  parameters into an array. The fix is offered where the closing tag can be paired
+  reliably. On nette/application 3.3 or newer the tag is an error in Latte's own words
+  (`Unexpected tag {ifCurrent}`), with the same fix, and completion no longer offers
+  it; the destination is still checked and navigable until you replace it. On Latte 2
+  nothing is reported, and when the nette/application version cannot be read, the
+  deprecation is what you get.
+- `isLinkCurrent('Product:detail')` treats its target like a link destination – as a
+  bare function and as `$presenter->isLinkCurrent()`, in `{if}`, `n:if` and `n:class`:
+  `Ctrl+B` and `Ctrl+hover` lead to it, Find Usages and rename reach it, a target that
+  does not exist is reported, and the destination popup opens by itself as you type.
+  Link parameters may follow the destination one by one. No target, a wildcard
+  (`'Product:*'`), a variable or an interpolated string lead nowhere and are not
+  reported.
 - Link destinations (`Presenter:action`) are resolved and validated – in `{link}` and
-  `{plink}`, in `n:href`, and in `{ifCurrent}` / `n:ifCurrent`. An action the target presenter does not
+  `{plink}`, in `n:href`, in `{ifCurrent}` / `n:ifCurrent` and in `isLinkCurrent()`. An action the target presenter does not
   have is reported too, not just an unknown presenter. A destination that starts with a
   slash is a URL, not a presenter path, so `{link //Product:detail}` is left alone
   instead of being reported as an unknown presenter. An inner slash stays checked –
@@ -148,6 +179,26 @@ An unknown form, an unknown field and a render method that does not exist are re
 rather than passed over, and the same check runs on `<form n:name="…">` and
 `<input n:name="…">` as inside `{form}`. A misspelled name comes with a quick fix that
 renames it to the closest one the factory really builds.
+
+A field inside a container can be written as a path, the way Nette splits a component
+name at each dash: `{input address-firstName}`. Every segment leads with `Ctrl+B` to
+its own declaration – `address` to its `addContainer()`, `firstName` to its `addText()`
+or other `add…()` call – in `{input}`, `{label}`, `{inputError}`, `{formContainer}`,
+`n:name`, `n:formContainer`, `$form['address-firstName']` and
+`$formContainer['…']`. Completion follows the path one level at a time and offers the
+containers of a level as steps (`address-`), so picking one opens the fields under it.
+Only the first segment that is not declared is reported, on that segment.
+
+`{input}` and `{label}` accept a part of the field after a colon (`{input sex:male}`,
+`{label sex:male}`); navigation and the checks work with the field name before it.
+`{label}` also takes arguments (`{label email, class => 'big'}`). In `{inputError}` and
+`{formContainer}` Latte reads `name:part` as one word, and so does Latte+: no syntax
+error, and inside a form the whole name is checked like any other.
+
+A name with an interpolated piece, `{input address-{$key}}`, is checked and navigable
+up to that piece. A bare variable after a dash, `{input address-$key}`, is read the
+same way on Latte 2 and where the version is not known; Latte 3 compiles it as a
+subtraction, so there it gets a warning suggesting `address-{$key}`.
 
 ![Completion of form field names inside a form tag]({{ '/assets/img/screens/S30-form-input-completion.png' | relative_url }})
 
