@@ -56,7 +56,7 @@ Result:
 
 | Spec param | Matches | Notes |
 |------------|---------|-------|
-| `image: expr` | `$product` | Positional #1 – the name `image` is a placeholder label, **not** a call-site key. |
+| `image: expr` | `$product` | Positional #1 – matched by order; the name `image` is the label hints show. |
 | `size: string` | `'300x200'` | Positional #2. |
 | `...attrs: attrs` | `alt: 'cover', data-test: $name` | Variadic rest-bucket – extra `key: value` pairs are folded here. |
 
@@ -144,13 +144,22 @@ under Latte):
 - **Argument shape** – reported as a **warning**, because these are heuristics over a
   flat token stream:
     - a *surplus* positional argument, i.e. more than the signature declares (when there
-      is no `...` variadic / `attrs` tail);
+      is no `...` variadic / `attrs` tail and no `tolerant!`);
+    - a *named* argument whose key names no parameter of the signature (under the same
+      condition);
     - a *literal* whose shape does not match the declared type – a quoted string, a
       number, `true`/`false`/`null` in the wrong slot (e.g. a number literal in a
       `string` slot, or a string literal in an `int` slot).
 
 Both follow the severity you set: lower them to a warning or a hint, or turn them off,
 and Latte+ respects it.
+
+Both forms split the arguments the same way. A comma separates them, operators do not:
+`n:srcset="$disabled ? $placeholder : $image"` is one argument, and so is a value built with `??`,
+`.` or `&&`. A named argument (`size: '300x200'`, `size => '300x200'` or
+`'size' => '300x200'`) fills the parameter of that name, so it counts as passed, and
+parameter hints and parameter info sit on the argument that really fills each
+parameter.
 
 **What is intentionally not checked: the runtime type of a variable or expression.**
 A `$variable`, a member access (`$x->y`), a call (`foo()`) or any other non-literal
@@ -172,11 +181,12 @@ Latte's tag macros are called like PHP functions – arguments are positional. P
 Latte 3 named-argument syntax (`{include 'foo.latte', showHeader: true}`) is supported
 by a handful of built-in tags (`include`, `embed`, `extends`), but **custom user tags
 use positional calls**. The spec's `name:` therefore plays the same role as a parameter
-name in a PHP function declaration: it's the placeholder label / inlay-hint text, not a
-call-site key.
+name in a PHP function declaration: it's the placeholder label / inlay-hint text, and
+when a call does write it out (`size: '300x200'`), the argument fills that parameter.
+A key the signature does not declare is reported.
 
 If your tag accepts a free `key: value` tail (an HTML attribute splat), declare it with
-`...name: attrs` – only there does the call site become `key: value`-shaped.
+`...name: attrs` – the keys that name no parameter are folded there.
 
 ## What is not supported
 
@@ -184,7 +194,6 @@ If your tag accepts a free `key: value` tail (an HTML attribute splat), declare 
   silently ignored.
 - **Multi-level grouping** (`(...) | (...)`) – pick one shape and use `tolerant!` if
   dispatch varies.
-- **Named-argument calls on custom tags** – not how Latte parses them.
 
 ## Tip: live-template completion
 
