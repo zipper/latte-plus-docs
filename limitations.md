@@ -62,6 +62,11 @@ list is kept honest on purpose – if you hit something not listed here, please
 - **An unclosed tag next to a stray closing tag** (`{if true}{/foreach}`) reports
   twice, the second time in raw parser wording. They are two separate mistakes, and
   that raw message is the only report the unmatched closing tag gets.
+- **A method or a blank-separated argument after a glued variable in `{control}`** –
+  `{control order-$id:items}` and `{control items-$id 'x'}` show a syntax error,
+  although Latte 2 and 3 both compile them. The glued variable on its own
+  (`{control items-$id}`) is read the way Latte reads it; in these two shapes the
+  method and the arguments are not checked at all.
 
 ## Type inference & hints
 
@@ -71,6 +76,23 @@ list is kept honest on purpose – if you hit something not listed here, please
   token stream, so there is nothing to infer from; filters and `{include}` parameters,
   which do have an expression tree, get full type validation. See
   [custom tag signatures]({{ '/configuration/custom-tag-signatures.html#validation' | relative_url }}).
+- **Not every condition narrows a possibly null value in an else branch.** A null-check
+  of the value (`$x === null`), alone or as one part of an `||` chain, keeps the
+  "use `?->`" warning quiet in the else of `{if}` and of a ternary, and the print of a
+  possibly null value quiet in the else of `{if}`; a part joined
+  by `&&` (`$a || $b && $x === null`) proves nothing and the warning stays. Not
+  narrowed yet, so the warning stays there too: a condition wrapped whole in
+  parentheses (`{if ($a || $x === null)}`), the body of an `{elseif}` that runs because
+  an earlier null-check was false, and the element of `n:else` after a null-check in
+  `n:if`.
+- **A `{php}` variable whose type PhpStorm cannot finish has no type.** When PhpStorm
+  can only describe the right-hand side as a pending lookup (a call whose return type
+  it has not resolved yet, such as `str_word_count(strip_tags($text))`), the variable
+  gets no type at all: type checks on it stay quiet and `Ctrl+Q` shows no type. The
+  whole type is dropped even when only one branch is pending, so
+  `{php $x = $c ? new Foo : $repo->get()}` loses `Foo` too, together with member
+  completion and `Ctrl+B` on `$x->`. Keeping `Foo` alone would claim more than is known
+  and turn into false reports.
 
 ## Other
 
@@ -148,6 +170,11 @@ list is kept honest on purpose – if you hit something not listed here, please
   `$this['x'] = …` is reported in a template with no owner. The child of a component
   that is not a `Multiplier` (`{control form-rating}`) has no known class: `Ctrl+B` leads
   to the factory and the checks stay out of it.
+- **A `{control}` method written as a path leads nowhere** – for
+  `{control menu:item.detail}` and `{control menu:item-detail}` on every version, and
+  `{control menu:item/detail}` on Latte 2, Latte calls a method named after the whole
+  path (`renderItem.detail`), which only a `__call` can answer. Latte+ neither reports
+  such a path nor navigates from it, not even to `__call`.
 
 > None of these block everyday template work. They're documented so you know exactly
 > where the boundaries are.
