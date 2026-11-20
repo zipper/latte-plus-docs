@@ -85,7 +85,13 @@ keyboard.
   value is encoded rather than stringified – stays quiet.
 - **Printing a value that may be null** – a weak warning, and only where the print is
   not already guarded: inside `{if}` or `n:if`, in the truthy arm of a ternary, or
-  behind an `&&` or `??` that has tested it, nothing is reported.
+  behind an `&&` or `??` that has tested it, nothing is reported. The same goes for the
+  `{else}` of an `{if}` whose condition is a null-check of the value, also when that
+  check is one part of an `||` chain (`{if $expired || $x === null}`).
+- **Calling a member on a value that may be null** – `$x->y()` where `$x` may be null,
+  with a quick fix to `?->`. It stays quiet in the else branch of `{if}` and of a
+  ternary whose condition null-checks `$x`, alone or as one part of an `||` chain
+  (`$expired || $x === null ? 0 : $x->y()`).
 - **Iterating something that cannot be iterated** – `{foreach $count as $x}` on a
   scalar. Iterating an object is legal PHP and stays quiet, and so does an
   `n:attribute` that does not iterate at all, such as `n:if` or `n:class`.
@@ -229,12 +235,39 @@ one. To say that a block arrives from elsewhere, wrap the include in `{ifset #na
   In a template no presenter or component renders, the method is checked against the
   class of every `createComponentX()` factory in the project, and reported only when
   each of them gives a known class and none has the method.
+- **Too many render arguments** – a positional argument in `{control x, …}` that the
+  render method does not accept, reported on each surplus argument. A variadic
+  parameter, a spread, a method that reads `func_get_args()` and named arguments are
+  respected, and `{control x, a => 1}` counts as the one array Latte passes.
+- **Render method path Latte 3 divides** – on Latte 3, the slash in
+  `{control menu:item/detail}` compiles to a division and the call fails at runtime, so
+  it is an error. A dot or dash path, and the slash on Latte 2, stay silent.
+- **A variable glued to a dash** – on Latte 3, `{control items-$id}` and
+  `{input address-$key}` are subtractions, not names. Both get a warning naming the
+  braced spelling (`items-{$id}`), and `{control}` offers a quick fix to it. Latte 2
+  reads them as names, so nothing is reported there or where the version is not known.
 - **Link target** – a destination that doesn't resolve, in `{link}` / `{plink}`, in
-  `n:href` and in `{ifCurrent}` / `n:ifCurrent` alike. All three are checked: an unknown presenter, an
+  `n:href`, in `{ifCurrent}` / `n:ifCurrent` and in `isLinkCurrent()` alike. Three things are checked: an unknown presenter, an
   action the presenter does not have, and a signal whose handler Nette could not
   dispatch. When two presenters share the name and nothing decides between them, an
   action neither of them has is reported once, naming both. In a template with no
-  owner, `{link x:save!}` is first asked whether any factory creates `x`.
+  owner, `{link x:save!}` is first asked whether any factory creates `x`. A misspelled
+  action comes with a quick fix that replaces just that segment, in every spelling –
+  `{link}`, `n:href`, `{ifCurrent}` / `n:ifCurrent` and `isLinkCurrent()`, braced or
+  in an `n:*` value – and so does a misspelled presenter (`Articl:detail`), when the
+  corrected link really resolves.
+- **Deprecated or removed `{ifCurrent}`** – on Latte 3, `{ifCurrent}` and
+  `n:ifCurrent` are a weak warning: Nette deprecated them in favour of
+  `isLinkCurrent()`. On nette/application 3.3 or newer, which removed them, they are an
+  error worded as Latte's own (`Unexpected tag {ifCurrent}`). Both come with a quick
+  fix to `{if isLinkCurrent(…)}` / `n:if="isLinkCurrent(…)"`. Latte 2 stays silent, and
+  where the nette/application version cannot be read, the deprecation is reported.
+- **Named argument `isLinkCurrent()` does not take** – `isLinkCurrent('Product:detail',
+  id: 5)` dies at runtime with *Unknown named parameter $id*, so it is an error, in
+  braces, in an `n:*` value and on `->isLinkCurrent()`. On Latte 3 the same goes for
+  `{ifCurrent Product:detail, id => 5}` and `n:ifCurrent`, which compile to that call.
+  A quick fix wraps the link parameters in an array (`['id' => 5]`) when nothing but
+  such arguments follows the destination. Latte 2 stays silent.
 - **`{ifCurrent}` syntax** – on a Latte 3 project, the shapes Latte 3 refuses while
   Latte 2 compiled them: an unquoted `*` in the destination (`Product:*`; quote it as
   `'Product:*'`), a second argument without a comma, and a filter in `n:ifCurrent`. A
@@ -243,8 +276,10 @@ one. To say that a block arrives from elsewhere, wrap the include in `{ifset #na
   rest stays quiet.
 - **Form checks** – an unknown form or field, in `{form}` / `{input}` and in `n:name`
   alike, and an unknown container in `{formContainer}` / `n:formContainer`, each with a
-  did-you-mean fix. A template that renders a form nobody in scope owns says so, and
-  you can name the owner yourself in a `{* @form-owner *}` comment.
+  did-you-mean fix. A container-field path (`address-firstName`) is checked segment by
+  segment, and only the first segment that is not declared is reported. A template
+  that renders a form nobody in scope owns says so, and you can name the owner yourself
+  in a `{* @form-owner *}` comment.
 - **No-escape filter** – flags a `|noescape`-only modifier on a `{control}`.
 - **Nonce attribute** – `n:nonce` used outside its valid scope.
 
