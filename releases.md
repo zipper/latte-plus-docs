@@ -6,6 +6,64 @@ nav_order: 11
 
 # Release notes
 
+## 1.1.1 - 2026-11-21
+
+### Added
+
+- `isLinkCurrent()` now works like `{link}`: the link target is completed as you
+  type, Ctrl+B, Find Usages and rename work on it, and a target that does not
+  exist is reported. This applies to `isLinkCurrent()` and
+  `$presenter->isLinkCurrent()` in `{if}`, `n:if` and `n:class`.
+- On Latte 3, `{ifCurrent}` and `n:ifCurrent` are marked as deprecated, with a
+  quick-fix that rewrites them to `isLinkCurrent()`. On nette/application 3.3
+  and newer, which removed the tag, it is reported as an error.
+- A named argument that `isLinkCurrent()` does not accept is reported as an
+  error.
+- The fix for a mistyped link target is now offered in `n:href`,
+  `n:ifCurrent` and `isLinkCurrent()` as well, and a mistyped presenter name
+  gets it too.
+- Container-field paths in form tags such as `address-firstName`: Ctrl+B leads
+  from each part to its declaration, completion offers the fields of the typed
+  container and the containers as further steps, and only the first undeclared
+  part is reported.
+- `{control}` warns about render arguments the render method does not accept.
+- On Latte 3, a method path with a slash in `{control}` is reported, because
+  Latte 3 compiles it as a division. `{control name-$id}` and
+  `{input address-$x}` get a warning with a quick-fix to `name-{$id}`.
+
+### Changed
+
+- Custom `n:*` attributes count their arguments the same way as the tag form:
+  operators and named arguments are understood, an unknown key and a mismatched
+  literal are reported, and a variadic parameter no longer switches off the
+  check for a missing required argument. An explicit `tolerant!` now switches
+  that check off in the tag form too.
+- Type checks follow PhpStorm more closely. When PhpStorm cannot finish a type,
+  it counts as unknown and the check stays quiet instead of showing internal
+  type notation in the message.
+
+### Fixed
+
+- `{input name:part}`, `{label name:part}`, `{inputError name:part}`,
+  `{formContainer name:part}`, `{label}` with arguments and interpolated names
+  such as `address-{$x}` no longer report a syntax error.
+- `Foo::class` is no longer reported as an undefined static member, and a method
+  returning `static`, `$this` or `self` keeps the class it was called on.
+- A ternary is typed by its branches, and an `else` branch is narrowed through a
+  null-checked `||` condition.
+- An index on an implicitly printed call is checked like any other index.
+- A function argument mismatch in an `n:*` value and a missing link target in
+  `n:href` and `n:ifCurrent` are reported once, not twice.
+- `isLinkCurrent()` with link parameters after the target no longer reports too
+  many arguments.
+- `{control}` no longer treats a method path as its first part, no longer shifts
+  the arguments after a glued `-$id`, reads `=>` as one array argument, keeps
+  parameter info on an empty argument, and its documentation shows the
+  declared parameter types.
+- Parameter hints in the tag form are no longer placed on an operator.
+- Renaming a presenter action that a template links to both in a tag and in an
+  `n:*` attribute no longer fails with an error.
+
 ## 1.1.0 - 2026-10-23
 
 ### Added
