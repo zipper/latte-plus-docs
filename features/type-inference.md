@@ -38,6 +38,17 @@ array shapes (`array{name: string, size: int}`) and unions written with a bare c
 name are read wherever a type can stand – `{varType}`, `{parameters}`, `{var}` and
 `{default}` alike – rather than reported as an unknown class.
 
+An array of a parenthesized union is read as well, the way Latte compiles it in
+`{parameters}`, `{var}`, `{default}` and `{define}`:
+
+```latte
+{parameters (App\Model\Image|string)[] $logos = []}
+{foreach $logos as $logo}…{/foreach}
+```
+
+`$logo` is then `App\Model\Image|string`, so member completion, hover and the type
+checks follow each branch, and hover links every class in the group.
+
 `{templateType}` is narrower, because Latte itself is: it takes a class name or a union
 of class names (`{templateType App\FrontTemplate|App\AdminTemplate}`) and nothing else.
 
