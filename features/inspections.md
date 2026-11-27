@@ -255,7 +255,8 @@ one. To say that a block arrives from elsewhere, wrap the include in `{ifset #na
   action comes with a quick fix that replaces just that segment, in every spelling –
   `{link}`, `n:href`, `{ifCurrent}` / `n:ifCurrent` and `isLinkCurrent()`, braced or
   in an `n:*` value – and so does a misspelled presenter (`Articl:detail`), when the
-  corrected link really resolves.
+  corrected link really resolves. An action that has only a template is one of the
+  suggestions, and `{link Order:}` is checked as the `default` action.
 - **Deprecated or removed `{ifCurrent}`** – on Latte 3, `{ifCurrent}` and
   `n:ifCurrent` are a weak warning: Nette deprecated them in favour of
   `isLinkCurrent()`. On nette/application 3.3 or newer, which removed them, they are an

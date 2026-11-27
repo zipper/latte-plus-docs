@@ -106,7 +106,22 @@ error.
   typing narrows that list instead of closing it. `Ctrl+Space` on a partly typed action
   (`Order:de`) offers the actions of that presenter wherever a destination is written,
   `isLinkCurrent()` included. Modules stay in the list, and picking one opens its
-  presenters the same way.
+  presenters the same way. The actions of the current presenter (and `this`) come
+  before modules and other presenters.
+- An action does not need a method: Nette serves one that has only a template
+  (`archive.latte` with no `renderArchive()` or `actionArchive()`). Such an action is
+  offered in completion with a template icon and suggested by the typo quick fix, and
+  `Ctrl+Q` on it in `{link}` or `n:href` says it has no `render`/`action` method,
+  with a link to its template. A template whose name is no valid action name (`cart-item.latte`,
+  `@layout.latte`) is not offered as an action.
+- A destination that ends with the colon, `{link Order:}`, is the presenter's
+  `default` action, as Nette reads it – also in `n:href=":Order:"`,
+  `{link Order:, id: 5}`, `{link Order:#top}` and `isLinkCurrent('Order:')`. It is
+  reported when the presenter has no `default` action, `Ctrl+B` after the colon leads
+  to it, and Find Usages and rename of `default.latte` or `renderDefault()` reach
+  these links: renaming the action to `overview` writes `Order:overview`.
+- A PHP keyword is an action name like any other: `{link Parcel:list}`, `{link list}`
+  and `n:href="new"` are links to the actions `list` and `new`, not a syntax error.
 - Route parameters and the target action's signature are surfaced as
   [parameter info](./documentation-hints.html).
 - Your project's own `application: mapping` is read from its NEON configuration, so
