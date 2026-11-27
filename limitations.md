@@ -143,6 +143,18 @@ list is kept honest on purpose – if you hit something not listed here, please
   `{link Admin:Product:edit}` relative to the current module, Latte+ reads it as
   absolute, so such a link resolves even where Nette would refuse it. Writing the
   leading colon makes both readings agree.
+- **The `default` action after a colon is reached from the keyboard** – in
+  `{link Order:}` the action sits on no character of its own. `Ctrl+B` and a
+  `Ctrl+Click` right after the colon lead to it, but `Ctrl+hover` underlines it only
+  when the caret already stands after the colon. `Ctrl+Q` there shows nothing in
+  `{link}` (measured on PhpStorm 2025.3); in `n:href` it documents the action. A
+  destination of only a colon, `{link :}`, is not read as the `default` action yet.
+- **Renaming an action stops at the templates** – links and views spelled in PHP
+  (`redirect('archive')`, `$this->link('archive')`, `setView('archive')`) keep the old
+  name. Renaming the template of an action without a method does not find a link that
+  writes the action in another letter case (`Order-status`). When renaming a method would collide with an existing method or
+  template, only the method and its links are renamed, and PhpStorm says so after
+  the rename rather than before it.
 - **The Latte version is searched for three levels deep.** Checks that depend on the
   Latte version look for `latte/latte` in a `composer.lock` or `composer.json` at the
   project root and up to three directory levels below it. Latte installed deeper, or
