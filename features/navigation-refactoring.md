@@ -85,9 +85,10 @@ report the name as long as it is declared somewhere – and `Ctrl+B` offers **ev
 declaration that keeps it quiet, templates first, then the PHP declarations ordered by
 class. In a template that nothing renders, a name exactly one method in the project
 declares is followed directly by `Ctrl+B`, completion, `Ctrl+Q` and the parameter hints.
-Rename stays with a single, certain target, and so does Find Usages on a PHP
-declaration. Find Usages on a template lists every place `Ctrl+B` leads to it from,
-these guesses included.
+Rename and Safe Delete stay with a single, certain target, so renaming or deleting a
+`render`, `action` or `handle` method or a component factory leaves the guesses alone.
+Find Usages lists them: on a template it lists every place `Ctrl+B` leads to it from,
+and on such a PHP declaration the guesses appear next to the certain uses.
 
 In a monorepo that installs the same package into several of its packages, `Ctrl+B`
 offers the copy belonging to the template's own package, the one PhpStorm itself would
@@ -107,8 +108,9 @@ it: `{control reviews}` and `{control reviews:compact}` for the template of a
 component – a `render<M>()` without a template of its own falls back to the one of
 `render()`, and Multiplier children, subclasses, traits and generated factories count
 too – and `{link}`, `{plink}`, `n:href`, `{ifCurrent}` and `n:ifCurrent` for the
-template of a presenter action. Renaming or deleting the template still touches only
-the PHP that names it: the tags keep their component and action names. What the search
+template of a presenter action. Renaming or deleting the template touches only the PHP
+that names it and keeps the component names in the tags; the template of a presenter
+action is the exception, see [renaming an action](#renaming-an-action). What the search
 cannot see is in [known limitations]({{ '/limitations.html' | relative_url }}).
 
 ![Find Usages on the template of a presenter action, listing the links and ifCurrent tags that lead to it and the setFile() path in PHP]({{ '/assets/img/screens/S46-find-usages-template.png' | relative_url }})
@@ -163,6 +165,31 @@ that reaches it, and `Shift+F6` rewrites the template along with the declaration
   name, or the factory comes from a library, the rename is refused with a message
   instead of picking one.
 - **CSS classes** used in `n:class` are renamed along with their stylesheet rule.
+
+### Renaming an action
+
+A presenter action is a name shared by its template and its `render`/`action`
+methods, and the links in templates spell it. Renaming any one of them can carry the
+rest along:
+
+- **An action with only a template** – renaming `archive.latte` renames the action,
+  so `{link}`, `{plink}`, `n:href`, `{ifCurrent}`, `n:ifCurrent` and
+  `isLinkCurrent()` that certainly lead to it are rewritten. A link written with
+  dashes (`order-status`) stays dashed, and renaming `default.latte` turns
+  `{link Order:}` into `{link Order:overview}`. A new file name that is no action of
+  the same presenter renames just the file.
+- **An action with a method** – renaming its template offers **Rename action methods
+  (render…, action…) and links**, checked by default; a second dialog lists the
+  methods it will rename. Renaming `renderDetail()` or `actionDetail()` likewise
+  offers **Rename action template and the other action method**. Left unchecked, the
+  template and the method go their separate ways, as before.
+- **Links written with dashes** – renaming a `render`/`action` method also rewrites
+  `{link order-status}` and keeps the dashes. A signal is left alone: Nette does not
+  turn a dash into a capital letter there.
+
+The combined rename is not offered for an inherited method, one from a trait, a method
+that overrides or is overridden, or a presenter that has subclasses. What it does not
+rewrite is in [known limitations]({{ '/limitations.html' | relative_url }}).
 
 ## Quick fixes
 
